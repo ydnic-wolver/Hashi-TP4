@@ -26,7 +26,10 @@ class ClassementNiveau < Gtk::Window
 	btnNiveau8 = Gtk::Button.new(:label => 'Niveau 8')
 	btnQuitter = Gtk::Button.new(:label => 'Retour')
 
-	btnQuitter.signal_connect('clicked'){self.destroy}
+	btnQuitter.signal_connect('clicked'){
+		self.destroy
+		Classement.new
+	}
 	
 
 	boxMenu.attach(textTitle, 0,9,0,4)
