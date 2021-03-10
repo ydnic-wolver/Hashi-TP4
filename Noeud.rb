@@ -12,6 +12,7 @@ class Noeud < Gtk::Button
 
     # Colonne de la case
     attr_accessor :column
+    
 
     ##
     # Représente les nœuds auxquels ce nœud peut être connecté
@@ -24,7 +25,7 @@ class Noeud < Gtk::Button
     attr_reader :degreeMax
 
     # Représente le nombre de degrée restant à connecter avant d'atteindre le degree max
-    attr_reader :degree
+    attr_accessor :degree
 
 
     def initialize(degree, col, lig )
@@ -33,7 +34,7 @@ class Noeud < Gtk::Button
         @row = lig
         @column = col
         # self.label = degree
-        
+        @degree = 0
         if( degree == '0')
             self.set_sensitive(false)
             self.status = 'p'
@@ -54,7 +55,7 @@ class Noeud < Gtk::Button
         k = self.column + 1 # DROITE
         while k <= 6
             newCase = @gridRef.get_child_at(k,self.row)
-            if newCase.status == 'i'
+            if newCase.status == 'i' && newCase.column != @column
                 @eastNode = newCase
                 break;
             end
@@ -64,7 +65,7 @@ class Noeud < Gtk::Button
         k = self.row + 1  #BAS
         while k <= 6 
             newCase = @gridRef.get_child_at(self.column,k)
-            if newCase.status == 'i'
+            if newCase.status == 'i' && newCase.row != @row
                 @southNode = newCase
                 break;
             end
@@ -74,20 +75,18 @@ class Noeud < Gtk::Button
         k = self.row - 1  #HAUT
         while k >= 0
             newCase = @gridRef.get_child_at(self.column,k)
-            if newCase.status == 'i'
+            if newCase.status == 'i' && newCase.row != @row
                 @northNode = newCase
-
-                # puts @northNode 
 
                 break;
             end
             k -=1
         end
 
-        k = self.row - 1  #GAUCHE
+        k = self.column - 1  #GAUCHE
         while k >= 0
             newCase = @gridRef.get_child_at(k,self.row)
-            if newCase.status == 'i'
+            if newCase.status == 'i' && newCase.column != @column
                 @westNode = newCase
                 break;
             end
@@ -110,11 +109,7 @@ class Noeud < Gtk::Button
         # Evenement pour le survol 
         self.signal_connect('enter-notify-event') do 
             
-            puts "Voisins Gauche: #{@westNode} "
-            puts "Voisins Droit: #{@eastNode} "
-            puts "Voisins Haut: #{@northNode} "
-            puts "Voisins Bas: #{@southNode} "
-
+            
         end
         # Evenement pour la sortie de survol 
         self.signal_connect('leave-notify-event') do 
@@ -125,13 +120,17 @@ class Noeud < Gtk::Button
     
     # Méthode de test afin de s'assurer du bon fonctionnement des clics
     def click()
-        @gridRef.notify("Case #{@row}- #{@column}")
+        # @gridRef.notifyNodes("Case #{@row}- #{@column}")
+        @gridRef.notify(self)
+        
+        p  "#{self.to_s} - degree = #{@degree}"
+        
+        # puts " Haut: #{@northNode} - Gauche: #{@westNode} - Droit: #{@eastNode} -  Bas:#{@southNode} "
+        
     end
 
     # Ajoute un pont entre un noeuf ( self ) et un autre 
     def addEdge(n2)
-        
-        
 
     end
 
@@ -149,5 +148,28 @@ class Noeud < Gtk::Button
         
     end
 
+    def update(subject)
+        
+        puts "Prececent : " + subject.to_s + " Actuel: " + self.to_s
+        # je regarde si le noeud cliquer fait parti de mes voisins 
+        # si oui je dessine un pont si non vtf
+        if subject == @eastNode  # voisin de droite
+
+            subject.degree += 1
+            self.degree += 1
+            for i in (@column+1)..(subject.column-1) do
+                @gridRef.get_child_at(i, self.row ).image.from_file= "image/noeuds/h_simple.png";
+            end
+        elsif subject == @westNode # voisin de gauche
+ 
+        elsif subject == @northNode # voisin de haut
+
+        elsif subject == @southNode # voisin de bas
+
+        end
+
+
+
+    end
 
 end
