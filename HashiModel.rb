@@ -45,12 +45,12 @@ def loadGrid(grid)
             data[i].split(':').each_with_index do | ch, index| 
            
             # Création d'une case 
-            btn = Case::new(ch,i,index)
+            btn = Case::new(ch,index,i)
             # On attache la référence de la grille
             btn.attach(grid)
 
             btn.hover
-            grid.attach(btn, i, index, 1,1)
+            grid.attach(btn, index,i, 1,1)
         end
      
     end
