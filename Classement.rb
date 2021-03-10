@@ -20,21 +20,21 @@ class Classement < Gtk::Window
 	textTitle.set_markup(texte)
 	btnFacile = Gtk::Button.new(:label => 'Facile')
 	btnFacile.signal_connect('clicked'){
-		self.set_visible(false)
+		self.set_sensitive(false)
 		classement = ClassementNiveau.new
-		
+		self.set_sensitive(true)
 	}
 	btnMoyen = Gtk::Button.new(:label => 'Moyen')
 	btnMoyen.signal_connect('clicked'){
-		self.set_visible(false)
+		self.set_sensitive(false)
 		classement = ClassementNiveau.new
-	
+		self.set_sensitive(true)
 	}
 	btnDifficile = Gtk::Button.new(:label => 'Difficile')
 	btnDifficile.signal_connect('clicked'){
-		self.set_visible(false)
+		self.set_sensitive(false)
 		classement = ClassementNiveau.new
-
+		self.set_sensitive(true)
 	}
 	btnQuitter = Gtk::Button.new(:label => 'Retour')
 	btnQuitter.signal_connect('clicked'){
