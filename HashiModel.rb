@@ -49,6 +49,10 @@ def loadGrid(grid)
             # On attache la référence de la grille
             btn.attach(grid)
             btn.hover
+            # if( ch != '0')
+            #     grid.attachNode(btn)
+            # end
+         
             grid.attach(btn, index,i, 1,1)
             
         end
