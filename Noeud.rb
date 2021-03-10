@@ -1,6 +1,6 @@
 require ('gtk3')
 
-class Case < Gtk::Button
+class Noeuf < Gtk::Button
 
     # Remplace le label du GTK::Button
     # Identifie une case comme étant un pont 'p'
@@ -34,6 +34,9 @@ class Case < Gtk::Button
         @column = col
         # self.label = degree
         self.status = 'p'
+        if( degree == '0')
+            self.set_sensitive(false)
+        end
         self.image = Gtk::Image.new(:file => "image/noeuds/"+degree+".png") 
         self.set_relief(Gtk::ReliefStyle::NONE)
         self.always_show_image = true
@@ -100,6 +103,11 @@ class Case < Gtk::Button
         # Evenement pour le survol 
         self.signal_connect('enter-notify-event') do 
             
+            puts "Voisins Gauche: #{@westNode} "
+            puts "Voisins Droit: #{@eastNode.to_s} "
+            puts "Voisins Haut: #{@northNode} "
+            puts "Voisins Bas: #{@southNode} "
+
         end
         # Evenement pour la sortie de survol 
         self.signal_connect('leave-notify-event') do 
