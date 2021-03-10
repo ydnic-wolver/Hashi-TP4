@@ -1,6 +1,6 @@
 require ('gtk3')
 
-class Noeuf < Gtk::Button
+class Noeud < Gtk::Button
 
     # Remplace le label du GTK::Button
     # Identifie une case comme étant un pont 'p'
