@@ -17,5 +17,10 @@ class HashiGrid < Gtk::Grid
         super()
     end
 
+    # Méthode permettant de s'assurer 
+    # du bon lien entre la grille et une case 
+    def notify(message)
+        puts message
+    end
 
 end
