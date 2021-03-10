@@ -33,10 +33,14 @@ class Noeud < Gtk::Button
         @row = lig
         @column = col
         # self.label = degree
-        self.status = 'p'
+        
         if( degree == '0')
             self.set_sensitive(false)
+            self.status = 'p'
+        else
+            self.status = 'i'
         end
+
         self.image = Gtk::Image.new(:file => "image/noeuds/"+degree+".png") 
         self.set_relief(Gtk::ReliefStyle::NONE)
         self.always_show_image = true
@@ -50,7 +54,7 @@ class Noeud < Gtk::Button
         k = self.column + 1 # DROITE
         while k <= 6
             newCase = @gridRef.get_child_at(k,self.row)
-            if newCase.status == 'r'
+            if newCase.status == 'i'
                 @eastNode = newCase
                 break;
             end
@@ -60,7 +64,7 @@ class Noeud < Gtk::Button
         k = self.row + 1  #BAS
         while k <= 6 
             newCase = @gridRef.get_child_at(self.column,k)
-            if newCase.status == 'r'
+            if newCase.status == 'i'
                 @southNode = newCase
                 break;
             end
@@ -70,8 +74,11 @@ class Noeud < Gtk::Button
         k = self.row - 1  #HAUT
         while k >= 0
             newCase = @gridRef.get_child_at(self.column,k)
-            if newCase.status == 'r'
+            if newCase.status == 'i'
                 @northNode = newCase
+
+                # puts @northNode 
+
                 break;
             end
             k -=1
@@ -80,7 +87,7 @@ class Noeud < Gtk::Button
         k = self.row - 1  #GAUCHE
         while k >= 0
             newCase = @gridRef.get_child_at(k,self.row)
-            if newCase.status == 'r'
+            if newCase.status == 'i'
                 @westNode = newCase
                 break;
             end
@@ -104,7 +111,7 @@ class Noeud < Gtk::Button
         self.signal_connect('enter-notify-event') do 
             
             puts "Voisins Gauche: #{@westNode} "
-            puts "Voisins Droit: #{@eastNode.to_s} "
+            puts "Voisins Droit: #{@eastNode} "
             puts "Voisins Haut: #{@northNode} "
             puts "Voisins Bas: #{@southNode} "
 
