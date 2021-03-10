@@ -48,9 +48,9 @@ def loadGrid(grid)
             btn = Case::new(ch,index,i)
             # On attache la référence de la grille
             btn.attach(grid)
-
             btn.hover
             grid.attach(btn, index,i, 1,1)
+            
         end
      
     end
@@ -62,6 +62,8 @@ grid.set_row_homogeneous(true)
 
 #  Chargement de la grille
 loadGrid(grid)
+
+grid.each{ |btn| btn.loadNeighbours }
 
 hashi.add ( grid )
 
