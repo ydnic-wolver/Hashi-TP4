@@ -6,7 +6,7 @@ require 'gtk3'
 
 require "gtk3"
 
-load "Case.rb"
+load "Noeud.rb"
 load "HashiGrid.rb"
 
 hashi = Gtk::Window.new
@@ -45,7 +45,7 @@ def loadGrid(grid)
             data[i].split(':').each_with_index do | ch, index| 
            
             # Création d'une case 
-            btn = Case::new(ch,index,i)
+            btn = Noeud::new(ch,index,i)
             # On attache la référence de la grille
             btn.attach(grid)
             btn.hover
