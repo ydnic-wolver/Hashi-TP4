@@ -23,4 +23,5 @@ class HashiGrid < Gtk::Grid
         puts message
     end
 
+
 end

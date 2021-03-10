@@ -41,6 +41,7 @@ class Case < Gtk::Button
         self.signal_connect('clicked') { self.click() }
     end
 
+    # Charge les voisins accessibles d'une case en HAUT, BAS, GAUCHE, DROITE
     def loadNeighbours
         
         k = self.column + 1 # DROITE
@@ -68,9 +69,6 @@ class Case < Gtk::Button
             newCase = @gridRef.get_child_at(self.column,k)
             if newCase.status == 'r'
                 @northNode = newCase
-
-                # puts @northNode 
-
                 break;
             end
             k -=1
@@ -99,12 +97,11 @@ class Case < Gtk::Button
     end
     
     def hover 
+        # Evenement pour le survol 
         self.signal_connect('enter-notify-event') do 
-            if self.status == 'r'
-                self.getNeighoursNorth
-            end
+            
         end
-
+        # Evenement pour la sortie de survol 
         self.signal_connect('leave-notify-event') do 
             
             
