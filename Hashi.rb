@@ -4,7 +4,7 @@ require 'gtk3'
 # c'est dans cette classe que toute la logique du jeu va
 #  s'articuler
 
-load "Noeud.rb"
+
 load "HashiGame.rb"
 
 hashi = HashiGame.new
