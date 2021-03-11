@@ -1,7 +1,12 @@
 require 'gtk3'
 
-class Ile < Noeud
+class Ile < Gtk::Button
 
+    
+
+    def initialize() 
+
+    end
 
     
 

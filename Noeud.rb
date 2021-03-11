@@ -12,7 +12,6 @@ class Noeud < Gtk::Button
 
     # Colonne de la case
     attr_accessor :column
-    
 
     ##
     # Représente les nœuds auxquels ce nœud peut être connecté
@@ -45,6 +44,7 @@ class Noeud < Gtk::Button
         self.image = Gtk::Image.new(:file => "image/noeuds/"+degree+".png") 
         self.set_relief(Gtk::ReliefStyle::NONE)
         self.always_show_image = true
+        self.image.show
        
         self.signal_connect('clicked') { self.click() }
     end
@@ -122,9 +122,20 @@ class Noeud < Gtk::Button
     def click()
         # @gridRef.notifyNodes("Case #{@row}- #{@column}")
         @gridRef.notify(self)
-        
+
+        # if self.status == 'p'
+        #     k = self.column
+        #     s = self.row
+        #     node = @gridRef.get_child_at(k,s)
+        #     while node.status == 'p'
+        #         node.image.hide()
+        #         node.set_sensitive(false)
+        #         k += 1
+        #         node = @gridRef.get_child_at(k,s)
+        #     end
+        # end
         p  "#{self.to_s} - degree = #{@degree}"
-        
+
         # puts " Haut: #{@northNode} - Gauche: #{@westNode} - Droit: #{@eastNode} -  Bas:#{@southNode} "
         
     end
@@ -155,11 +166,21 @@ class Noeud < Gtk::Button
         # si oui je dessine un pont si non vtf
         if subject == @eastNode  # voisin de droite
 
-            subject.degree += 1
-            self.degree += 1
+           
             for i in (@column+1)..(subject.column-1) do
                 @gridRef.get_child_at(i, self.row ).image.from_file= "image/noeuds/h_simple.png";
+                @gridRef.get_child_at(i, self.row).image.show 
+                @gridRef.get_child_at(i, self.row ).set_sensitive(true)
             end
+
+            subject.degree += 1
+            self.degree += 1
+
+            if subject.degreeMax == subject.degree
+                subject.image.from_file = 'image/noeuds/1_v.png'
+            end
+
+            
         elsif subject == @westNode # voisin de gauche
  
         elsif subject == @northNode # voisin de haut

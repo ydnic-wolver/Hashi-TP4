@@ -10,6 +10,7 @@ class HashiGrid < Gtk::Grid
     # Nombre de colonnes 
     attr_accessor :colonnes
     
+    # Représente le noeud precedemment clique
     attr_accessor :prev 
     
     # Nombre de lignes
