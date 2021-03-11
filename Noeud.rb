@@ -27,10 +27,11 @@ class Noeud < Gtk::Button
     attr_accessor :degree
 
 
-    def initialize(degree, col, lig )
+    def initialize(grid, degree, col, lig )
         super()
         @degreeMax = degree.to_i
         @row = lig
+        @gridRef = grid
         @column = col
         # self.label = degree
         @degree = 0
@@ -49,48 +50,41 @@ class Noeud < Gtk::Button
         self.signal_connect('clicked') { self.click() }
     end
 
+    
+
     # Charge les voisins accessibles d'une case en HAUT, BAS, GAUCHE, DROITE
     def loadNeighbours
         
-        k = self.column + 1 # DROITE
-        while k <= 6
-            newCase = @gridRef.get_child_at(k,self.row)
-            if newCase.status == 'i' && newCase.column != @column
-                @eastNode = newCase
-                break;
+        # DROITE
+        for x2 in (@column+1).upto(@gridRef.lignes-1)
+            if (@gridRef.get_child_at(x2, self.row).status == 'i')
+                @eastNode = @gridRef.get_child_at(x2,self.row)
+                break
             end
-            k +=1
         end
 
-        k = self.row + 1  #BAS
-        while k <= 6 
-            newCase = @gridRef.get_child_at(self.column,k)
-            if newCase.status == 'i' && newCase.row != @row
-                @southNode = newCase
-                break;
+        #BAS
+        for y2 in (@row+1).upto(@gridRef.colonnes-1)
+            if (@gridRef.get_child_at(self.column,y2).status == 'i')
+                @southNode = @gridRef.get_child_at(self.column,y2)
+                break
             end
-            k +=1
+        end
+        
+        #HAUT
+        for y2 in (@row-1).downto(0)
+            if (@gridRef.get_child_at(self.column,y2).status == 'i')
+                @northNode = @gridRef.get_child_at(self.column,y2)
+                break
+            end
         end
 
-        k = self.row - 1  #HAUT
-        while k >= 0
-            newCase = @gridRef.get_child_at(self.column,k)
-            if newCase.status == 'i' && newCase.row != @row
-                @northNode = newCase
-
-                break;
+        # Gauche
+        for x2 in (@column-1).downto(0)
+            if (@gridRef.get_child_at(x2,self.row).status == 'i')
+                @westNode = @gridRef.get_child_at(x2,self.row)
+                break
             end
-            k -=1
-        end
-
-        k = self.column - 1  #GAUCHE
-        while k >= 0
-            newCase = @gridRef.get_child_at(k,self.row)
-            if newCase.status == 'i' && newCase.column != @column
-                @westNode = newCase
-                break;
-            end
-            k -=1
         end
 
     end
@@ -136,7 +130,7 @@ class Noeud < Gtk::Button
         # end
         p  "#{self.to_s} - degree = #{@degree}"
 
-        # puts " Haut: #{@northNode} - Gauche: #{@westNode} - Droit: #{@eastNode} -  Bas:#{@southNode} "
+        puts " Haut: #{@northNode} - Gauche: #{@westNode} - Droit: #{@eastNode} -  Bas:#{@southNode} "
         
     end
 
