@@ -10,6 +10,8 @@ class Pont < Noeud
     # Représente la direction du pont. (0 = pas de pont, 1 = horizontal, 2 = vertical)
     attr_accessor :directionPont
 
+    attr_accessor :stable
+
     # début du pont
     attr_accessor :debut
 
@@ -22,9 +24,10 @@ class Pont < Noeud
         @directionPont = 0
         @suivant = -1
         @debut = -1
+        @stable = false
         self.set_sensitive(false)  # Un pont n'est pas cliquable par défaut
         self.status = 'p'
-
+        
     end
 
 
@@ -33,8 +36,9 @@ class Pont < Noeud
     end
 
     def set_typePont(val)
-        
-        @typePont = val
+        if val >= 0
+            @typePont = val
+        end
     end
     
     def get_typePont
@@ -45,6 +49,12 @@ class Pont < Noeud
         @directionPont = val
     end
 
+    def set_stable(val)
+        if !self.stable 
+            self.stable = val
+        end
+    end
+
     def update()
        p "Type du pont: " + @typePont.to_s
 
@@ -53,15 +63,32 @@ class Pont < Noeud
         elsif @typePont == 1
             p "Direction du pont: " + @directionPont.to_s
             if @directionPont == 1
-                self.image.from_file= "image/noeuds/h_simple.png"
+                if @stable 
+                    self.image.from_file= "image/noeuds/h_simple.png"
+                else
+                    self.image.from_file= "image/noeuds/h_simple_v.png"
+                end
             else
-                self.image.from_file= "image/noeuds/v_simple.png"
+                if @stable 
+                    self.image.from_file= "image/noeuds/v_simple.png"
+                else
+                    self.image.from_file= "image/noeuds/v_simple_v.png"
+                end
+                
             end
         elsif @typePont == 2 
             if @directionPont == 1
-                self.image.from_file= "image/noeuds/h_double.png"
+                if @stable 
+                    self.image.from_file= "image/noeuds/h_double.png"
+                else
+                    self.image.from_file= "image/noeuds/h_double_v.png"
+                end
             else
-                self.image.from_file= "image/noeuds/v_double.png"
+                if @stable
+                    self.image.from_file= "image/noeuds/v_double.png"
+                else
+                    self.image.from_file= "image/noeuds/v_double_v.png"
+                end
             end
         end
     end

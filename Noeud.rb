@@ -65,9 +65,9 @@ class Noeud < Gtk::Button
         end
     end
 
-    def updateNode 
+    def update 
         if @degree == 0
-            self.image.from_file = 'image/noeuds/1_v.png'
+            self.image.from_file = "image/noeuds/#{degreeMax}_v.png"
         end
     end
 
@@ -88,13 +88,17 @@ class Noeud < Gtk::Button
     def hover 
         # Evenement pour le survol 
         self.signal_connect('enter-notify-event') do 
-            
-            
+            @gridRef.afficheGauche(self, @westNode, false) 
+            @gridRef.afficheDroit(self, @eastNode, false) 
+            @gridRef.afficheHaut(self, @northNode, false) 
+            @gridRef.afficheBas(self, @southNode, false) 
         end
         # Evenement pour la sortie de survol 
         self.signal_connect('leave-notify-event') do 
-            
-            
+            @gridRef.supprimeGauche(self, @westNode) 
+            @gridRef.supprimeDroit(self, @eastNode) 
+            @gridRef.supprimeHaut(self, @northNode) 
+            @gridRef.supprimeBas(self, @southNode) 
         end
     end
     
@@ -138,110 +142,5 @@ class Noeud < Gtk::Button
 		# }
         
     end
-
-    def update(subject)
-        
-        puts "Prececent : " + subject.to_s + " Actuel: " + self.to_s
-        arr = []
-    
-    
-        # je regarde si le noeud cliquer fait parti de mes voisins 
-        # si oui je dessine un pont si non vtf
-        if subject == @eastNode  # voisin de droite
-    
-            p "VOISIN DROITE"
-            i = @column + 1
-                while i <= subject.column-1
-                  pont = @gridRef.get_child_at(i, self.row )
-                  p pont.to_s 
-                #   arr << pont 
-                  i += 1
-             end
-    
-            # if( @pontList.include?(arr) &&  @eastNode.include?(arr))
-            #     # subject.pontList.each { |x| x.each { 
-            #     #     | y |  y.image.from_file= "image/noeuds/h_simple.png"
-            #     #     } }
-            #     p "PARTAGE"
-            #     # subject.pontList[0].each{| y |  y.image.from_file= "image/noeuds/0.png"}
-            #     # subject.pontList.delete_at(0)
-            #     # @pontList.delete_at(0)
-            # elsif @eastNode.include?(arr) ||  @pontList.include?(arr)
-            #     p "ONE"
-            # else 
-            #     p "NONE"
-            #     @pontList << arr 
-            #     @eastNode.pontList << arr
-            #     @eastNode.pontList[0].each{| y |  y.image.from_file= "image/noeuds/h_simple.png"}
-            # end
-            
-        elsif subject == @westNode # voisin de gauche
-            p "VOISIN GAUCHE"
-    
-            # i = @column - 1  #GAUCHE
-            # while i > subject.column
-            #     pont = @gridRef.get_child_at(i,self.row)
-            #     p pont.to_s 
-            #     i -=1
-            # end
-    
-            # i = @column + 1
-            #     while i <= subject.column-1
-            #       pont = @gridRef.get_child_at(i, self.row )
-            #       arr << pont 
-            #       i += 1
-            #     end
-            #         # if pont.image.visible? 
-            #         #     pont.image.from_file= "image/noeuds/h_simple.png";
-            #         #     pont.image.show
-            #         # else 
-            #         #     p "nON VISIBLE"
-            #         #     pont.image.from_file= "image/noeuds/0.png";
-            #         #     pont.image.hide
-            #         # end
-            #         # pont.set_sensitive(true)
-              
-            # if( @pontList.include?(arr) &&  @westNode.include?(arr))
-            #     # subject.pontList.each { |x| x.each { 
-            #     #     | y |  y.image.from_file= "image/noeuds/h_simple.png"
-            #     #     } }
-            #     p "PARTAGE"
-            #     # subject.pontList[0].each{| y |  y.image.from_file= "image/noeuds/0.png"}
-            #     # subject.pontList.delete_at(0)
-            #     # @pontList.delete_at(0)
-            
-            # elsif @westNode.include?(arr) ||  @pontList.include?(arr)
-            #     p "ONE"
-            # else 
-            #     p "NONE"
-            #     @pontList << arr 
-            #     @westNode.pontList << arr
-            #     # subject.pontList << arr
-            #     @westNode.pontList[0].each{| y |  y.image.from_file= "image/noeuds/h_simple.png"}
-            # end
-    
-           
-    
-        elsif subject == @northNode # voisin de haut
-            p "VOISIN HAUT"
-        elsif subject == @southNode # voisin de bas
-            p "VOISIN BAS"
-        end
-    
-    
-       
-       
-    
-    # for i in (@column+1).downto(subject.column-1) do    end
-    
-    subject.degree += 1
-    self.degree += 1
-    
-    if subject.degreeMax == subject.degree
-        subject.image.from_file = 'image/noeuds/1_v.png'
-    end
-    
-    end
-    
 
 end
