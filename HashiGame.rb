@@ -50,37 +50,5 @@ class HashiGame < Gtk::Window
     end
 
    
-    # Chargement d'une grille
-    def loadGrid()
-        data = []
-        File.foreach('file.txt').with_index do |line, line_no|
-            data << line.chomp
-        end
-        # Slice permet de récupérer la taille de la matrice 
-        # tel que 7:7
-        num = data.slice!(0)
-        @colonnes = num[0].to_i
-        @lignes = num[2].to_i
-
-        # Parcours des données récupérés afin de charger
-        # les boutons
-        for i in 0..(data.length() - 1) 
-            data[i].split(':').each_with_index do | ch, index| 
-                # # Création d'une case 
-
-                if ch != '0'
-                    btn = Noeud.new(@grid, ch,index,i)
-                else 
-                    btn = Pont.new(@grid, ch, index, i)
-                end
-
-                # On attache la référence de la grille
-                btn.hover
-                # if( ch != '0')
-                #     grid.attachNode(btn)
-                # end
-                @grid.attach(btn, index,i, 1,1)
-            end
-        end
-    end
+    
 end
