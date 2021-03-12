@@ -71,6 +71,130 @@ class HashiGrid < Gtk::Grid
        
     end
 
+    def afficheGauche(n1, n2, stable)
+        if n2 != nil
+            for x2 in (n1.column-1).downto(0)
+                if(self.get_child_at(x2,n1.row) == n2) 
+                    break;
+                else
+                    self.get_child_at(x2,n1.row).set_typePont( self.get_child_at(x2,n1.row).get_typePont() + 1)
+                    self.get_child_at(x2,n1.row).set_directionPont(1)
+                    self.get_child_at(x2,n1.row).set_stable(stable)
+                    self.get_child_at(x2,n1.row).update
+                end
+            end
+        end
+    end
+
+    def supprimeGauche(n1, n2)
+        if n2 != nil
+            for x2 in (n1.column-1).downto(0)
+                if(self.get_child_at(x2,n1.row) == n2) 
+                    break;
+                else
+                    self.get_child_at(x2,n1.row).set_typePont( self.get_child_at(x2,n1.row).get_typePont() - 1)
+                    if(self.get_child_at(x2,n1.row).get_typePont == 0)
+                        self.get_child_at(x2,n1.row).set_directionPont(0)
+                        self.get_child_at(x2,n1.row).update
+                    end
+                    
+                end
+            end
+        end
+    end
+
+    def afficheDroit(n1, n2, stable)
+        if n2 != nil
+            for x2 in (n1.column+1).upto(self.lignes-1)
+                if(self.get_child_at(x2,n1.row) == n2) 
+                    break;
+				else
+                    self.get_child_at(x2,n1.row).set_typePont( self.get_child_at(x2,n1.row).get_typePont + 1)
+                    self.get_child_at(x2,n1.row).set_directionPont(1)
+                    self.get_child_at(x2,n1.row).set_stable(stable)
+                    self.get_child_at(x2,n1.row).update
+                end
+			end
+        end
+    end
+
+    def supprimeDroit(n1, n2)
+        if n2 != nil
+            for x2 in (n1.column+1).upto(self.lignes-1)
+                if(self.get_child_at(x2,n1.row) == n2) 
+                    break;
+                else
+                    self.get_child_at(x2,n1.row).set_typePont( self.get_child_at(x2,n1.row).get_typePont() - 1)
+                    if(self.get_child_at(x2,n1.row).get_typePont == 0)
+                        self.get_child_at(x2,n1.row).set_directionPont(0)
+                        self.get_child_at(x2,n1.row).update
+                    end
+                end
+            end
+        end
+    end
+
+    def afficheHaut(n1, n2, stable)
+        if n2 != nil
+            for y2 in (n1.row-1).downto(0)
+                if(self.get_child_at(n1.column,y2) == n2) 
+                    break;
+				else
+                    self.get_child_at(n1.column,y2).set_typePont( self.get_child_at(n1.column,y2).get_typePont + 1)
+                    self.get_child_at(n1.column,y2).set_directionPont(2)
+                    self.get_child_at(n1.column,y2).set_stable(stable)
+                    self.get_child_at(n1.column,y2).update
+                end
+			end
+        end
+    end
+
+    def supprimeHaut(n1, n2)
+        if n2 != nil
+            for y2 in (n1.row-1).downto(0)
+                if(self.get_child_at(n1.column,y2) == n2) 
+                    break;
+				else
+                    self.get_child_at(n1.column,y2).set_typePont( self.get_child_at(n1.column,y2).get_typePont - 1)
+                    if(self.get_child_at(n1.column,y2).get_typePont == 0)
+                        self.get_child_at(n1.column,y2).set_directionPont(0)
+                        self.get_child_at(n1.column,y2).update
+                    end
+                end
+			end
+        end
+        
+    end
+    def afficheBas(n1, n2, stable)
+        if n2 != nil
+            for y2 in (n1.row+1).upto(self.colonnes-1)
+                if(self.get_child_at(n1.column,y2) == n2) 
+                    break;
+                else
+                    self.get_child_at(n1.column,y2).set_typePont( self.get_child_at(n1.column,y2).get_typePont() + 1)
+                    self.get_child_at(n1.column,y2).set_directionPont(2)
+                    self.get_child_at(n1.column,y2).set_stable(stable)
+                    self.get_child_at(n1.column,y2).update
+                end
+			end
+        end
+    end
+
+    def supprimeBas(n1,n2)
+        if n2 != nil
+            for y2 in (n1.row+1).upto(self.colonnes-1)
+                if(self.get_child_at(n1.column,y2) == n2) 
+                    break;
+                else
+                    self.get_child_at(n1.column,y2).set_typePont( self.get_child_at(n1.column,y2).get_typePont - 1)
+                    if(self.get_child_at(n1.column,y2).get_typePont == 0)
+                        self.get_child_at(n1.column,y2).set_directionPont(0)
+                        self.get_child_at(n1.column,y2).update
+                    end
+                end
+            end
+        end
+    end
 
     def ajoutPont(n1,n2)
 
@@ -80,60 +204,40 @@ class HashiGrid < Gtk::Grid
 
         # Noeud Nord
         if n1.northNode == n2 
-			n1.set_nord = n1.northEdge + 1
+			n1.northEdge = n1.northEdge + 1
 			n2.southEdge = n2.southEdge + 1 
+            n1.update
+            n2.update
 
-            for y2 in (n1.row-1).downto(0)
-                if(self.get_child_at(n1.column,y2) == n2) 
-                    break;
-				else
-                    self.get_child_at(n1.column,y2).set_typePont( self.get_child_at(n1.column,y2).get_typePont + 1)
-                    self.get_child_at(n1.column,y2).set_directionPont(2)
-                    self.get_child_at(n1.column,y2).update
-                end
-			end
+            afficheHaut(n1,n2, true)
+
         elsif n1.eastNode == n2  #Noeud droit
             n1.eastEdge = n1.eastEdge + 1
 			n2.westEdge = n2.westEdge + 1
+            n1.update
+            n2.update
 
-            for x2 in (n1.column+1).upto(self.lignes-1)
-                if(self.get_child_at(x2,n1.row) == n2) 
-                    break;
-				else
-                    self.get_child_at(x2,n1.row).set_typePont( self.get_child_at(x2,n1.row).get_typePont + 1)
-                    self.get_child_at(x2,n1.row).set_directionPont(1)
-                    self.get_child_at(x2,n1.row).update
-                end
-			end
+            afficheDroit(n1,n2,true)
+            
         elsif n1.westNode == n2 # Noeud gauche
 
             n1.westEdge = n1.westEdge + 1 
 			n2.eastEdge = n2.eastEdge + 1
+            n1.update
+            n2.update
 
-            for x2 in (n1.column-1).downto(0)
-                if(self.get_child_at(x2,n1.row) == n2) 
-                    break;
-                else
-                    self.get_child_at(x2,n1.row).set_typePont( self.get_child_at(x2,n1.row).get_typePont() + 1)
-                    self.get_child_at(x2,n1.row).set_directionPont(1)
-                    self.get_child_at(x2,n1.row).update
-                end
-			end
+            afficheGauche(n1,n2, true)
 
         elsif n1.southNode == n2 # Noeud bas
 
             n1.southEdge = n1.southEdge + 1
 			n2.northEdge = n2.northEdge + 1
+            n1.update
+            n2.update
+            
             #BAS
-            for y2 in (n1.row+1).upto(self.colonnes-1)
-                if(self.get_child_at(n1.column,y2) == n2) 
-                    break;
-                else
-                    self.get_child_at(n1.column,y2).set_typePont( self.get_child_at(n1.column,y2).get_typePont() + 1)
-                    self.get_child_at(n1.column,y2).set_directionPont(2)
-                    self.get_child_at(n1.column,y2).update
-                end
-			end
+            afficheBas(n1,n2, true)
+            
         else 
             p "Erreur: n2 n'est pas un noeud valide pour n1"
 		end
