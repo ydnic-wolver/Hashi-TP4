@@ -5,6 +5,7 @@ require 'gtk3'
 
 load "HashiGrid.rb"
 load "Noeud.rb"
+load "Pont.rb"
 
 class HashiGame < Gtk::Window
 
@@ -37,10 +38,10 @@ class HashiGame < Gtk::Window
         #  Chargement de la grille
         loadGrid()
 
-        grid.set_colonnes( @colonnes )
-        grid.set_lignes( @lignes )
+        @grid.set_colonnes( @colonnes )
+        @grid.set_lignes( @lignes )
 
-        grid.each{ |btn| btn.loadNeighbours }
+        @grid.loadNeighbours
 
         self.add( @grid )
 
@@ -48,39 +49,7 @@ class HashiGame < Gtk::Window
 
     end
 
-    def loadNeighbours
-       
-        for x in 0..(@grid.lignes)
-            p "ok"
-        end
-        # for x in 0..(@grid.lignes-1)
-        #     for y in 0..(@grid.colonnes-1)
-        #         if (@grid.get_child_at(x,y).status == 'i')
-
-        #             # k = @grid.get_child(x,y).row - 1  #HAUT
-        #             # until k <= 0
-        #             #     newCase = @gridRef.get_child_at(@grid.get_child(x,y).column,k)
-        #             #     if newCase.status == 'i' && newCase.row != @row
-        #             #         @northNode = newCase
-        #             #         break;
-        #             #     end
-        #             #     k -=1
-        #             # end
-
-                    
-        #             for y2 in (y - 1)..0
-        #                 if (@grid.get_child_at(x,y2).status == 'i')
-        #                     puts "NORTH"
-        #                     @grid.get_child_at(x,y).northNode(@grid.get_child_at(x,y2))
-        #                     y2 = -1;
-        #                 end
-        #             end
-        #         end
-                   
-        #     end        
-        # end
-    end
-
+   
     # Chargement d'une grille
     def loadGrid()
         data = []
@@ -93,14 +62,18 @@ class HashiGame < Gtk::Window
         @colonnes = num[0].to_i
         @lignes = num[2].to_i
 
-        
-
         # Parcours des données récupérés afin de charger
         # les boutons
         for i in 0..(data.length() - 1) 
             data[i].split(':').each_with_index do | ch, index| 
                 # # Création d'une case 
-                btn = Noeud::new(@grid, ch,index,i)
+
+                if ch != '0'
+                    btn = Noeud.new(@grid, ch,index,i)
+                else 
+                    btn = Pont.new(@grid, ch, index, i)
+                end
+
                 # On attache la référence de la grille
                 btn.hover
                 # if( ch != '0')

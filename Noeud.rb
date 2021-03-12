@@ -13,6 +13,10 @@ class Noeud < Gtk::Button
     # Colonne de la case
     attr_accessor :column
 
+    attr_accessor :debutPont
+
+    
+
     ##
     # Représente les nœuds auxquels ce nœud peut être connecté
     attr_accessor :northNode, :eastNode, :southNode, :westNode
@@ -26,6 +30,8 @@ class Noeud < Gtk::Button
     # Représente le nombre de degrée restant à connecter avant d'atteindre le degree max
     attr_accessor :degree
 
+    attr_accessor :pontList
+
 
     def initialize(grid, degree, col, lig )
         super()
@@ -33,62 +39,42 @@ class Noeud < Gtk::Button
         @row = lig
         @gridRef = grid
         @column = col
+        @pontList = Array.[]
         # self.label = degree
-        @degree = 0
-        if( degree == '0')
-            self.set_sensitive(false)
-            self.status = 'p'
-        else
-            self.status = 'i'
-        end
+        @degree = @degreeMax
+        
+        self.status = 'i'
+        @northEdge = 0;
+		@eastEdge = 0;
+		@southEdge = 0;
+		@westEdge = 0;
 
         self.image = Gtk::Image.new(:file => "image/noeuds/"+degree+".png") 
         self.set_relief(Gtk::ReliefStyle::NONE)
-        self.always_show_image = true
-        self.image.show
+        self.always_show_image = false
+        # self.image.show
        
         self.signal_connect('clicked') { self.click() }
+    end
+    
+
+    def dec
+        if @degree > 0
+            @degree -= 1
+           
+        end
+    end
+
+    def updateNode 
+        if @degree == 0
+            self.image.from_file = 'image/noeuds/1_v.png'
+        end
     end
 
     
 
     # Charge les voisins accessibles d'une case en HAUT, BAS, GAUCHE, DROITE
-    def loadNeighbours
-        
-        # DROITE
-        for x2 in (@column+1).upto(@gridRef.lignes-1)
-            if (@gridRef.get_child_at(x2, self.row).status == 'i')
-                @eastNode = @gridRef.get_child_at(x2,self.row)
-                break
-            end
-        end
-
-        #BAS
-        for y2 in (@row+1).upto(@gridRef.colonnes-1)
-            if (@gridRef.get_child_at(self.column,y2).status == 'i')
-                @southNode = @gridRef.get_child_at(self.column,y2)
-                break
-            end
-        end
-        
-        #HAUT
-        for y2 in (@row-1).downto(0)
-            if (@gridRef.get_child_at(self.column,y2).status == 'i')
-                @northNode = @gridRef.get_child_at(self.column,y2)
-                break
-            end
-        end
-
-        # Gauche
-        for x2 in (@column-1).downto(0)
-            if (@gridRef.get_child_at(x2,self.row).status == 'i')
-                @westNode = @gridRef.get_child_at(x2,self.row)
-                break
-            end
-        end
-
-    end
-
+  
     # Affiche la ligne et la colonne 
     def to_s
         return "[#{@row}-#{@column}]"
@@ -128,7 +114,7 @@ class Noeud < Gtk::Button
         #         node = @gridRef.get_child_at(k,s)
         #     end
         # end
-        p  "#{self.to_s} - degree = #{@degree}"
+        # p  "#{self.to_s} - degree = #{@degree}"
 
         puts " Haut: #{@northNode} - Gauche: #{@westNode} - Droit: #{@eastNode} -  Bas:#{@southNode} "
         
@@ -156,35 +142,106 @@ class Noeud < Gtk::Button
     def update(subject)
         
         puts "Prececent : " + subject.to_s + " Actuel: " + self.to_s
+        arr = []
+    
+    
         # je regarde si le noeud cliquer fait parti de mes voisins 
         # si oui je dessine un pont si non vtf
         if subject == @eastNode  # voisin de droite
-
-           
-            for i in (@column+1)..(subject.column-1) do
-                @gridRef.get_child_at(i, self.row ).image.from_file= "image/noeuds/h_simple.png";
-                @gridRef.get_child_at(i, self.row).image.show 
-                @gridRef.get_child_at(i, self.row ).set_sensitive(true)
-            end
-
-            subject.degree += 1
-            self.degree += 1
-
-            if subject.degreeMax == subject.degree
-                subject.image.from_file = 'image/noeuds/1_v.png'
-            end
-
+    
+            p "VOISIN DROITE"
+            i = @column + 1
+                while i <= subject.column-1
+                  pont = @gridRef.get_child_at(i, self.row )
+                  p pont.to_s 
+                #   arr << pont 
+                  i += 1
+             end
+    
+            # if( @pontList.include?(arr) &&  @eastNode.include?(arr))
+            #     # subject.pontList.each { |x| x.each { 
+            #     #     | y |  y.image.from_file= "image/noeuds/h_simple.png"
+            #     #     } }
+            #     p "PARTAGE"
+            #     # subject.pontList[0].each{| y |  y.image.from_file= "image/noeuds/0.png"}
+            #     # subject.pontList.delete_at(0)
+            #     # @pontList.delete_at(0)
+            # elsif @eastNode.include?(arr) ||  @pontList.include?(arr)
+            #     p "ONE"
+            # else 
+            #     p "NONE"
+            #     @pontList << arr 
+            #     @eastNode.pontList << arr
+            #     @eastNode.pontList[0].each{| y |  y.image.from_file= "image/noeuds/h_simple.png"}
+            # end
             
         elsif subject == @westNode # voisin de gauche
- 
+            p "VOISIN GAUCHE"
+    
+            # i = @column - 1  #GAUCHE
+            # while i > subject.column
+            #     pont = @gridRef.get_child_at(i,self.row)
+            #     p pont.to_s 
+            #     i -=1
+            # end
+    
+            # i = @column + 1
+            #     while i <= subject.column-1
+            #       pont = @gridRef.get_child_at(i, self.row )
+            #       arr << pont 
+            #       i += 1
+            #     end
+            #         # if pont.image.visible? 
+            #         #     pont.image.from_file= "image/noeuds/h_simple.png";
+            #         #     pont.image.show
+            #         # else 
+            #         #     p "nON VISIBLE"
+            #         #     pont.image.from_file= "image/noeuds/0.png";
+            #         #     pont.image.hide
+            #         # end
+            #         # pont.set_sensitive(true)
+              
+            # if( @pontList.include?(arr) &&  @westNode.include?(arr))
+            #     # subject.pontList.each { |x| x.each { 
+            #     #     | y |  y.image.from_file= "image/noeuds/h_simple.png"
+            #     #     } }
+            #     p "PARTAGE"
+            #     # subject.pontList[0].each{| y |  y.image.from_file= "image/noeuds/0.png"}
+            #     # subject.pontList.delete_at(0)
+            #     # @pontList.delete_at(0)
+            
+            # elsif @westNode.include?(arr) ||  @pontList.include?(arr)
+            #     p "ONE"
+            # else 
+            #     p "NONE"
+            #     @pontList << arr 
+            #     @westNode.pontList << arr
+            #     # subject.pontList << arr
+            #     @westNode.pontList[0].each{| y |  y.image.from_file= "image/noeuds/h_simple.png"}
+            # end
+    
+           
+    
         elsif subject == @northNode # voisin de haut
-
+            p "VOISIN HAUT"
         elsif subject == @southNode # voisin de bas
-
+            p "VOISIN BAS"
         end
-
-
-
+    
+    
+       
+       
+    
+    # for i in (@column+1).downto(subject.column-1) do    end
+    
+    subject.degree += 1
+    self.degree += 1
+    
+    if subject.degreeMax == subject.degree
+        subject.image.from_file = 'image/noeuds/1_v.png'
     end
+    
+    end
+    
 
 end
