@@ -35,12 +35,10 @@ class HashiGrid < Gtk::Grid
             n2 = @prev.pop()
             n1 = @prev.pop()
 
-            
+            saveManager.showUndoStack
             p "N1: #{n1.to_s} - degree #{n1.degree} :: N2: #{n2.to_s} - degree #{n2.degree}"
             if ajoutValid?(n1,n2) == true
-                saveManager.saveUserClick([n1, n2])
-                ajoutPont(n1,n2)
-                
+               ajoutPont(n1,n2)
             else 
                 # @prev << n1
             end
@@ -70,88 +68,21 @@ class HashiGrid < Gtk::Grid
 
     # Méthode permettant de s'assurer 
     # du bon lien entre la grille et une case 
-    def notify(message)
-        p "Message " + message.to_s
-        @prev << message
+    def notify(click)
+        # p "Message " + click.to_s
+        saveManager.saveUserClick(click)
+        @prev << click
         notifyClick()
     end
 
 
-    def supprimeGauche(n1, n2)
-        if n2 != nil
-            for x2 in (n1.column-1).downto(0)
-                if(self.get_child_at(x2,n1.row) == n2) 
-                    break;
-                else
-                    self.get_child_at(x2,n1.row).set_typePont( self.get_child_at(x2,n1.row).get_typePont() - 1)
-                    if(self.get_child_at(x2,n1.row).get_typePont == 0)
-                        self.get_child_at(x2,n1.row).set_directionPont(0)
-                        self.get_child_at(x2,n1.row).update
-                    end
-                    
-                end
-            end
-        end
-    end
-
-  
-
-    def supprimeDroit(n1, n2)
-        if n2 != nil
-            for x2 in (n1.column+1).upto(self.lignes-1)
-                if(self.get_child_at(x2,n1.row) == n2) 
-                    break;
-                else
-                    self.get_child_at(x2,n1.row).set_typePont( self.get_child_at(x2,n1.row).get_typePont() - 1)
-                    if(self.get_child_at(x2,n1.row).get_typePont == 0)
-                        self.get_child_at(x2,n1.row).set_directionPont(0)
-                        self.get_child_at(x2,n1.row).update
-                    end
-                end
-            end
-        end
-    end
-
-
-    def supprimeHaut(n1, n2)
-        if n2 != nil
-            for y2 in (n1.row-1).downto(0)
-                if(self.get_child_at(n1.column,y2) == n2) 
-                    break;
-				else
-                    self.get_child_at(n1.column,y2).set_typePont( self.get_child_at(n1.column,y2).get_typePont - 1)
-                    if(self.get_child_at(n1.column,y2).get_typePont == 0)
-                        self.get_child_at(n1.column,y2).set_directionPont(0)
-                        self.get_child_at(n1.column,y2).update
-                    end
-                end
-			end
-        end
-        
-    end
-   
-
-    def supprimeBas(n1,n2)
-        if n2 != nil
-            for y2 in (n1.row+1).upto(self.colonnes-1)
-                if(self.get_child_at(n1.column,y2) == n2) 
-                    break;
-                else
-                    self.get_child_at(n1.column,y2).set_typePont( self.get_child_at(n1.column,y2).get_typePont - 1)
-                    if(self.get_child_at(n1.column,y2).get_typePont == 0)
-                        self.get_child_at(n1.column,y2).set_directionPont(0)
-                        self.get_child_at(n1.column,y2).update
-                    end
-                end
-            end
-        end
-    end
-
     def ajoutPont(n1,n2)
 
         # décrémente le nombre de degrés nécessaires des nœuds.
-        n1.dec
-        n2.dec
+        # n1.dec
+        # n2.dec
+        n1.inc()
+        n2.inc()
 
         # Noeud Nord
         if n1.northNode == n2 
@@ -232,72 +163,67 @@ class HashiGrid < Gtk::Grid
 
     def supprimePont(n1, n2)
          # incrément le nombre de degrés nécessaires des nœuds.
-         n1.inc()
-         n2.inc()
+        #  n1.inc()
+        #  n2.inc()
+        n1.dec
+        n2.dec
+        n1.update
+        n2.update
 
         # Mis à jour des pont #Noeud HAUT
         if n1.northNode == n2 
 			n1.northEdge = 0
 			n2.southEdge = 0
 
-            p "Nord edge: " + n1.northEdge.to_s + " Degree: " + n1.degree.to_s
             for y2 in (n1.row-1).downto(0)
                 if(self.get_child_at(n1.column,y2) == n2) 
                     break;
 				else
-                    # self.get_child_at(n1.column,y2).set_typePont( self.get_child_at(n1.column,y2).get_typePont - 1)
-                    # if(self.get_child_at(n1.column,y2).get_typePont == 0)
-                    #      self.get_child_at(n1.column,y2).set_directionPont(0)
-                    # end
-                    # self.get_child_at(n1.column,y2).update
                     self.get_child_at(n1.column,y2).set_typePont( 0 )
                     self.get_child_at(n1.column,y2).set_directionPont(0)
                     self.get_child_at(n1.column,y2).update
                 end
 			end
         elsif n1.eastNode == n2  #Noeud droit
-            n1.eastEdge = n1.eastEdge - 1 
-			n2.westEdge = n2.westEdge - 1
+            n1.eastEdge = 0
+			n2.westEdge = 0
 
             for x2 in (n1.column+1).upto(self.lignes-1)
                 if(self.get_child_at(x2,n1.row) == n2) 
                     break;
 				else
-                    self.get_child_at(x2,n1.row).set_typePont( self.get_child_at(x2,n1.row).get_typePont - 1)
-                    if(self.get_child_at(x2,n1.row).get_typePont == 0)
-                        self.get_child_at(x2,n1.row).set_directionPont(0)
-                    end
+                    self.get_child_at(x2,n1.row).set_typePont( 0 )
+                    self.get_child_at(x2,n1.row).set_directionPont(0)
+                    self.get_child_at(x2,n1.row).update
                 end
 			end
         elsif n1.westNode == n2 # Noeud gauche
 
-            n1.westEdge = n1.westEdge - 1
-			n2.eastEdge = n2.eastEdge - 1
+            n1.westEdge = 0
+			n2.eastEdge = 0
 
             for x2 in (n1.column-1).downto(0)
                 if(self.get_child_at(x2,n1.row) == n2) 
                     break;
                 else
-                    self.get_child_at(x2,n1.row).set_typePont( self.get_child_at(x2,n1.row).get_typePont - 1)
-                    if(self.get_child_at(x2,n1.row).get_typePont == 0)
-                        self.get_child_at(x2,n1.row).directset_directionPontionPont(0)
-                    end
+                    self.get_child_at(x2,n1.row).set_typePont( 0 )
+                    self.get_child_at(x2,n1.row).set_directionPont(0)
+                    self.get_child_at(x2,n1.row).update
                 end
 			end
 
         elsif n1.southNode == n2 # Noeud bas
 
-            n1.southEdge = n1.southEdge - 1
-			n2.northEdge = n2.northEdge - 1
+            n1.southEdge = 0
+			n2.northEdge = 0
 
-            for y2 in (n1.row+1).downto(self.colonnes-1)
+            for y2 in (n1.row+1).upto(self.colonnes-1)
                 if(self.get_child_at(n1.column,y2) == n2) 
                     break;
                 else
-                    self.get_child_at(n1.column,y2).set_typePont( self.get_child_at(n1.column,y2).get_typePont - 1)
-                    if(self.get_child_at(n1.column,y2).get_typePont == 0)
-                        self.get_child_at(n1.column,y2).set_directionPont(0)
-                    end
+                    self.get_child_at(n1.column,y2).set_typePont( 0 )
+                    self.get_child_at(n1.column,y2).set_directionPont(0)
+                    self.get_child_at(n1.column,y2).update
                 end
 			end
         else 
@@ -419,9 +345,9 @@ class HashiGrid < Gtk::Grid
     end
 
     def ajoutValid?(n1,n2)
-            if (n1.degree == 0 || n2.degree == 0)
-                return false
-            end
+            # if (n1.degree == 0 || n2.degree == 0)
+            #     return false
+            # end
 
             if(n1.northNode != n2 && n1.eastNode != n2 && n1.southNode != n2 && n1.westNode != n2)
                 return false;
@@ -449,6 +375,7 @@ class HashiGrid < Gtk::Grid
             # Voisins DROIT
             if(n1.eastNode == n2)
                 if(n1.eastEdge == 2)
+                    supprimePont(n1,n2)
                     return false;
                 else
                     # renvoie faux s'il existe déjà un croisement d'arêtes entre ces deux nœuds.
@@ -468,6 +395,7 @@ class HashiGrid < Gtk::Grid
             if(n1.southNode == n2)
               
                 if(n1.southEdge == 2)
+                    supprimePont(n1,n2)
                     return false;
                 else
                     # renvoie faux s'il existe déjà un croisement d'arêtes entre ces deux nœuds.
@@ -486,6 +414,7 @@ class HashiGrid < Gtk::Grid
              # Voisins GAUCHE
              if(n1.westNode == n2)
                 if(n1.westEdge == 2)
+                    supprimePont(n1,n2)
                     return false;
                 else
                     # renvoie faux s'il existe déjà un croisement d'arêtes entre ces deux nœuds.
