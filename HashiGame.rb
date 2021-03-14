@@ -36,10 +36,7 @@ class HashiGame < Gtk::Window
         @grid.set_row_homogeneous(true)
 
         #  Chargement de la grille
-        loadGrid()
-
-        @grid.set_colonnes( @colonnes )
-        @grid.set_lignes( @lignes )
+        @grid.loadGrid()
 
         @grid.loadNeighbours
 

@@ -61,8 +61,11 @@ class Noeud < Gtk::Button
     def dec
         if @degree > 0
             @degree -= 1
-           
         end
+    end
+
+    def inc
+        @degree  = @degreeMax
     end
 
     def update 
@@ -88,17 +91,17 @@ class Noeud < Gtk::Button
     def hover 
         # Evenement pour le survol 
         self.signal_connect('enter-notify-event') do 
-            @gridRef.afficheGauche(self, @westNode, false) 
-            @gridRef.afficheDroit(self, @eastNode, false) 
-            @gridRef.afficheHaut(self, @northNode, false) 
-            @gridRef.afficheBas(self, @southNode, false) 
+            # @gridRef.afficheGauche(self, @westNode, false) 
+            # @gridRef.afficheDroit(self, @eastNode, false) 
+            # @gridRef.afficheHaut(self, @northNode, false) 
+            # @gridRef.afficheBas(self, @southNode, false) 
         end
         # Evenement pour la sortie de survol 
         self.signal_connect('leave-notify-event') do 
-            @gridRef.supprimeGauche(self, @westNode) 
-            @gridRef.supprimeDroit(self, @eastNode) 
-            @gridRef.supprimeHaut(self, @northNode) 
-            @gridRef.supprimeBas(self, @southNode) 
+            # @gridRef.supprimeGauche(self, @westNode) 
+            # @gridRef.supprimeDroit(self, @eastNode) 
+            # @gridRef.supprimeHaut(self, @northNode) 
+            # @gridRef.supprimeBas(self, @southNode) 
         end
     end
     
@@ -106,6 +109,7 @@ class Noeud < Gtk::Button
     def click()
         # @gridRef.notifyNodes("Case #{@row}- #{@column}")
         @gridRef.notify(self)
+
 
         # if self.status == 'p'
         #     k = self.column
