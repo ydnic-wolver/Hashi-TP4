@@ -13,7 +13,6 @@ class Sauvegarde
     end
 
     def saveUserClick(action)
-        puts action
         @undoStack << action
     end
 
@@ -28,4 +27,7 @@ class Sauvegarde
         @undoStack.pop!()
     end
 
+    def undoEmpty?
+        return @undoStack.empty? 
+    end
 end

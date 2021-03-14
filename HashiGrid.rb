@@ -31,14 +31,14 @@ class HashiGrid < Gtk::Grid
     end
 
     def notifyClick() 
-        if( @prev.length == 2 )
-            n2 = @prev.pop()
-            n1 = @prev.pop()
+        if( saveManager.undoStack.length >= 2 )
 
-            saveManager.showUndoStack
-            p "N1: #{n1.to_s} - degree #{n1.degree} :: N2: #{n2.to_s} - degree #{n2.degree}"
-            if ajoutValid?(n1,n2) == true
-               ajoutPont(n1,n2)
+            p2 = saveManager.undoStack.pop()
+            p1 = saveManager.undoStack.pop()
+            
+            # p "N1: #{n1.to_s} - degree #{n1.degree} :: N2: #{n2.to_s} - degree #{n2.degree}"
+            if ajoutValid?(p1,p2) == true
+               ajoutPont(p1,p2)
             else 
                 # @prev << n1
             end
