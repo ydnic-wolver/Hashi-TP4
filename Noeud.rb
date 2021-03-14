@@ -52,18 +52,12 @@ class Noeud < Gtk::Button
         self.image = Gtk::Image.new(:file => "image/noeuds/"+degree+".png") 
         self.set_relief(Gtk::ReliefStyle::NONE)
         self.always_show_image = false
-        # self.image.show
-       
         self.signal_connect('clicked') { self.click() }
     end
     
 
     def dec
-        # if @degree > 0
-        #     @degree -= 1
-        # else 
         @degree = 0
-    
     end
 
     def inc

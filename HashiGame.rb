@@ -26,7 +26,7 @@ class HashiGame < Gtk::Window
         self.signal_connect("destroy") { Gtk.main_quit}
         # Réglage de la bordure
         self.border_width=10
-        # On peut redimensionner
+        # On ne peut redimensionner
         self.set_resizable(false)
         # L'application est toujours centrée
         self.set_window_position(:center_always)
