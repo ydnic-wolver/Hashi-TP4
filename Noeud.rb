@@ -41,7 +41,7 @@ class Noeud < Gtk::Button
         @column = col
         @pontList = Array.[]
         # self.label = degree
-        @degree = @degreeMax
+        @degree = 0
         
         self.status = 'i'
         @northEdge = 0;
@@ -59,18 +59,27 @@ class Noeud < Gtk::Button
     
 
     def dec
-        if @degree > 0
-            @degree -= 1
-        end
+        # if @degree > 0
+        #     @degree -= 1
+        # else 
+        @degree = 0
+    
     end
 
     def inc
-        @degree  = @degreeMax
+        @degree += 1
     end
 
     def update 
-        if @degree == 0
+        puts "degree => " + @degree.to_s
+        if @degree > @degreeMax
+           
+            self.image.from_file = "image/noeuds/#{degreeMax}_r.png"
+        elsif @degree == @degreeMax
+            p "DEGREE =="
             self.image.from_file = "image/noeuds/#{degreeMax}_v.png"
+        else
+            self.image.from_file = "image/noeuds/#{degreeMax}.png"
         end
     end
 
@@ -91,59 +100,15 @@ class Noeud < Gtk::Button
     def hover 
         # Evenement pour le survol 
         self.signal_connect('enter-notify-event') do 
-            # @gridRef.afficheGauche(self, @westNode, false) 
-            # @gridRef.afficheDroit(self, @eastNode, false) 
-            # @gridRef.afficheHaut(self, @northNode, false) 
-            # @gridRef.afficheBas(self, @southNode, false) 
         end
         # Evenement pour la sortie de survol 
         self.signal_connect('leave-notify-event') do 
-            # @gridRef.supprimeGauche(self, @westNode) 
-            # @gridRef.supprimeDroit(self, @eastNode) 
-            # @gridRef.supprimeHaut(self, @northNode) 
-            # @gridRef.supprimeBas(self, @southNode) 
         end
     end
     
     # Méthode de test afin de s'assurer du bon fonctionnement des clics
     def click()
-        # @gridRef.notifyNodes("Case #{@row}- #{@column}")
         @gridRef.notify(self)
-
-
-        # if self.status == 'p'
-        #     k = self.column
-        #     s = self.row
-        #     node = @gridRef.get_child_at(k,s)
-        #     while node.status == 'p'
-        #         node.image.hide()
-        #         node.set_sensitive(false)
-        #         k += 1
-        #         node = @gridRef.get_child_at(k,s)
-        #     end
-        # end
-        # p  "#{self.to_s} - degree = #{@degree}"
-
-        puts " Haut: #{@northNode} - Gauche: #{@westNode} - Droit: #{@eastNode} -  Bas:#{@southNode} "
-        
-    end
-
-    # Ajoute un pont entre un noeuf ( self ) et un autre 
-    def addEdge(n2)
-
-    end
-
-    # Méthode permettant de s'assurer que le placement du pont est 
-    # autorisé
-    def isValidAdd(n1, n2)
-
-        # if n1.getDegree() == 0 || n2.getDegree() == 0
-        #     return false
-        # end
-
-        # if (n1.getNorthNode() != n2 && n1.getEastNode() != n2 && n1.getSouthNode() != n2 && n1.getWestNode() != n2) {
-		# 	return false;
-		# }
         
     end
 

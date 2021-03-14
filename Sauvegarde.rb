@@ -17,6 +17,13 @@ class Sauvegarde
         @undoStack << action
     end
 
+    def showUndoStack
+        puts "UNDO STACKS"
+        @undoStack.each do |el| 
+            puts el.to_s
+        end
+    end
+
     def undoUserAction(action)
         @undoStack.pop!()
     end
