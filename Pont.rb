@@ -1,8 +1,8 @@
 require 'gtk3'
 
-load "Noeud.rb"
+load "Ile.rb"
 
-class Pont < Noeud
+class Pont < Ile
 
     # Représente les différents types de pont. (0 = aucun bord, 1 = un pont, 2 = deux pont)
     attr_accessor :typePont
@@ -55,6 +55,8 @@ class Pont < Noeud
         end
     end
 
+    #  Méthode mettant à jour un noeud
+    # Il faudrait pouvoir factoriser
     def update()
        p "Type du pont: " + @typePont.to_s
 
@@ -93,35 +95,6 @@ class Pont < Noeud
         end
     end
 
-    def affecter(suite)
-        if @debut != -1
-            p suite
-            @suivant = suite
-        elsif 
-            @debut = suite
-            p @debut
-        end
-    end
-
-    def afficher()
-		puts "#{@valeur}"
-		if suivant != -1
-			@suivant.afficher()
-		end
-	end
-
-    # Ajoute un pont
-    def ajoutePont(c1, c2)
-
-
-    end
-
-    # Supprime un pont
-    def supprimePont
-        
-    end
-
-    
 
 end
 

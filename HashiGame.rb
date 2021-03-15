@@ -4,7 +4,7 @@ require 'gtk3'
 require 'gtk3'
 
 load "HashiGrid.rb"
-load "Noeud.rb"
+load "Ile.rb"
 load "Pont.rb"
 
 class HashiGame < Gtk::Window
