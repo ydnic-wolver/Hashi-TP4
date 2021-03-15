@@ -88,23 +88,25 @@ class HashiGrid < Gtk::Grid
         else 
             p "Erreur: n2 n'est pas un noeud valide pour n1"
 		end
+        
+        n1.pontRestants
+        n2.pontRestants
 
         # Ajout le pont entre deux iles
         ponts.each do |pont|
             pont.set_typePont( pont.get_typePont() + 1)
-            pont.set_stable(true)
+            pont.estDouble = true
             pont.update
         end
         
     end
 
+    
+   
+
     #  Supprime le pont entre deux iles 
     def supprimePont(n1, n2)
-         # Décrémente le nombre de ponts sur le noeud
-        n1.dec
-        n2.dec
-        n1.update
-        n2.update
+       
 
          # Récupère les cases entre les deux iles ( le pont )
          ponts = getPontEntre(n1,n2)
@@ -131,13 +133,20 @@ class HashiGrid < Gtk::Grid
         else 
             p "Erreur: n2 n'est pas un noeud valide pour n1"
 		end
-
         # Supprime le pont 
         ponts.each do |pont|
-            pont.set_typePont( 0 )
-            pont.set_directionPont(0)
+            pont.set_typePont( pont.get_typePont - ( pont.estDouble ? 2 : 1 )  )
+            pont.estDouble = false
+            if pont.get_typePont == 0
+                pont.set_directionPont(0)
+            end
             pont.update
         end
+
+          n1.set_degree( n1.pontRestants )
+          n2.set_degree ( n2.pontRestants )
+          n1.update
+          n2.update
 
     end
 
@@ -353,8 +362,6 @@ class HashiGrid < Gtk::Grid
                 end
 
                 # On attache la référence de la grille
-                btn.hover # Utiliser pour le survol non implémenter encore
-               
                 self.attach(btn, index,i, 1,1)
             end
         end

@@ -12,6 +12,8 @@ class Pont < Ile
 
     attr_accessor :stable
 
+    attr_accessor :estDouble 
+
     # début du pont
     attr_accessor :debut
 
@@ -21,15 +23,11 @@ class Pont < Ile
     def initialize(grid, degree, col, lig ) 
         super(grid, degree, col, lig )
         @typePont = 0
+        @estDouble = false
         @directionPont = 0
-        @suivant = -1
-        @debut = -1
-        @stable = false
         self.set_sensitive(false)  # Un pont n'est pas cliquable par défaut
         self.status = 'p'
-        
     end
-
 
     def get_directionPont
         return @directionPont
@@ -49,48 +47,29 @@ class Pont < Ile
         @directionPont = val
     end
 
-    def set_stable(val)
-        if !self.stable 
-            self.stable = val
-        end
-    end
-
     #  Méthode mettant à jour un noeud
     # Il faudrait pouvoir factoriser
+    # En fonction du type de ponts des images différentes sont charger
+    #  stable serait potentielle utiliser pour le survol ( mais pas sûr  c'est très chiant à implémenter comme feature )
+    # d
     def update()
-       p "Type du pont: " + @typePont.to_s
-
+    #    p "Type du pont: " + @typePont.to_s # DEBUG
         if @typePont == 0 && @directionPont == 0
             self.image.from_file= "image/noeuds/0.png"
         elsif @typePont == 1
-            p "Direction du pont: " + @directionPont.to_s
+            # Si le pont == 1 alors il est horizontal
+            # Sinon il est vertical 
             if @directionPont == 1
-                if @stable 
-                    self.image.from_file= "image/noeuds/h_simple.png"
-                else
-                    self.image.from_file= "image/noeuds/h_simple_v.png"
-                end
+                 self.image.from_file= "image/noeuds/h_simple.png"
             else
-                if @stable 
-                    self.image.from_file= "image/noeuds/v_simple.png"
-                else
-                    self.image.from_file= "image/noeuds/v_simple_v.png"
-                end
-                
+                self.image.from_file= "image/noeuds/v_simple.png"
             end
         elsif @typePont == 2 
             if @directionPont == 1
-                if @stable 
-                    self.image.from_file= "image/noeuds/h_double.png"
-                else
-                    self.image.from_file= "image/noeuds/h_double_v.png"
-                end
+                self.image.from_file= "image/noeuds/h_double.png"
             else
-                if @stable
-                    self.image.from_file= "image/noeuds/v_double.png"
-                else
-                    self.image.from_file= "image/noeuds/v_double_v.png"
-                end
+                self.image.from_file= "image/noeuds/v_double.png"
+               
             end
         end
     end
