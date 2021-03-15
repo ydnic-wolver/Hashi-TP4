@@ -58,27 +58,27 @@ class HashiGrid < Gtk::Grid
         # Récupère les cases entre les deux iles ( le pont )
         ponts = getPontEntre(n1,n2)
 
-        # Noeud Nord
+        # Ile Nord
         if n1.northNode == n2 
 			n1.northEdge = n1.northEdge + 1
 			n2.southEdge = n2.southEdge + 1 
             n1.update
             n2.update
 
-        elsif n1.eastNode == n2  #Noeud droit
+        elsif n1.eastNode == n2  #Ile droit
             n1.eastEdge = n1.eastEdge + 1
 			n2.westEdge = n2.westEdge + 1
             n1.update
             n2.update
 
-        elsif n1.westNode == n2 # Noeud gauche
+        elsif n1.westNode == n2 # Ile gauche
 
             n1.westEdge = n1.westEdge + 1 
 			n2.eastEdge = n2.eastEdge + 1
             n1.update
             n2.update
 
-        elsif n1.southNode == n2 # Noeud bas
+        elsif n1.southNode == n2 # Ile bas
 
             n1.southEdge = n1.southEdge + 1
 			n2.northEdge = n2.northEdge + 1
@@ -114,16 +114,16 @@ class HashiGrid < Gtk::Grid
 			n1.northEdge = 0
 			n2.southEdge = 0
 
-        elsif n1.eastNode == n2  #Noeud droit
+        elsif n1.eastNode == n2  #Ile droit
             n1.eastEdge = 0
 			n2.westEdge = 0
 
-        elsif n1.westNode == n2 # Noeud gauche
+        elsif n1.westNode == n2 # Ile gauche
 
             n1.westEdge = 0
 			n2.eastEdge = 0
 
-        elsif n1.southNode == n2 # Noeud bas
+        elsif n1.southNode == n2 # Ile bas
 
             n1.southEdge = 0
 			n2.northEdge = 0
@@ -180,12 +180,14 @@ class HashiGrid < Gtk::Grid
                 end
             end        
         end
-    end
+    end 
 
+
+    # Vérifie si l'ajout est valide 
+    # Autrement dit :
+    # - vérifie si les noeuds sont bien voisins sinon renvoi faux
+    # - vérifie si il existe un croisement d'arêtes entre les noeuds 
     def ajoutValid?(n1,n2)
-            # if (n1.degree == 0 || n2.degree == 0)
-            #     return false
-            # end
 
             if(n1.northNode != n2 && n1.eastNode != n2 && n1.southNode != n2 && n1.westNode != n2)
                 return false;
@@ -270,23 +272,6 @@ class HashiGrid < Gtk::Grid
         return true
     end
 
-    def supprimePontDir(ile, direction) 
-        
-
-        if direction == 'droit' 
-            westNode = nil;
-            puts ile.to_s + "-" + ile.eastNode.to_s + ""
-            # Cherche le voisin 
-            for x2 in (ile.column+1).upto(self.lignes-1)
-                if ( self.get_child_at(x2,ile.row) == ile.eastNode )
-                        puts "PONT" +  self.get_child_at(x2,ile.row).to_s
-                        break
-                end
-            end
-        end
-
-    end
-
     # Retourne un tableau contenant les cases correspondants aux pont entre deux iles 
     def getPontEntre(n1, n2)
 
@@ -294,7 +279,7 @@ class HashiGrid < Gtk::Grid
         arr = [] 
 
         # Cas où la case est le voisin du haut
-        if n1.northNode == n2 # Noeud HAUT
+        if n1.northNode == n2 # Ile HAUT
 
             for y2 in (n1.row-1).downto(0)
                 if(self.get_child_at(n1.column,y2) == n2) 
@@ -305,7 +290,7 @@ class HashiGrid < Gtk::Grid
                 end
 			end
         # Cas où la case est le voisin de droite
-        elsif n1.eastNode == n2  #Noeud droit
+        elsif n1.eastNode == n2  #Ile droit
 
             for x2 in (n1.column+1).upto(self.lignes-1)
                 if(self.get_child_at(x2,n1.row) == n2) 
@@ -316,7 +301,7 @@ class HashiGrid < Gtk::Grid
                 end
 			end
         # Cas où la case est le voisin de gauche   
-        elsif n1.westNode == n2 # Noeud gauche
+        elsif n1.westNode == n2 # Ile gauche
 
             for x2 in (n1.column-1).downto(0)
                 if(self.get_child_at(x2,n1.row) == n2) 
@@ -328,7 +313,7 @@ class HashiGrid < Gtk::Grid
             end
 
         # Cas où la case est le voisin du bas
-        elsif n1.southNode == n2   # Noeud bas
+        elsif n1.southNode == n2   # Ile bas
             for y2 in (n1.row+1).upto(self.colonnes-1)
                 if(self.get_child_at(n1.column,y2) == n2) 
                     break;
@@ -342,7 +327,7 @@ class HashiGrid < Gtk::Grid
     end
 
     
-     # Chargement d'une grille
+     # Chargement d'une grille depuis un fichier
      def loadGrid()
         data = []
         File.foreach('file.txt').with_index do |line, line_no|
@@ -361,16 +346,14 @@ class HashiGrid < Gtk::Grid
                 # # Création d'une case 
 
                 if ch != '0'
-                    btn = Noeud.new(self, ch,index,i)
+                    btn = Ile.new(self, ch,index,i)
                 else 
                     btn = Pont.new(self, ch, index, i)
                 end
 
                 # On attache la référence de la grille
-                btn.hover
-                # if( ch != '0')
-                #     grid.attachNode(btn)
-                # end
+                # btn.hover # Utiliser pour le survol non implémenter encore
+               
                 self.attach(btn, index,i, 1,1)
             end
         end
