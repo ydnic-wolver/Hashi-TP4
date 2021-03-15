@@ -36,6 +36,7 @@ class HashiGrid < Gtk::Grid
             p2 = saveManager.undoStack.pop()
             p1 = saveManager.undoStack.pop()
             
+            getPontEntre(p1, p2 )
             # p "N1: #{n1.to_s} - degree #{n1.degree} :: N2: #{n2.to_s} - degree #{n2.degree}"
             if ajoutValid?(p1,p2) == true
                ajoutPont(p1,p2)
@@ -70,6 +71,8 @@ class HashiGrid < Gtk::Grid
     # du bon lien entre la grille et une case 
     def notify(click)
         # p "Message " + click.to_s
+
+        
         saveManager.saveUserClick(click)
         @prev << click
         notifyClick()
@@ -125,16 +128,26 @@ class HashiGrid < Gtk::Grid
             n1.update
             n2.update
 
-            for x2 in (n1.column-1).downto(0)
-                if(self.get_child_at(x2,n1.row) == n2) 
-                    break;
-                else
-                    self.get_child_at(x2,n1.row).set_typePont( self.get_child_at(x2,n1.row).get_typePont() + 1)
-                    self.get_child_at(x2,n1.row).set_directionPont(1)
-                    self.get_child_at(x2,n1.row).set_stable(true)
-                    self.get_child_at(x2,n1.row).update
-                end
+            ponts = getPontEntre(n1, n2)
+
+            ponts.each do |pont|
+                pont.set_typePont(pont.get_typePont() + 1)
+                pont.set_directionPont(1)
+                pont.set_stable(true)
+                pont.update
             end
+
+
+            # for x2 in (n1.column-1).downto(0)
+            #     if(self.get_child_at(x2,n1.row) == n2) 
+            #         break;
+            #     else
+            #         self.get_child_at(x2,n1.row).set_typePont( self.get_child_at(x2,n1.row).get_typePont() + 1)
+            #         self.get_child_at(x2,n1.row).set_directionPont(1)
+            #         self.get_child_at(x2,n1.row).set_stable(true)
+            #         self.get_child_at(x2,n1.row).update
+            #     end
+            # end
 
         elsif n1.southNode == n2 # Noeud bas
 
@@ -432,6 +445,43 @@ class HashiGrid < Gtk::Grid
         return true
     end
 
+    def supprimePontDir(ile, direction) 
+        
+
+        if direction == 'droit' 
+            westNode = nil;
+            puts ile.to_s + "-" + ile.eastNode.to_s + ""
+            # Cherche le voisin 
+            for x2 in (ile.column+1).upto(self.lignes-1)
+                if ( self.get_child_at(x2,ile.row) == ile.eastNode )
+                        puts "PONT" +  self.get_child_at(x2,ile.row).to_s
+                        break
+                end
+            end
+        end
+
+    end
+
+    def getPontEntre(n1, n2)
+
+        arr = []
+        if n1.westNode == n2 # Noeud gauche
+
+            for x2 in (n1.column-1).downto(0)
+                if(self.get_child_at(x2,n1.row) == n2) 
+                    break;
+                else
+                    arr << self.get_child_at(x2,n1.row)
+                end
+            end
+
+        end
+
+        return arr
+
+    end
+
+    
      # Chargement d'une grille
      def loadGrid()
         data = []
