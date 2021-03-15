@@ -36,9 +36,9 @@ class HashiGame < Gtk::Window
         @grid.set_row_homogeneous(true)
 
         #  Chargement de la grille
-        @grid.loadGrid()
+        @grid.chargeGrille()
 
-        @grid.loadNeighbours
+        @grid.chargeVoisins
 
         self.add( @grid )
 

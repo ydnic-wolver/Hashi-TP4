@@ -32,7 +32,6 @@ class Ile < Gtk::Button
 
     attr_accessor :pontList
 
-
     def initialize(grid, degree, col, lig )
         super()
         @degreeMax = degree.to_i
@@ -42,6 +41,12 @@ class Ile < Gtk::Button
         @pontList = Array.[]
         # self.label = degree
         @degree = 0
+
+        @northNode = nil
+        @southNode = nil
+        @eastNode = nil
+        @westNode = nil
+
         
         self.status = 'i'
         @northEdge = 0;
@@ -78,32 +83,19 @@ class Ile < Gtk::Button
     end
 
     
-
     # Charge les voisins accessibles d'une case en HAUT, BAS, GAUCHE, DROITE
-  
+    
     # Affiche la ligne et la colonne 
     def to_s
         return "[#{@row}-#{@column}]"
     end
 
-    # Attache une référence sur la grille
-    def attach(grid)
-       @gridRef = grid
-    end
-    
-    def hover 
-        # Evenement pour le survol 
-        self.signal_connect('enter-notify-event') do 
-        end
-        # Evenement pour la sortie de survol 
-        self.signal_connect('leave-notify-event') do 
-        end
-    end
-    
     # Méthode de test afin de s'assurer du bon fonctionnement des clics
     def click()
         @gridRef.notify(self)
         
+       
+        # puts "H #{@northNode} B #{@southNode} D #{@eastNode} G #{@westNode}"
     end
 
 end

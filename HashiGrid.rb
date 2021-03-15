@@ -140,8 +140,9 @@ class HashiGrid < Gtk::Grid
         end
 
     end
+
       # Charge les voisins accessibles d'une case en HAUT, BAS, GAUCHE, DROITE
-    def loadNeighbours
+    def chargeVoisins
         for x in 0..(self.lignes-1)
             for y in 0..(self.colonnes-1)
                 if (self.get_child_at(x,y).status == 'i')
@@ -328,7 +329,7 @@ class HashiGrid < Gtk::Grid
 
     
      # Chargement d'une grille depuis un fichier
-     def loadGrid()
+     def chargeGrille()
         data = []
         File.foreach('file.txt').with_index do |line, line_no|
             data << line.chomp
@@ -352,7 +353,7 @@ class HashiGrid < Gtk::Grid
                 end
 
                 # On attache la référence de la grille
-                # btn.hover # Utiliser pour le survol non implémenter encore
+                btn.hover # Utiliser pour le survol non implémenter encore
                
                 self.attach(btn, index,i, 1,1)
             end
