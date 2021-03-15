@@ -12,9 +12,6 @@ class HashiGrid < Gtk::Grid
     # Nombre de colonnes 
     attr_accessor :colonnes
     
-    # Représente le noeud precedemment clique
-    attr_accessor :prev 
-    
     # Nombre de lignes
     attr_accessor :lignes
 
@@ -24,68 +21,42 @@ class HashiGrid < Gtk::Grid
         @saveManager = Sauvegarde.new 
     end
 
-    def printPrev
-        @prev.each do |x|
-            p x.to_s
-        end
-    end
-
-    def notifyClick() 
+    #  Méthode à renommer 
+    # permettant de lancer les traitements lié aux cases
+    # - Ajout d'un pont
+    # - Suppression d'un pont
+    # - Récupération des cases cliquées conservé par le SaveManager
+    def handleClick() 
         if( saveManager.undoStack.length >= 2 )
 
             p2 = saveManager.undoStack.pop()
             p1 = saveManager.undoStack.pop()
-            
-            getPontEntre(p1, p2 )
+          
             # p "N1: #{n1.to_s} - degree #{n1.degree} :: N2: #{n2.to_s} - degree #{n2.degree}"
             if ajoutValid?(p1,p2) == true
                ajoutPont(p1,p2)
-            else 
-                # @prev << n1
             end
         end
     end
 
-    def set_lignes(val)
-        p val
-        @lignes = val
-        return
+    # Méthode permettant de notifier la grille qu'une case à était
+    # cliqué
+    def notify(_case)
+        # p "Case " + _case.to_s # DEBUG - Affiche la case cliqué
+        saveManager.saveUserClick(_case) # Sauvegarde le case cliqué - Important pour les REDOS et Undo de conserver
+                                        #  TOUS LES CLIQUES utilisateurs même les mauvais 
+        handleClick()
     end
 
-    def get_lignes()
-        @self.lignes
-    end
-
-    def set_colonnes(val)
-        p val
-        @colonnes = val
-        return
-    end
-
-    def get_colonnes()
-        @self.colonnes
-        
-    end
-
-    # Méthode permettant de s'assurer 
-    # du bon lien entre la grille et une case 
-    def notify(click)
-        # p "Message " + click.to_s
-
-        
-        saveManager.saveUserClick(click)
-        @prev << click
-        notifyClick()
-    end
-
-
+    # Ajoute un pont entre deux iles
     def ajoutPont(n1,n2)
 
-        # décrémente le nombre de degrés nécessaires des nœuds.
-        # n1.dec
-        # n2.dec
+        # incrémente le nombre de pont sur les iles
         n1.inc()
         n2.inc()
+
+        # Récupère les cases entre les deux iles ( le pont )
+        ponts = getPontEntre(n1,n2)
 
         # Noeud Nord
         if n1.northNode == n2 
@@ -93,16 +64,6 @@ class HashiGrid < Gtk::Grid
 			n2.southEdge = n2.southEdge + 1 
             n1.update
             n2.update
-            for y2 in (n1.row-1).downto(0)
-                if(self.get_child_at(n1.column,y2) == n2) 
-                    break;
-				else
-                    self.get_child_at(n1.column,y2).set_typePont( self.get_child_at(n1.column,y2).get_typePont + 1)
-                    self.get_child_at(n1.column,y2).set_directionPont(2)
-                    self.get_child_at(n1.column,y2).set_stable(true)
-                    self.get_child_at(n1.column,y2).update
-                end
-			end 
 
         elsif n1.eastNode == n2  #Noeud droit
             n1.eastEdge = n1.eastEdge + 1
@@ -110,44 +71,12 @@ class HashiGrid < Gtk::Grid
             n1.update
             n2.update
 
-            for x2 in (n1.column+1).upto(self.lignes-1)
-                if(self.get_child_at(x2,n1.row) == n2) 
-                    break;
-				else
-                    self.get_child_at(x2,n1.row).set_typePont( self.get_child_at(x2,n1.row).get_typePont + 1)
-                    self.get_child_at(x2,n1.row).set_directionPont(1)
-                    self.get_child_at(x2,n1.row).set_stable(true)
-                    self.get_child_at(x2,n1.row).update
-                end
-			end
-            
         elsif n1.westNode == n2 # Noeud gauche
 
             n1.westEdge = n1.westEdge + 1 
 			n2.eastEdge = n2.eastEdge + 1
             n1.update
             n2.update
-
-            ponts = getPontEntre(n1, n2)
-
-            ponts.each do |pont|
-                pont.set_typePont(pont.get_typePont() + 1)
-                pont.set_directionPont(1)
-                pont.set_stable(true)
-                pont.update
-            end
-
-
-            # for x2 in (n1.column-1).downto(0)
-            #     if(self.get_child_at(x2,n1.row) == n2) 
-            #         break;
-            #     else
-            #         self.get_child_at(x2,n1.row).set_typePont( self.get_child_at(x2,n1.row).get_typePont() + 1)
-            #         self.get_child_at(x2,n1.row).set_directionPont(1)
-            #         self.get_child_at(x2,n1.row).set_stable(true)
-            #         self.get_child_at(x2,n1.row).update
-            #     end
-            # end
 
         elsif n1.southNode == n2 # Noeud bas
 
@@ -156,165 +85,61 @@ class HashiGrid < Gtk::Grid
             n1.update
             n2.update
             
-            #BAS
-            for y2 in (n1.row+1).upto(self.colonnes-1)
-                if(self.get_child_at(n1.column,y2) == n2) 
-                    break;
-                else
-                    self.get_child_at(n1.column,y2).set_typePont( self.get_child_at(n1.column,y2).get_typePont() + 1)
-                    self.get_child_at(n1.column,y2).set_directionPont(2)
-                    self.get_child_at(n1.column,y2).set_stable(true)
-                    self.get_child_at(n1.column,y2).update
-                end
-			end
-            
         else 
             p "Erreur: n2 n'est pas un noeud valide pour n1"
 		end
+
+        # Ajout le pont entre deux iles
+        ponts.each do |pont|
+            pont.set_typePont( pont.get_typePont() + 1)
+            pont.set_stable(true)
+            pont.update
+        end
         
     end
 
+    #  Supprime le pont entre deux iles 
     def supprimePont(n1, n2)
-         # incrément le nombre de degrés nécessaires des nœuds.
-        #  n1.inc()
-        #  n2.inc()
+         # Décrémente le nombre de ponts sur le noeud
         n1.dec
         n2.dec
         n1.update
         n2.update
 
-        # Mis à jour des pont #Noeud HAUT
+         # Récupère les cases entre les deux iles ( le pont )
+         ponts = getPontEntre(n1,n2)
+
+        # Mis à jour des pont ( tout du moins de leurs edges )
         if n1.northNode == n2 
 			n1.northEdge = 0
 			n2.southEdge = 0
 
-            for y2 in (n1.row-1).downto(0)
-                if(self.get_child_at(n1.column,y2) == n2) 
-                    break;
-				else
-                    self.get_child_at(n1.column,y2).set_typePont( 0 )
-                    self.get_child_at(n1.column,y2).set_directionPont(0)
-                    self.get_child_at(n1.column,y2).update
-                end
-			end
         elsif n1.eastNode == n2  #Noeud droit
             n1.eastEdge = 0
 			n2.westEdge = 0
 
-            for x2 in (n1.column+1).upto(self.lignes-1)
-                if(self.get_child_at(x2,n1.row) == n2) 
-                    break;
-				else
-                    self.get_child_at(x2,n1.row).set_typePont( 0 )
-                    self.get_child_at(x2,n1.row).set_directionPont(0)
-                    self.get_child_at(x2,n1.row).update
-                end
-			end
         elsif n1.westNode == n2 # Noeud gauche
 
             n1.westEdge = 0
 			n2.eastEdge = 0
 
-            for x2 in (n1.column-1).downto(0)
-                if(self.get_child_at(x2,n1.row) == n2) 
-                    break;
-                else
-                    self.get_child_at(x2,n1.row).set_typePont( 0 )
-                    self.get_child_at(x2,n1.row).set_directionPont(0)
-                    self.get_child_at(x2,n1.row).update
-                end
-			end
-
         elsif n1.southNode == n2 # Noeud bas
 
             n1.southEdge = 0
 			n2.northEdge = 0
-
-            for y2 in (n1.row+1).upto(self.colonnes-1)
-                if(self.get_child_at(n1.column,y2) == n2) 
-                    break;
-                else
-                    self.get_child_at(n1.column,y2).set_typePont( 0 )
-                    self.get_child_at(n1.column,y2).set_directionPont(0)
-                    self.get_child_at(n1.column,y2).update
-                end
-			end
+            
         else 
             p "Erreur: n2 n'est pas un noeud valide pour n1"
 		end
 
+        # Supprime le pont 
+        ponts.each do |pont|
+            pont.set_typePont( 0 )
+            pont.set_directionPont(0)
+            pont.update
+        end
+
     end
-    def OLDsupprimePont(n1, n2)
-        # incrément le nombre de degrés nécessaires des nœuds.
-        n1.dec()
-        n2.dec()
-
-       # Mis à jour des pont #Noeud HAUT
-       if n1.northNode == n2 
-           n1.northEdge = n1.northEdge - 1
-           n2.southEdge = n2.southEdge - 1 
-
-           for y2 in (n1.row-1).downto(0)
-               if(self.get_child_at(n1.column,y2) == n2) 
-                   break;
-               else
-                   self.get_child_at(n1.column,y2).set_typePont( self.get_child_at(n1.column,y2).get_typePont - 1)
-                   if(self.get_child_at(n1.column,y2).get_typePont == 0)
-                       self.get_child_at(n1.column,y2).set_directionPont(0)
-                   end
-                   self.get_child_at(n1.column,y2).update
-               end
-           end
-       elsif n1.eastNode == n2  #Noeud droit
-           n1.eastEdge = n1.eastEdge - 1 
-           n2.westEdge = n2.westEdge - 1
-
-           for x2 in (n1.column+1).upto(self.lignes-1)
-               if(self.get_child_at(x2,n1.row) == n2) 
-                   break;
-               else
-                   self.get_child_at(x2,n1.row).set_typePont( self.get_child_at(x2,n1.row).get_typePont - 1)
-                   if(self.get_child_at(x2,n1.row).get_typePont == 0)
-                       self.get_child_at(x2,n1.row).set_directionPont(0)
-                   end
-               end
-           end
-       elsif n1.westNode == n2 # Noeud gauche
-
-           n1.westEdge = n1.westEdge - 1
-           n2.eastEdge = n2.eastEdge - 1
-
-           for x2 in (n1.column-1).downto(0)
-               if(self.get_child_at(x2,n1.row) == n2) 
-                   break;
-               else
-                   self.get_child_at(x2,n1.row).set_typePont( self.get_child_at(x2,n1.row).get_typePont - 1)
-                   if(self.get_child_at(x2,n1.row).get_typePont == 0)
-                       self.get_child_at(x2,n1.row).directset_directionPontionPont(0)
-                   end
-               end
-           end
-
-       elsif n1.southNode == n2 # Noeud bas
-
-           n1.southEdge = n1.southEdge - 1
-           n2.northEdge = n2.northEdge - 1
-
-           for y2 in (n1.row+1).downto(self.colonnes-1)
-               if(self.get_child_at(n1.column,y2) == n2) 
-                   break;
-               else
-                   self.get_child_at(n1.column,y2).set_typePont( self.get_child_at(n1.column,y2).get_typePont - 1)
-                   if(self.get_child_at(n1.column,y2).get_typePont == 0)
-                       self.get_child_at(n1.column,y2).set_directionPont(0)
-                   end
-               end
-           end
-       else 
-           p "Erreur: n2 n'est pas un noeud valide pour n1"
-       end
-
-   end
       # Charge les voisins accessibles d'une case en HAUT, BAS, GAUCHE, DROITE
     def loadNeighbours
         for x in 0..(self.lignes-1)
@@ -462,23 +287,58 @@ class HashiGrid < Gtk::Grid
 
     end
 
+    # Retourne un tableau contenant les cases correspondants aux pont entre deux iles 
     def getPontEntre(n1, n2)
 
-        arr = []
-        if n1.westNode == n2 # Noeud gauche
+        # Tableau temporaire visant à contenir l'index des cases formant le pont
+        arr = [] 
+
+        # Cas où la case est le voisin du haut
+        if n1.northNode == n2 # Noeud HAUT
+
+            for y2 in (n1.row-1).downto(0)
+                if(self.get_child_at(n1.column,y2) == n2) 
+                    break;
+				else
+                    self.get_child_at(n1.column,y2).set_directionPont(2)
+                    arr << self.get_child_at(n1.column,y2)
+                end
+			end
+        # Cas où la case est le voisin de droite
+        elsif n1.eastNode == n2  #Noeud droit
+
+            for x2 in (n1.column+1).upto(self.lignes-1)
+                if(self.get_child_at(x2,n1.row) == n2) 
+                    break;
+				else
+                    self.get_child_at(x2,n1.row).set_directionPont(1)
+                    arr << self.get_child_at(x2,n1.row)
+                end
+			end
+        # Cas où la case est le voisin de gauche   
+        elsif n1.westNode == n2 # Noeud gauche
 
             for x2 in (n1.column-1).downto(0)
                 if(self.get_child_at(x2,n1.row) == n2) 
                     break;
                 else
+                    self.get_child_at(x2,n1.row).set_directionPont(1)
                     arr << self.get_child_at(x2,n1.row)
                 end
             end
 
-        end
-
+        # Cas où la case est le voisin du bas
+        elsif n1.southNode == n2   # Noeud bas
+            for y2 in (n1.row+1).upto(self.colonnes-1)
+                if(self.get_child_at(n1.column,y2) == n2) 
+                    break;
+                else
+                    self.get_child_at(n1.column,y2).set_directionPont(2)
+                   arr << self.get_child_at(n1.column,y2)
+                end
+			end
+        end 
         return arr
-
     end
 
     
