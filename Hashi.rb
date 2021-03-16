@@ -7,7 +7,11 @@ require 'gtk3'
 
 load "HashiGame.rb"
 
+load "HashiSolver.rb"
+
 hashi = HashiGame.new
+
+solver = HashiSolver.new(hashi)
 
 
 # Chargement d'une grille

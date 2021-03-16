@@ -39,6 +39,22 @@ class HashiGrid < Gtk::Grid
         end
     end
 
+    #  Vérifie si la grille est fini 
+    #  autrement dit que tous les noeuds ont correment etait rempli
+    def grilleFini? 
+        for x in 0..(self.lignes-1)
+            for y in 0..(self.colonnes-1)
+                noeud = self.get_child_at(x,y)
+                if (noeud.status == 'i')
+                    if noeud.degree < noeud.degreeMax
+                        return false
+                    end
+                end
+            end
+        end
+        return true
+    end
+
     # Méthode permettant de notifier la grille qu'une case à était
     # cliqué
     def notify(_case)

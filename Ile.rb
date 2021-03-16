@@ -14,8 +14,10 @@ class Ile < Gtk::Button
     attr_accessor :column
 
     attr_accessor :debutPont
-
     
+    attr_accessor :estComplet 
+
+    attr_accessor :gridRef
 
     ##
     # Représente les nœuds auxquels ce nœud peut être connecté
@@ -31,6 +33,11 @@ class Ile < Gtk::Button
     attr_accessor :degree
 
     attr_accessor :pontList
+
+    def getVoisins
+        arr = [@northNode, @eastNode, @southNode, @westNode]
+        return arr
+    end
 
     def initialize(grid, degree, col, lig )
         super()
