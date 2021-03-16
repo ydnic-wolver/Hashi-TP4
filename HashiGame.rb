@@ -46,6 +46,8 @@ class HashiGame < Gtk::Window
 
     end
 
-   
+   def getPlateau()
+        return @grid
+   end
     
 end
