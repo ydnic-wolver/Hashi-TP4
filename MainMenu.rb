@@ -20,8 +20,7 @@ button {
 	background-color: #383838;
 	background-image: none;
 	border-color:#383838;
-  font-family: Brush Script MT, Brush Script Std, cursive;
-  font-size: 23px;
+  font-size: 18px;
 }
 
 
