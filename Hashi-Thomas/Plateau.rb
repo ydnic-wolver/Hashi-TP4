@@ -1,11 +1,9 @@
 require 'gtk3'
-
+load "Pause.rb"
 load "HashiGrid.rb"
 load "Ile.rb"
 load "Pont.rb"
-
-$timerStop = 0
-$partieStop = 0
+#load "Bouton.rb"
 
 class Plateau < Gtk::Window
     def initialize()
@@ -15,14 +13,10 @@ class Plateau < Gtk::Window
         set_title "Hashi Game"
 
         signal_connect "destroy" do 
-            #self.destroy
-            $partieStop = 1
-            Gtk.main_quit 
+            self.destroy
         end
-
         
-        
-        set_default_size 500, 300
+        set_default_size 500, 200
         
         set_window_position Gtk::WindowPosition::CENTER
 
@@ -43,7 +37,6 @@ class Plateau < Gtk::Window
         boutonPause.signal_connect('clicked'){
 
             self.set_sensitive(FALSE)
-            $timerStop = 1
             pause = Pause.new
             
         }
@@ -124,7 +117,6 @@ class Plateau < Gtk::Window
 
         #Creation de la barre d'outils en haut de la fenêtre
         boxBarre = Gtk::Box.new(:horizontal, 6)
-        boxBarre.set_homogeneous(true)
        
         boxBarre.add(boutonPause)
 
@@ -147,8 +139,7 @@ class Plateau < Gtk::Window
 
         #Creation de la zone de jeu
         boxJeu = Gtk::Box.new(:horizontal, 6)
-        boxJeu.set_homogeneous(true)
-
+        
 
         boxJeu.set_border_width(10)
 
@@ -180,33 +171,37 @@ class Plateau < Gtk::Window
         add(boxPrincipale)
 
         #Gestion du temps
+        tempsDebut = Time.now
+        temps.set_text( (tempsDebut).to_s)
         
-        temps.set_text( "O")
-        tempsPause = 0
         show_all
 
-        #Thread chronomètre
-        t = Thread.new{
-            while $partieStop == 0 do
-                tempsDebut = Time.now
-
-                while $timerStop == 0 and $partieStop == 0 do #pause pas acitve ou niveau pas fini
-                    temps.set_text( (Time.now - tempsDebut + tempsPause ).round(0).to_s)
-                    sleep(1)
-                end
-
-                tempsPause = tempsPause + (Time.now - tempsDebut ).round(0)
-
-                while $timerStop == 1 do
-                    sleep(0.1)
-                end
-            end
-        }
+        #t = Thread.new{
+        #    while true do #pause pas acitve ou niveau pas fini
+        #        temps.set_text( (Time.now - tempsDebut ).round(0).to_s)
+        #    end
+        #}
     end
 
-    #Main provisoire
-    #$window = Plateau.new()
+    #Methode permettant de crééer la grille
+    #def ajoutGrille(grille)
+        
+        #bouton1 = Bouton.new("Ressources/1.png")
+        
+        #grille.attach(bouton1.getBouton, 0, 0, 1, 1)
 
-    #Gtk.main
+        #bouton1.getBouton.signal_connect('clicked'){
+        #   bouton1.style_context.add_provider(imageTrait, Gtk::StyleProvider::PRIORITY_USER)
+        #}
+
+        #grille.attach(Gtk::Image.new(:file =>"Ressources/traitV2.png"), 0, 1, 1, 1)
+        #grille.attach(Gtk::Image.new(:file =>"Ressources/1.png"), 0, 2, 1, 1)
+
+    #end
+
+    #Main provisoire
+    $window = Plateau.new()
+
+    Gtk.main
 
 end

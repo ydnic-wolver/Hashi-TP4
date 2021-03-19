@@ -7,10 +7,12 @@ require 'gtk3'
 
 load "HashiGame.rb"
 
+
 hashi = HashiGame.new
+
+
 
 # Chargement d'une grille
 
 
 Gtk.main
-

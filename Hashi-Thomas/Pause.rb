@@ -1,5 +1,6 @@
 require 'gtk3'
 
+load 'MainMenu.rb'
 class Pause < Gtk::Window
     def initialize
         super
@@ -7,7 +8,6 @@ class Pause < Gtk::Window
 
         signal_connect "destroy" do
             $window.set_sensitive(TRUE)
-            $timerStop = 0
             self.destroy
         end
         
@@ -25,15 +25,11 @@ class Pause < Gtk::Window
 
         boutonRecommencer = Gtk::Button.new(:label =>"Recommencer")
         boutonQuitter = Gtk::Button.new(:label =>"Quitter")
-	    boutonQuitter.signal_connect('clicked'){
-            $partieStop = 1
-            
-            MainMenu.new
-            self.destroy
-            $window.destroy
-           
-            Gtk.main
-	    }
+	boutonQuitter.signal_connect('clicked'){
+		self.destroy
+		$window.destroy
+		MainMenu.new
+	}
 
         boxOption = Gtk::Box.new(:vertical, 6)
 
