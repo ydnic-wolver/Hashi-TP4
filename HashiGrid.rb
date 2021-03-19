@@ -1,5 +1,6 @@
 require 'gtk3'
 load "Sauvegarde.rb"
+load "MainMenu.rb"
 
 # Cette classe représente la grille
 # contenant les boutons ( autrement dit les noeuds , et les
