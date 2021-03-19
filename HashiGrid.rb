@@ -16,10 +16,42 @@ class HashiGrid < Gtk::Grid
     # Nombre de lignes
     attr_accessor :lignes
 
+    # Tableau permettant de contenir temporairement les deux cases 
+    # cliquées 
+    attr_accessor :nodeLink
+
     def initialize
         super()
-        @prev = []
+        @nodeLink = []
         @saveManager = Sauvegarde.new 
+    end
+    
+    # Active le retour en arrière
+    def undoPrevious 
+        if !saveManager.undoStack.empty?
+          
+            n2 = saveManager.undoStack.pop()
+            n1 = saveManager.undoStack.pop()
+            
+            @saveManager.redoStack << n2
+            @saveManager.redoStack << n1
+            
+            supprimePont(n2,n1, true)
+        end
+    end
+
+    # Active le retour en avant
+    def redoPrevious
+        if !saveManager.redoStack.empty?
+            n2 = saveManager.redoStack.pop()
+            n1 = saveManager.redoStack.pop()
+
+            @saveManager.undoStack << n2
+            @saveManager.undoStack << n1
+            
+            
+            ajoutPont(n2,n1)
+        end
     end
 
     #  Méthode à renommer 
@@ -28,14 +60,25 @@ class HashiGrid < Gtk::Grid
     # - Suppression d'un pont
     # - Récupération des cases cliquées conservé par le SaveManager
     def handleClick() 
-        if( saveManager.undoStack.length >= 2 )
+        if( @nodeLink.length >= 2 )
 
-            p2 = saveManager.undoStack.pop()
-            p1 = saveManager.undoStack.pop()
+            # Si l'utilisateur clique autre part que sur le bouton REDO
+            # La pile du REDO est vidé
+            if !@saveManager.redoStack.empty?
+                @saveManager.redoStack.clear()
+            end
+
+            p2 = @nodeLink.pop()
+            p1 = @nodeLink.pop()
           
-            # p "N1: #{n1.to_s} - degree #{n1.degree} :: N2: #{n2.to_s} - degree #{n2.degree}"
             if ajoutValid?(p1,p2) == true
-               ajoutPont(p1,p2)
+               
+                #Important pour les REDOS et Undo de conserver
+                # Sauvegarde les case cliqué 
+                saveManager.undoStack << p1 
+                saveManager.undoStack << p2
+                
+                ajoutPont(p1,p2)
             end
         end
     end
@@ -59,9 +102,10 @@ class HashiGrid < Gtk::Grid
     # Méthode permettant de notifier la grille qu'une case à était
     # cliqué
     def notify(_case)
+
+        @nodeLink << _case
         # p "Case " + _case.to_s # DEBUG - Affiche la case cliqué
-        saveManager.saveUserClick(_case) # Sauvegarde le case cliqué - Important pour les REDOS et Undo de conserver
-                                        #  TOUS LES CLIQUES utilisateurs même les mauvais 
+       
         handleClick()
     end
 
@@ -123,11 +167,16 @@ class HashiGrid < Gtk::Grid
    
 
     #  Supprime le pont entre deux iles 
-    def supprimePont(n1, n2)
+    #  Le dernier paramètre undo est un paramètre par défaut à faux 
+    # utiliser pour avec la méthode undoPrevious et permettant de 
+    # d'adapter le traitement de suppression au besoin 
+    def supprimePont(n1, n2, undo = false)
        
 
          # Récupère les cases entre les deux iles ( le pont )
          ponts = getPontEntre(n1,n2)
+
+         p ponts
 
         # Mis à jour des pont ( tout du moins de leurs edges )
         if n1.northNode == n2 
@@ -151,21 +200,29 @@ class HashiGrid < Gtk::Grid
         else 
             p "Erreur: n2 n'est pas un noeud valide pour n1"
 		end
+
         # Supprime le pont 
         ponts.each do |pont|
-            pont.set_typePont( pont.get_typePont - ( pont.estDouble ? 2 : 1 )  )
+            
+            if undo 
+                pont.set_typePont( pont.get_typePont -  1 )
+            else 
+                pont.set_typePont( pont.get_typePont -  ( pont.estDouble ? 2 : 1 ) )
+            end
             pont.estDouble = false
+
             if pont.get_typePont == 0
                 pont.set_directionPont(0)
             end
             pont.update
         end
 
-          n1.set_degree( n1.pontRestants )
-          n2.set_degree ( n2.pontRestants )
-          n1.update
-          n2.update
-	  self.partiFini
+        n1.set_degree( n1.pontRestants )
+        n2.set_degree ( n2.pontRestants )
+        n1.update
+        n2.update
+	  
+        self.partiFini
 
     end
 

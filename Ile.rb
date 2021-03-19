@@ -115,8 +115,8 @@ class Ile < Gtk::Button
             self.estComplet = true
             self.image.from_file = "image/noeuds/#{degreeMax}_v.png"
         else
-            self.estComplet = false
             self.image.from_file = "image/noeuds/#{degreeMax}.png"
+            self.estComplet = false
         end
     end
 

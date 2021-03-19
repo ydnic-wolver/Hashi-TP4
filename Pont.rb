@@ -36,11 +36,13 @@ class Pont < Ile
     def set_typePont(val)
         if val >= 0
             @typePont = val
+        else 
+            @typePont = 0
         end
     end
     
     def get_typePont
-        return typePont
+        return @typePont
     end
 
     def set_directionPont(val)

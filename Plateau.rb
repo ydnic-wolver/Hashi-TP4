@@ -20,8 +20,6 @@ class Plateau < Gtk::Window
             Gtk.main_quit 
         end
 
-        
-        
         set_default_size 500, 300
         
         set_window_position Gtk::WindowPosition::CENTER
@@ -80,9 +78,7 @@ class Plateau < Gtk::Window
         boutonUndo = Gtk::Button.new()
         boutonUndo.style_context.add_provider(undoImage, Gtk::StyleProvider::PRIORITY_USER)
         boutonUndo.set_size_request(30, 30)
-        boutonUndo.signal_connect('clicked'){
-            print("Undo!")
-        }
+       
 
         #Reglage du bouton Redo
         redoImage = Gtk::CssProvider.new
@@ -98,9 +94,7 @@ class Plateau < Gtk::Window
         boutonRedo = Gtk::Button.new()
         boutonRedo.style_context.add_provider(redoImage, Gtk::StyleProvider::PRIORITY_USER)
         boutonRedo.set_size_request(30, 30)
-        boutonRedo.signal_connect('clicked'){
-            print("Redo!")
-        }
+       
 
         #Reglage du bouton Hypothèse
         hypoImage = Gtk::CssProvider.new
@@ -137,9 +131,7 @@ class Plateau < Gtk::Window
         boxBarre.add(boutonHypo)
 
 
-
         boxBarre.set_border_width(5)
-
 
         boxBarreFrame = Gtk::Frame.new()
         boxBarreFrame.set_shadow_type(:out)
@@ -161,6 +153,17 @@ class Plateau < Gtk::Window
         grid.chargeGrille()
 
         grid.chargeVoisins
+
+        boutonUndo.signal_connect('clicked'){
+            # print("Undo!")
+            grid.undoPrevious
+        }
+
+        boutonRedo.signal_connect('clicked'){
+            # print("Redo!")
+            grid.redoPrevious
+        }
+
         #ajoutGrille(grille)
         boxJeu.add(grid)
 

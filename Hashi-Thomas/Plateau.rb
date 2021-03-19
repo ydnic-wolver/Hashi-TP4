@@ -110,7 +110,11 @@ class Plateau < Gtk::Window
         boutonHypo.style_context.add_provider(hypoImage, Gtk::StyleProvider::PRIORITY_USER)
         boutonHypo.set_size_request(30, 30)
         boutonHypo.signal_connect('clicked'){
+<<<<<<< HEAD
             print("Hypo!")
+=======
+            print("Redo!")
+>>>>>>> a22f204 (Add files via upload)
         }
 
         
