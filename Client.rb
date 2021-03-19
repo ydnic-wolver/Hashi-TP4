@@ -1,8 +1,9 @@
 
 load 'MainMenu.rb'
+load 'Plateau.rb'
 
 # window = MainMenu.new
 
-$window = Plateau.new
+plateau = Plateau.new
 
 Gtk.main
