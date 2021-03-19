@@ -9,8 +9,8 @@ load "Pause.rb"
 load 'Plateau.rb'
 
 
-window = MainMenu.new
+# window = MainMenu.new
 
-#$window = Plateau.new
+$window = Plateau.new
 
 Gtk.main

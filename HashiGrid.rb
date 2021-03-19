@@ -44,9 +44,9 @@ class HashiGrid < Gtk::Grid
     def grilleFini? 
         for x in 0..(self.lignes-1)
             for y in 0..(self.colonnes-1)
-                noeud = self.get_child_at(x,y)
-                if (noeud.status == 'i')
-                    if noeud.degree < noeud.degreeMax
+                ile = self.get_child_at(x,y)
+                if (ile.status == 'i')
+                    if !ile.estComplet
                         return false
                     end
                 end

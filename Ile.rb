@@ -47,6 +47,8 @@ class Ile < Gtk::Button
         @degree = 0
         
         @row = lig
+
+        @estComplet = false
         @column = col
 
         # Noeuds voisins permet de conserver la reference sur les voisins
@@ -107,10 +109,13 @@ class Ile < Gtk::Button
     # - Sinon il est blanc par défaut 
     def update 
         if @degree > @degreeMax
+            self.estComplet = false
             self.image.from_file = "image/noeuds/#{degreeMax}_r.png"
         elsif @degree == @degreeMax
+            self.estComplet = true
             self.image.from_file = "image/noeuds/#{degreeMax}_v.png"
         else
+            self.estComplet = false
             self.image.from_file = "image/noeuds/#{degreeMax}.png"
         end
     end
