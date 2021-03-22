@@ -10,6 +10,9 @@ $timerStop = 0
 $partieStop = 0
 
 class Plateau < Gtk::Window
+
+    attr_accessor :grid
+
     def initialize()
 
         #Creation de la fenêtre
@@ -136,10 +139,10 @@ class Plateau < Gtk::Window
         boxBarreFrame.add(boxBarre)
 
         #Creation de la zone de jeu
-        boxJeu = Gtk::Box.new(:horizontal, 6)
-        boxJeu.set_homogeneous(true)
+        @boxJeu = Gtk::Box.new(:horizontal, 6)
+        @boxJeu.set_homogeneous(true)
 
-        boxJeu.set_border_width(10)
+        @boxJeu.set_border_width(10)
 
         #Initialisation de la grille
         @grid = HashiGrid.new 
@@ -154,7 +157,7 @@ class Plateau < Gtk::Window
         
         boutonHypo.signal_connect('clicked'){
             print("Hypo!")
-            Hypothese.new(@grid)
+            Hypothese.new(self)
         }
 
 
@@ -169,22 +172,22 @@ class Plateau < Gtk::Window
         }
 
         #ajoutGrille(grille)
-        boxJeu.add(@grid)
+        @boxJeu.add(@grid)
 
-        boxJeuFrame = Gtk::Frame.new()
-        boxJeuFrame.set_shadow_type(:out)
-        boxJeuFrame.add(boxJeu)
-        boxJeuFrame.set_border_width(10)
+        @boxJeuFrame = Gtk::Frame.new()
+        @boxJeuFrame.set_shadow_type(:out)
+        @boxJeuFrame.add(@boxJeu)
+        @boxJeuFrame.set_border_width(10)
 
         #Creation et affichage de la fenêtre principale
 
         #Gestion du temps
-        boxPrincipale = Gtk::Box.new(:vertical, 6)
+        @boxPrincipale = Gtk::Box.new(:vertical, 6)
 
-        boxPrincipale.add(boxBarreFrame)
-        boxPrincipale.add(boxJeuFrame)
+        @boxPrincipale.add(boxBarreFrame)
+        @boxPrincipale.add(@boxJeuFrame)
 
-        add(boxPrincipale)
+        add(@boxPrincipale)
 
         #Gestion du temps
         
@@ -209,6 +212,12 @@ class Plateau < Gtk::Window
                 end
             end
         }
+    end
+
+    def alterGrid(newGrid)
+        @boxJeu.remove(@grid)
+        @grid = newGrid
+        @boxJeu.add(@grid)
     end
 
     #Main provisoire
