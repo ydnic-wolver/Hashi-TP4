@@ -65,26 +65,25 @@ class Hypothese  < Gtk::Window
         boxJeu = Gtk::Box.new(:horizontal, 6)
         boxJeu.set_homogeneous(true)
 
-
         boxJeu.set_border_width(10)
 
         #Initialisation de la grille
+        # Copie des noeuds contenus dans la grille
+        copy_grille = plateau.grid.collect(&:dup)
+        # Création d'une nouvelle grille
+        hypoGrille = HashiGrid.new(plateau.grid.nomniv,plateau.grid.lignes, plateau.grid.colonnes  )
+        hypoGrille.set_column_homogeneous(true)
+        hypoGrille.set_row_homogeneous(true)
+        hypoGrille.colonnes = plateau.grid.colonnes
+        hypoGrille.lignes = plateau.grid.lignes
 
-        test = plateau.grid.collect(&:dup)
-        gri = HashiGrid.new(plateau.grid.nomniv,plateau.grid.lignes, plateau.grid.colonnes  )
-        gri.set_column_homogeneous(true)
-        gri.set_row_homogeneous(true)
-        gri.colonnes = plateau.grid.colonnes
-        gri.lignes = plateau.grid.lignes
-
-        test.each do |x| 
-            # puts x.to_s
-            # HashiGrid.new(test)
-        #    puts "Ponts : HAUT #{x.northEdge}, BAS #{x.southEdge},DROITE #{x.eastEdge} GAUCHE #{x.westEdge}"
-             ## # Création d'une case 
-                #   grille degree colone ligne
+        # On parcours le tableau des iles/ponts copies
+        copy_grille.each do |x| 
+            
+            # Si c'est une ile 
+            # On copie les attributs de l'ile
             if x.status != 'p'
-                btn = Ile.new(gri,x.degreeMax.to_s,x.column,x.row)
+                btn = Ile.new(hypoGrille,x.degreeMax.to_s,x.column,x.row)
                 btn.degree = x.degree
                 btn.estComplet = x.estComplet
                 btn.northEdge = x.northEdge
@@ -93,20 +92,22 @@ class Hypothese  < Gtk::Window
                 btn.eastEdge = x.eastEdge
                 btn.update
             else 
-                btn = Pont.new(gri,x.degreeMax.to_s,x.column,x.row)
+                # Si c'est un pont on copie les attributs 
+                # et on met à jour le pont 
+                btn = Pont.new(hypoGrille,x.degreeMax.to_s,x.column,x.row)
                 btn.set_typePont( x.get_typePont )
                 btn.estDouble = x.estDouble
                 btn.set_directionPont ( x.get_directionPont )
                 btn.update
             end
                 # On attache la référence de la grille
-                gri.attach(btn, x.column,x.row, 1,1)
+                hypoGrille.attach(btn, x.column,x.row, 1,1)
         end
-     
-        gri.chargeVoisins
+        # Chargement des voisins
+        hypoGrille.chargeVoisins
 
         #ajoutGrille(grille)
-        boxJeu.add(gri)
+        boxJeu.add(hypoGrille)
 
         boxJeuFrame = Gtk::Frame.new()
         boxJeuFrame.set_shadow_type(:out)
@@ -123,28 +124,21 @@ class Hypothese  < Gtk::Window
         bt = Gtk::Button.new(:label => "OK")
 
         bt.signal_connect('clicked'){
-            boxJeu.remove(gri)
-            plateau.alterGrid(gri)
+            boxJeu.remove(hypoGrille)
+            plateau.hypotheseValider(hypoGrille)
             self.destroy
         }
 
         boutonUndo.signal_connect('clicked'){
-            gri.undoPrevious
+            hypoGrille.undoPrevious
         }
 
         boutonRedo.signal_connect('clicked'){
-            gri.redoPrevious
+            hypoGrille.redoPrevious
         }
 
-
         boxPrincipale.add(bt)
-
         add(boxPrincipale)
-
-        
-
-        # gri.connectVoisins() 
-
 
         show_all
     end

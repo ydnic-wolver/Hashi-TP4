@@ -433,7 +433,6 @@ class HashiGrid < Gtk::Grid
         for i in 0..(data.length() - 1) 
             data[i].split(':').each_with_index do | ch, index| 
                 # # Création d'une case 
-
                 if ch != '0'
                     btn = Ile.new(self, ch,index,i)
                 else 
