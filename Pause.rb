@@ -8,22 +8,14 @@ class Pause < Gtk::Window
         signal_connect "destroy" do
             $window.set_sensitive(TRUE)
             $timerStop = 0
-<<<<<<< HEAD
-            self.destroy
-=======
             destroy
->>>>>>> main
         end
         
         set_default_size 300, 200
         
         set_window_position Gtk::WindowPosition::CENTER
 
-<<<<<<< HEAD
-        logoPause = Gtk::Image.new(:file =>"Ressources/pauseLogo.png")
-=======
         logoPause = Gtk::Image.new(:file =>"Ressources/Pause/pauseLogo.png")
->>>>>>> main
 
         boutonReprendre = Gtk::Button.new(:label =>"Reprendre")
         boutonReprendre.signal_connect('clicked'){
@@ -32,10 +24,6 @@ class Pause < Gtk::Window
         }
 
         boutonRecommencer = Gtk::Button.new(:label =>"Recommencer")
-<<<<<<< HEAD
-=======
-
->>>>>>> main
         boutonQuitter = Gtk::Button.new(:label =>"Quitter")
 	    boutonQuitter.signal_connect('clicked'){
             $partieStop = 1
@@ -61,8 +49,4 @@ class Pause < Gtk::Window
 
         show_all
     end
-<<<<<<< HEAD
 end
-=======
-end
->>>>>>> main

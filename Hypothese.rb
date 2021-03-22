@@ -71,7 +71,7 @@ class Hypothese  < Gtk::Window
         #Initialisation de la grille
 
         test = plateau.grid.collect(&:dup)
-        gri = HashiGrid.new 
+        gri = HashiGrid.new(plateau.grid.nomniv,plateau.grid.lignes, plateau.grid.colonnes  )
         gri.set_column_homogeneous(true)
         gri.set_row_homogeneous(true)
         gri.colonnes = plateau.grid.colonnes
@@ -125,6 +125,15 @@ class Hypothese  < Gtk::Window
         bt.signal_connect('clicked'){
             boxJeu.remove(gri)
             plateau.alterGrid(gri)
+            self.destroy
+        }
+
+        boutonUndo.signal_connect('clicked'){
+            gri.undoPrevious
+        }
+
+        boutonRedo.signal_connect('clicked'){
+            gri.redoPrevious
         }
 
 

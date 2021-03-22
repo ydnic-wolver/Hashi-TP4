@@ -20,6 +20,8 @@ class HashiGrid < Gtk::Grid
     # cliquées 
     attr_accessor :nodeLink
 
+    attr_reader :nomniv
+
     def initialize(nomniv,x,y)
         @nomniv=nomniv
         @x=x
@@ -166,12 +168,7 @@ class HashiGrid < Gtk::Grid
         
     end
 
-<<<<<<< HEAD
-=======
-    
-   
 
->>>>>>> main
     #  Supprime le pont entre deux iles 
     #  Le dernier paramètre undo est un paramètre par défaut à faux 
     # utiliser pour avec la méthode undoPrevious et permettant de 

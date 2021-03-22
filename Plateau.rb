@@ -1,19 +1,17 @@
 require 'gtk3'
 
-<<<<<<< HEAD
-require 'deep_clone'
 load "HashiGrid.rb"
 load "Ile.rb"
 load "Pont.rb"
 load "Hypothese.rb"
-=======
-
->>>>>>> main
 
 $timerStop = 0
 $partieStop = 0
 
 class Plateau < Gtk::Window
+
+    attr_accessor :grid
+
     def initialize(nomniv,x,y)
         @nomniv=nomniv
         @x=x
@@ -64,7 +62,8 @@ class Plateau < Gtk::Window
         boutonHypo = Gtk::Button.new()
         boutonHypo.image = Gtk::Image.new(:file => "Ressources/Plateau/aide.png")
         boutonHypo.signal_connect('clicked'){
-            print("Redo!")
+            print("Hypo!")
+            Hypothese.new(self)
         }
         
 
@@ -89,22 +88,23 @@ class Plateau < Gtk::Window
         boxBarreFrame.set_shadow_type(:out)
         boxBarreFrame.add(boxBarre)
 
+       
         #Creation de la zone de jeu
-        boxJeu = Gtk::Box.new(:horizontal, 6)
-        boxJeu.set_homogeneous(true)
+        @boxJeu = Gtk::Box.new(:horizontal, 6)
+        @boxJeu.set_homogeneous(true)
 
-
-        boxJeu.set_border_width(10)
+        @boxJeu.set_border_width(10)
 
         #Initialisation de la grille
-        grid = HashiGrid.new(@nomniv,@x,@y)
-        grid.set_column_homogeneous(true)
-        grid.set_row_homogeneous(true)
+        @grid = HashiGrid.new(@nomniv,@x,@y)
+        @grid.set_column_homogeneous(true)
+        @grid.set_row_homogeneous(true)
 
         #  Chargement de la grille
-        grid.chargeGrille()
+        @grid.chargeGrille()
 
-        grid.chargeVoisins
+        @grid.chargeVoisins
+
 
         boutonUndo.signal_connect('clicked'){
             grid.undoPrevious
@@ -115,11 +115,11 @@ class Plateau < Gtk::Window
         }
 
         #ajoutGrille(grille)
-        boxJeu.add(grid)
+        @boxJeu.add(@grid)
 
         boxJeuFrame = Gtk::Frame.new()
         boxJeuFrame.set_shadow_type(:out)
-        boxJeuFrame.add(boxJeu)
+        boxJeuFrame.add(@boxJeu)
         boxJeuFrame.set_border_width(10)
 
         #Creation et affichage de la fenêtre principale
@@ -155,6 +155,12 @@ class Plateau < Gtk::Window
                 end
             end
         }
+    end
+
+    def alterGrid(newGrid)
+        @boxJeu.remove(@grid)
+        @grid = newGrid
+        @boxJeu.add(@grid)
     end
 
 end

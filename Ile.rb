@@ -32,11 +32,7 @@ class Ile < Gtk::Button
     # Représente le nombre de degrée restant à connecter avant d'atteindre le degree max
     attr_accessor :degree
 
-<<<<<<< HEAD
-=======
-    attr_accessor :pontList
 
->>>>>>> main
     def getVoisins
         arr = [@northNode, @eastNode, @southNode, @westNode]
         return arr
@@ -70,11 +66,7 @@ class Ile < Gtk::Button
         self.status = 'i'
         
         # Charge une image correspondants au noeud
-<<<<<<< HEAD
-        self.image = Gtk::Image.new(:file => "image/noeuds/"+degree+".png") 
-=======
         self.image = Gtk::Image.new(:file => "Ressources/Ile/"+degree+".png") 
->>>>>>> main
         #  Retire les contours
         self.set_relief(Gtk::ReliefStyle::NONE)
         self.always_show_image = false
