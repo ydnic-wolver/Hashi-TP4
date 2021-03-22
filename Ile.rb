@@ -32,8 +32,6 @@ class Ile < Gtk::Button
     # Représente le nombre de degrée restant à connecter avant d'atteindre le degree max
     attr_accessor :degree
 
-    attr_accessor :pontList
-
     def getVoisins
         arr = [@northNode, @eastNode, @southNode, @westNode]
         return arr
@@ -130,6 +128,16 @@ class Ile < Gtk::Button
     def click()
         @gridRef.notify(self)
         
+        # voisins = self.getVoisins()
+        # puts voisins
+        # voisins.each do |voisin|
+        #     if voisin != nil
+        #         voisin.image.from_file = "image/noeuds/#{voisin.degreeMax}_r.png"
+        #     end
+        # end
+        # for voisin in voisins
+        #     voisin.image_from_file = "image/noeuds/#{voisin.degreeMax}_r.png"
+        # end
         # puts "H #{@northNode} B #{@southNode} D #{@eastNode} G #{@westNode}"
     end
 

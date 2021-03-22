@@ -7,7 +7,8 @@ load "MainMenu.rb"
 #  ponts d'un point de vue graphique )
 # Il y  à peu de méthode encore mais ça arrive
 class HashiGrid < Gtk::Grid 
-    
+
+
     attr_accessor :saveManager
 
     # Nombre de colonnes 
@@ -163,9 +164,6 @@ class HashiGrid < Gtk::Grid
         
     end
 
-    
-   
-
     #  Supprime le pont entre deux iles 
     #  Le dernier paramètre undo est un paramètre par défaut à faux 
     # utiliser pour avec la méthode undoPrevious et permettant de 
@@ -268,6 +266,25 @@ class HashiGrid < Gtk::Grid
         end
     end 
 
+    def connectVoisins()
+        for x in 0..(self.lignes-1)
+            for y in 0..(self.colonnes-1)
+                if (self.get_child_at(x,y).status == 'i')
+                    if self.get_child_at(x,y).eastEdge > 0 
+                        ajoutPont(x, x.eastEdge)
+                    elsif self.get_child_at(x,y).westEdge > 0 
+                        ajoutPont(x, x.westEdge)
+
+                    elsif self.get_child_at(x,y).southEdge > 0 
+                        ajoutPont(x, x.westEdge)
+
+                    elsif self.get_child_at(x,y).northEdge > 0 
+                        ajoutPont(x, x.eastEdge)
+                    end
+                end
+            end        
+        end
+    end
 
     # Vérifie si l'ajout est valide 
     # Autrement dit :

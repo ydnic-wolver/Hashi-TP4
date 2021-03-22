@@ -1,27 +1,13 @@
 require 'gtk3'
 
-require 'deep_clone'
-load "HashiGrid.rb"
-load "Ile.rb"
-load "Pont.rb"
-load "Hypothese.rb"
+load 'HashiGrid.rb'
 
-$timerStop = 0
-$partieStop = 0
 
-class Plateau < Gtk::Window
-    def initialize()
+class Hypothese  < Gtk::Window
 
-        #Creation de la fenêtre
+    def initialize(grid)
+
         super()
-        set_title "Hashi Game"
-
-        signal_connect "destroy" do 
-            #self.destroy
-            $partieStop = 1
-            Gtk.main_quit 
-        end
-
         set_default_size 500, 300
         
         set_window_position Gtk::WindowPosition::CENTER
@@ -190,30 +176,53 @@ class Plateau < Gtk::Window
         
         temps.set_text( "O")
         tempsPause = 0
-        show_all
 
-        #Thread chronomètre
-        t = Thread.new{
-            while $partieStop == 0 do
-                tempsDebut = Time.now
-
-                while $timerStop == 0 and $partieStop == 0 do #pause pas acitve ou niveau pas fini
-                    temps.set_text( (Time.now - tempsDebut + tempsPause ).round(0).to_s)
-                    sleep(1)
-                end
-
-                tempsPause = tempsPause + (Time.now - tempsDebut ).round(0)
-
-                while $timerStop == 1 do
-                    sleep(0.1)
-                end
+        test = grid.collect(&:dup)
+        gri = HashiGrid.new 
+        gri.colonnes = grid.colonnes
+        gri.lignes = grid.lignes
+        test.each do |x| 
+            # puts x.to_s
+            # HashiGrid.new(test)
+        #    puts "Ponts : HAUT #{x.northEdge}, BAS #{x.southEdge},DROITE #{x.eastEdge} GAUCHE #{x.westEdge}"
+             ## # Création d'une case 
+                #   grille degree colone ligne
+            if x.status != 'p'
+                btn = Ile.new(gri,x.degreeMax.to_s,x.column,x.row)
+                btn.degree = x.degree
+                btn.estComplet = x.estComplet
+                btn.northEdge = x.northEdge
+                btn.southEdge = x.southEdge
+                btn.westEdge = x.westEdge
+                btn.eastEdge = x.eastEdge
+                btn.update
+            else 
+                btn = Pont.new(gri,x.degreeMax.to_s,x.column,x.row)
+                btn.set_typePont( x.get_typePont )
+                btn.estDouble = x.estDouble
+                btn.set_directionPont ( x.get_directionPont )
+                btn.update
             end
-        }
+                # On attache la référence de la grille
+                gri.attach(btn, x.column,x.row, 1,1)
+        end
+        gri.chargeVoisins()
+
+        # gri.connectVoisins() 
+
+		set_title "Hypothèse"
+		set_resizable(true)
+		signal_connect "destroy" do 
+			self.destroy
+            puts "CLOSE"
+		end 
+
+		set_default_size 500, 400
+		set_window_position Gtk::WindowPosition::CENTER
+        
+        add(gri)
+
+        show_all
     end
-
-    #Main provisoire
-    #$window = Plateau.new()
-
-    #Gtk.main
 
 end
