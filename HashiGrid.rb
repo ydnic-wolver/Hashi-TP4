@@ -7,8 +7,7 @@ load "MainMenu.rb"
 #  ponts d'un point de vue graphique )
 # Il y  à peu de méthode encore mais ça arrive
 class HashiGrid < Gtk::Grid 
-
-
+    
     attr_accessor :saveManager
 
     # Nombre de colonnes 
@@ -21,7 +20,10 @@ class HashiGrid < Gtk::Grid
     # cliquées 
     attr_accessor :nodeLink
 
-    def initialize
+    def initialize(nomniv,x,y)
+        @nomniv=nomniv
+        @x=x
+        @y=y
         super()
         @nodeLink = []
         @saveManager = Sauvegarde.new 
@@ -164,6 +166,12 @@ class HashiGrid < Gtk::Grid
         
     end
 
+<<<<<<< HEAD
+=======
+    
+   
+
+>>>>>>> main
     #  Supprime le pont entre deux iles 
     #  Le dernier paramètre undo est un paramètre par défaut à faux 
     # utiliser pour avec la méthode undoPrevious et permettant de 
@@ -266,25 +274,6 @@ class HashiGrid < Gtk::Grid
         end
     end 
 
-    def connectVoisins()
-        for x in 0..(self.lignes-1)
-            for y in 0..(self.colonnes-1)
-                if (self.get_child_at(x,y).status == 'i')
-                    if self.get_child_at(x,y).eastEdge > 0 
-                        ajoutPont(x, x.eastEdge)
-                    elsif self.get_child_at(x,y).westEdge > 0 
-                        ajoutPont(x, x.westEdge)
-
-                    elsif self.get_child_at(x,y).southEdge > 0 
-                        ajoutPont(x, x.westEdge)
-
-                    elsif self.get_child_at(x,y).northEdge > 0 
-                        ajoutPont(x, x.eastEdge)
-                    end
-                end
-            end        
-        end
-    end
 
     # Vérifie si l'ajout est valide 
     # Autrement dit :
@@ -433,14 +422,14 @@ class HashiGrid < Gtk::Grid
      # Chargement d'une grille depuis un fichier
      def chargeGrille()
         data = []
-        File.foreach('file.txt').with_index do |line, line_no|
+        File.foreach(@nomniv).with_index do |line, line_no|
             data << line.chomp
         end
         # Slice permet de récupérer la taille de la matrice 
         # tel que 7:7
         num = data.slice!(0)
-        self.colonnes = num[0].to_i
-        self.lignes = num[2].to_i
+        self.colonnes = @x
+        self.lignes = @y
 
         # Parcours des données récupérés afin de charger
         # les boutons

@@ -32,6 +32,11 @@ class Ile < Gtk::Button
     # Représente le nombre de degrée restant à connecter avant d'atteindre le degree max
     attr_accessor :degree
 
+<<<<<<< HEAD
+=======
+    attr_accessor :pontList
+
+>>>>>>> main
     def getVoisins
         arr = [@northNode, @eastNode, @southNode, @westNode]
         return arr
@@ -65,7 +70,11 @@ class Ile < Gtk::Button
         self.status = 'i'
         
         # Charge une image correspondants au noeud
+<<<<<<< HEAD
         self.image = Gtk::Image.new(:file => "image/noeuds/"+degree+".png") 
+=======
+        self.image = Gtk::Image.new(:file => "Ressources/Ile/"+degree+".png") 
+>>>>>>> main
         #  Retire les contours
         self.set_relief(Gtk::ReliefStyle::NONE)
         self.always_show_image = false
@@ -108,12 +117,12 @@ class Ile < Gtk::Button
     def update 
         if @degree > @degreeMax
             self.estComplet = false
-            self.image.from_file = "image/noeuds/#{degreeMax}_r.png"
+            self.image.from_file = "Ressources/Ile/#{degreeMax}_r.png"
         elsif @degree == @degreeMax
             self.estComplet = true
-            self.image.from_file = "image/noeuds/#{degreeMax}_v.png"
+            self.image.from_file = "Ressources/Ile/#{degreeMax}_v.png"
         else
-            self.image.from_file = "image/noeuds/#{degreeMax}.png"
+            self.image.from_file = "Ressources/Ile/#{degreeMax}.png"
             self.estComplet = false
         end
     end
@@ -128,16 +137,6 @@ class Ile < Gtk::Button
     def click()
         @gridRef.notify(self)
         
-        # voisins = self.getVoisins()
-        # puts voisins
-        # voisins.each do |voisin|
-        #     if voisin != nil
-        #         voisin.image.from_file = "image/noeuds/#{voisin.degreeMax}_r.png"
-        #     end
-        # end
-        # for voisin in voisins
-        #     voisin.image_from_file = "image/noeuds/#{voisin.degreeMax}_r.png"
-        # end
         # puts "H #{@northNode} B #{@southNode} D #{@eastNode} G #{@westNode}"
     end
 

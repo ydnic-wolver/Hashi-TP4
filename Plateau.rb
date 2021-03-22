@@ -1,26 +1,29 @@
 require 'gtk3'
 
+<<<<<<< HEAD
 require 'deep_clone'
 load "HashiGrid.rb"
 load "Ile.rb"
 load "Pont.rb"
 load "Hypothese.rb"
+=======
+
+>>>>>>> main
 
 $timerStop = 0
 $partieStop = 0
 
 class Plateau < Gtk::Window
-
-    attr_accessor :grid
-
-    def initialize()
+    def initialize(nomniv,x,y)
+        @nomniv=nomniv
+        @x=x
+        @y=y
 
         #Creation de la fenêtre
         super()
         set_title "Hashi Game"
 
         signal_connect "destroy" do 
-            #self.destroy
             $partieStop = 1
             Gtk.main_quit 
         end
@@ -30,19 +33,8 @@ class Plateau < Gtk::Window
         set_window_position Gtk::WindowPosition::CENTER
 
         #Reglage bouton pause
-        pauseImage = Gtk::CssProvider.new
-        pauseImage.load(data: <<-CSS)
-            button{
-                background-image: url("Ressources/pause1.png");
-                border: unset;
-                background-repeat: no-repeat;
-                background-position: center;
-            }
-        CSS
-
         boutonPause = Gtk::Button.new()
-        boutonPause.style_context.add_provider(pauseImage, Gtk::StyleProvider::PRIORITY_USER)
-        boutonPause.set_size_request(30, 30)
+        boutonPause.image =  Gtk::Image.new(:file => "Ressources/Plateau/pause.png") 
         boutonPause.signal_connect('clicked'){
 
             self.set_sensitive(FALSE)
@@ -52,69 +44,28 @@ class Plateau < Gtk::Window
         }
 
         #Reglage du bouton indice
-        indiceImage = Gtk::CssProvider.new
-        indiceImage.load(data: <<-CSS)
-            button{
-                background-image: url("Ressources/1.png");
-                border: unset;
-                background-repeat: no-repeat;
-                background-position: center;
-            }
-        CSS
-
         boutonIndice = Gtk::Button.new()
-        boutonIndice.style_context.add_provider(indiceImage, Gtk::StyleProvider::PRIORITY_USER)
-        boutonIndice.set_size_request(30, 30)
+        boutonIndice.image = Gtk::Image.new(:file => "Ressources/Plateau/hypothese.png")
         boutonIndice.signal_connect('clicked'){
             print("Indice!")
         }
 
         #Reglage du bouton Undo
-        undoImage = Gtk::CssProvider.new
-        undoImage.load(data: <<-CSS)
-            button{
-                background-image: url("Ressources/traitV.png");
-                border: unset;
-                background-repeat: no-repeat;
-                background-position: center;
-            }
-        CSS
-
         boutonUndo = Gtk::Button.new()
-        boutonUndo.style_context.add_provider(undoImage, Gtk::StyleProvider::PRIORITY_USER)
-        boutonUndo.set_size_request(30, 30)
-       
+        boutonUndo.image = Gtk::Image.new(:file => "Ressources/Plateau/undo.png")
+
 
         #Reglage du bouton Redo
-        redoImage = Gtk::CssProvider.new
-        redoImage.load(data: <<-CSS)
-            button{
-                background-image: url("Ressources/traitV.png");
-                border: unset;
-                background-repeat: no-repeat;
-                background-position: center;
-            }
-        CSS
-
         boutonRedo = Gtk::Button.new()
-        boutonRedo.style_context.add_provider(redoImage, Gtk::StyleProvider::PRIORITY_USER)
-        boutonRedo.set_size_request(30, 30)
-       
+        boutonRedo.image = Gtk::Image.new(:file => "Ressources/Plateau/redo.png")
+
 
         #Reglage du bouton Hypothèse
-        hypoImage = Gtk::CssProvider.new
-        hypoImage.load(data: <<-CSS)
-            button{
-                background-image: url("Ressources/traitV.png");
-                border: unset;
-                background-repeat: no-repeat;
-                background-position: center;
-            }
-        CSS
-
         boutonHypo = Gtk::Button.new()
-        boutonHypo.style_context.add_provider(hypoImage, Gtk::StyleProvider::PRIORITY_USER)
-        boutonHypo.set_size_request(30, 30)
+        boutonHypo.image = Gtk::Image.new(:file => "Ressources/Plateau/aide.png")
+        boutonHypo.signal_connect('clicked'){
+            print("Redo!")
+        }
         
 
         #Creation de la barre d'outils en haut de la fenêtre
@@ -139,55 +90,47 @@ class Plateau < Gtk::Window
         boxBarreFrame.add(boxBarre)
 
         #Creation de la zone de jeu
-        @boxJeu = Gtk::Box.new(:horizontal, 6)
-        @boxJeu.set_homogeneous(true)
+        boxJeu = Gtk::Box.new(:horizontal, 6)
+        boxJeu.set_homogeneous(true)
 
-        @boxJeu.set_border_width(10)
+
+        boxJeu.set_border_width(10)
 
         #Initialisation de la grille
-        @grid = HashiGrid.new 
-        @grid.set_column_homogeneous(true)
-        @grid.set_row_homogeneous(true)
+        grid = HashiGrid.new(@nomniv,@x,@y)
+        grid.set_column_homogeneous(true)
+        grid.set_row_homogeneous(true)
 
         #  Chargement de la grille
-        @grid.chargeGrille()
+        grid.chargeGrille()
 
-        @grid.chargeVoisins
-
-        
-        boutonHypo.signal_connect('clicked'){
-            print("Hypo!")
-            Hypothese.new(self)
-        }
-
+        grid.chargeVoisins
 
         boutonUndo.signal_connect('clicked'){
-            # print("Undo!")
             grid.undoPrevious
         }
 
         boutonRedo.signal_connect('clicked'){
-            # print("Redo!")
             grid.redoPrevious
         }
 
         #ajoutGrille(grille)
-        @boxJeu.add(@grid)
+        boxJeu.add(grid)
 
-        @boxJeuFrame = Gtk::Frame.new()
-        @boxJeuFrame.set_shadow_type(:out)
-        @boxJeuFrame.add(@boxJeu)
-        @boxJeuFrame.set_border_width(10)
+        boxJeuFrame = Gtk::Frame.new()
+        boxJeuFrame.set_shadow_type(:out)
+        boxJeuFrame.add(boxJeu)
+        boxJeuFrame.set_border_width(10)
 
         #Creation et affichage de la fenêtre principale
 
         #Gestion du temps
-        @boxPrincipale = Gtk::Box.new(:vertical, 6)
+        boxPrincipale = Gtk::Box.new(:vertical, 6)
 
-        @boxPrincipale.add(boxBarreFrame)
-        @boxPrincipale.add(@boxJeuFrame)
+        boxPrincipale.add(boxBarreFrame)
+        boxPrincipale.add(boxJeuFrame)
 
-        add(@boxPrincipale)
+        add(boxPrincipale)
 
         #Gestion du temps
         
@@ -213,16 +156,5 @@ class Plateau < Gtk::Window
             end
         }
     end
-
-    def alterGrid(newGrid)
-        @boxJeu.remove(@grid)
-        @grid = newGrid
-        @boxJeu.add(@grid)
-    end
-
-    #Main provisoire
-    #$window = Plateau.new()
-
-    #Gtk.main
 
 end

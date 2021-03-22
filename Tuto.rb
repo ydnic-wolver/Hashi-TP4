@@ -17,16 +17,16 @@ class Tuto < Gtk::Window
 			destroy
 		end
 
-		image0=Gtk::Image.new(:file =>"image/TUTO-0.png")
-		image1=Gtk::Image.new(:file =>"image/TUTO1.png")
-		image2=Gtk::Image.new(:file =>"image/TUTO2.png")
-		image3=Gtk::Image.new(:file =>"image/TUTO3.png")
-		image4=Gtk::Image.new(:file =>"image/TUTO4.png")
-		image5=Gtk::Image.new(:file =>"image/TUTO5.png")
-		image6=Gtk::Image.new(:file =>"image/TUTO6.png")
-		imageF=Gtk::Image.new(:file =>"image/TUTOF.png")
-		imageClassement=Gtk::Image.new(:file =>"image/Classement.png")
-		imageChoixNiveau=Gtk::Image.new(:file =>"image/ChoixNiveau.png")
+		image0=Gtk::Image.new(:file =>"Ressources/Tuto/TUTO-0.png")
+		image1=Gtk::Image.new(:file =>"Ressources/Tuto/TUTO1.png")
+		image2=Gtk::Image.new(:file =>"Ressources/Tuto/TUTO2.png")
+		image3=Gtk::Image.new(:file =>"Ressources/Tuto/TUTO3.png")
+		image4=Gtk::Image.new(:file =>"Ressources/Tuto/TUTO4.png")
+		image5=Gtk::Image.new(:file =>"Ressources/Tuto/TUTO5.png")
+		image6=Gtk::Image.new(:file =>"Ressources/Tuto/TUTO6.png")
+		imageF=Gtk::Image.new(:file =>"Ressources/Tuto/TUTOF.png")
+		imageClassement=Gtk::Image.new(:file =>"Ressources/Tuto/Classement.png")
+		imageChoixNiveau=Gtk::Image.new(:file =>"Ressources/Tuto/ChoixNiveau.png")
 
 		texte_0 = "<span font_desc = \"Calibri 10\">Voici les règles du jeu\nLe Hashiwokakero se joue sur une grille rectangulaire sans grandeur standard.\nOn y retrouve des nombres de 1 à 8 inclusivement.\nIls sont généralement encerclés et nommés îles.\nLe but du jeu est de relier toutes les îles en un seul groupe en créant\nune série de ponts (simples ou doubles) entre les îles.</span>\n"
 
