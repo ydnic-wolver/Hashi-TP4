@@ -1,9 +1,4 @@
 require 'gtk3'
-load "APropos.rb"
-load "Classement.rb"
-load "MenuSelection.rb"
-load "Tuto.rb"
-
 
 class MainMenu < Gtk::Window
     def initialize
@@ -20,7 +15,11 @@ button {
 	background-color: #383838;
 	background-image: none;
 	border-color:#383838;
-  font-size: 18px;
+ 	font-size: 18px;
+}
+
+button:hover {
+  background-color: #2c4554;
 }
 
 
@@ -53,26 +52,29 @@ label {
 		btnSelection.signal_connect('clicked'){
 		
 			MenuSelection.new
-			self.set_visible(false)
+			self.destroy
+			Gtk.main
 		}
 		btnTuto = Gtk::Button.new(:label => 'Tutoriel')
 		btnTuto.signal_connect('clicked'){
 			Tuto.new
-			self.set_visible(false)
+			self.destroy
+			Gtk.main
 		}
 		btnClassement = Gtk::Button.new(:label => 'Classement')
 		btnClassement.signal_connect('clicked'){
 		
 			Classement.new
-			self.set_visible(false)
+			self.destroy
+			Gtk.main
 
 		}
 		btnAPropos = Gtk::Button.new(:label => 'A propos')
 		btnAPropos.signal_connect('clicked'){
 		
 			APropos.new
-			self.set_visible(false)	
-
+			self.destroy
+			Gtk.main
 		}
 
 		btnQuitter = Gtk::Button.new(:label => 'Quitter')
