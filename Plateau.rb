@@ -17,6 +17,8 @@ class Plateau < Gtk::Window
         @x=x
         @y=y
 
+        $partieStop = 0
+
         #Creation de la fenêtre
         super()
         set_title "Hashi Game"

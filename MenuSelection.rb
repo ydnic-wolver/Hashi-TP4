@@ -12,7 +12,7 @@ class MenuSelection < Gtk::Window
             Gtk.main_quit
         end
         
-        set_default_size 10, 200
+        set_default_size 500, 400
         set_border_width 5
         
         set_window_position Gtk::WindowPosition::CENTER
@@ -32,30 +32,19 @@ class MenuSelection < Gtk::Window
         shardwindow=Gtk::ScrolledWindow.new        
         #4 bouton en haut de la fenêtre
         #Creation bouton facile
-        btnFacile = Gtk::Button.new(:label => 'Niveau Facile')
-        facileImage = Gtk::CssProvider.new
-        facileImage.load(data: <<-CSS)
-            button{
-                background-image: url("Ressources/MenuSelection/btnfacile.PNG");
-                border: unset;
-            }
-        CSS
-        btnFacile.style_context.add_provider(facileImage, Gtk::StyleProvider::PRIORITY_USER)
-        btnFacile.set_size_request(40, 40)
+        btnFacile = Gtk::Button.new()
+        btnFacile.image = Gtk::Image.new(:file => "Ressources/MenuSelection/etoileFacile.png") 
+
         #Creation bouton moyen
-        btnMoyen = Gtk::Button.new(:label => 'Niveau Moyen')
-        btnHard = Gtk::Button.new(:label => 'Niveau Difficile')
+        btnMoyen = Gtk::Button.new()
+        btnMoyen.image = Gtk::Image.new(:file => "Ressources/MenuSelection/etoileMoyen.png") 
+
+        btnHard = Gtk::Button.new()
+        btnHard.image = Gtk::Image.new(:file => "Ressources/MenuSelection/etoileDiff.png") 
+
         #Création du bouton retour 
         btnRetour = Gtk::Button.new()
-        retourImage = Gtk::CssProvider.new
-        retourImage.load(data: <<-CSS)
-            button{
-                background-image: url("Ressources/MenuSelection/retour.png");
-                border: unset;
-            }
-        CSS
-        btnRetour.style_context.add_provider(retourImage, Gtk::StyleProvider::PRIORITY_USER)
-        btnRetour.set_size_request(10, 40)
+        btnRetour.image = Gtk::Image.new(:file => "Ressources/MenuSelection/retour.png") 
 
         #Initialisation des boutons de niveau
         tableauBtn=Array.new(22)
