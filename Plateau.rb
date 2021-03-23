@@ -24,14 +24,12 @@ class Plateau < Gtk::Window
         set_title "Hashi Game"
 
         signal_connect "destroy" do 
-
             puts "DETRUIT "
             $partieStop = 1
             Gtk.main_quit 
         end
 
         set_default_size 500, 300
-        
         set_window_position Gtk::WindowPosition::CENTER
 
         #Reglage bouton pause
@@ -49,6 +47,9 @@ class Plateau < Gtk::Window
         boutonIndice.image = Gtk::Image.new(:file => "Ressources/Plateau/aide.png")
         boutonIndice.signal_connect('clicked'){
             print("Indice!")
+            butt = Gtk::Button.new(:label => "INDICe")
+            @boxPrincipale.add(butt)
+            @boxPrincipale.show_all
         }
 
         #Reglage du bouton Undo
@@ -125,14 +126,12 @@ class Plateau < Gtk::Window
         @boxJeuFrame .set_border_width(10)
 
         #Creation et affichage de la fenêtre principale
+        @boxPrincipale = Gtk::Box.new(:vertical, 6)
 
-        #Gestion du temps
-        boxPrincipale = Gtk::Box.new(:vertical, 6)
+        @boxPrincipale.add(boxBarreFrame)
+        @boxPrincipale.add(@boxJeuFrame)
 
-        boxPrincipale.add(boxBarreFrame)
-        boxPrincipale.add(@boxJeuFrame)
-
-        add(boxPrincipale)
+        add(@boxPrincipale)
 
         #Gestion du temps
         
@@ -144,8 +143,11 @@ class Plateau < Gtk::Window
         t = Thread.new{
             while $partieStop == 0 do
                 @tempsDebut = Time.now
-
+                if( @grid.grilleFini?)
+                    puts "GAGNER"
+                end
                 while $timerStop == 0 and $partieStop == 0 do #pause pas active ou niveau pas fini
+                    
                     @temps.set_text( (Time.now - @tempsDebut + @tempsPause ).round(0).to_s)
                     sleep(1)
                 end
@@ -159,7 +161,61 @@ class Plateau < Gtk::Window
         }
     end
 
-    def creerGrid()
+    def partiFini
+
+        if(@grid.grilleFini?)
+        
+            sleep(0.5) # on attend 0.5 sec afin de voir le coup qu'on a effectuer avant l'affichage #
+            $window.set_sensitive(false)
+            window=Gtk::Window.new()
+            window.set_title "VICTOIRE"
+            window.set_resizable(true)
+        
+            window.set_default_size 300, 300
+            window.set_window_position Gtk::WindowPosition::CENTER
+            pVBox = Gtk::Box.new(:vertical, 25)
+    
+            title = "<span font_desc = \"Verdana 40\">VICTOIRE</span>\n"
+            textTitle = Gtk::Label.new()
+            textTitle.set_markup(title)
+            textTitle.set_justify(Gtk::Justification::CENTER)
+            
+            label = "<span font_desc = \"Calibri 10\">Vous etes vraiment trop fort ! </span>\n"
+            textlabel = Gtk::Label.new()
+            textlabel.set_markup(label)
+            textlabel.set_justify(Gtk::Justification::CENTER)
+    
+            btnSauvegarder = Gtk::Button.new(:label => 'Sauvegarder')
+            btnSauvegarder.signal_connect('clicked'){
+                # Sauvegarder score du jeu #
+                
+            }
+            $timerStop=1
+            # $partieStop = 1
+            btnRecommencer = Gtk::Button.new(:label => 'Recommencer ?')
+            btnRecommencer.signal_connect('clicked'){
+                 # Recommencer la partie 
+                 $window.set_sensitive(true)
+                 $window.resetPlateau()
+                window.destroy #
+            }
+    
+            btnRetour = Gtk::Button.new(:label => 'Menu Principale')
+            btnRetour.signal_connect('clicked'){
+                # retour au menu principale  #
+                window.destroy
+                destroy
+                MainMenu.new	
+            }
+    
+            pVBox.add(textTitle)
+            pVBox.add(textlabel)
+            pVBox.add(btnSauvegarder)
+            pVBox.add(btnRecommencer)
+            pVBox.add(btnRetour)
+            window.add(pVBox)
+            window.show_all
+        end
         
     end
 
@@ -179,8 +235,9 @@ class Plateau < Gtk::Window
 
         @tempsDebut = Time.now
         @tempsPause = 0
-        @temps.set_text( "O")
-
+        @temps.set_text("O")
+        $timerStop = 0
+        $partieStop = 0
         @boxJeu.remove(@grid)
         #  Chargement de la grille
         gri = HashiGrid.new(@grid.nomniv,@grid.lignes, @grid.colonnes  )

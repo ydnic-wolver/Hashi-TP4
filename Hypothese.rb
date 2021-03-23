@@ -15,7 +15,6 @@ class Hypothese  < Gtk::Window
 		end 
 
         set_window_position Gtk::WindowPosition::CENTER
-
 		set_default_size 500, 400
 		
         #Reglage du bouton indice
@@ -41,7 +40,6 @@ class Hypothese  < Gtk::Window
         boxBarre.add(boutonIndice)
         boxBarre.add(boutonUndo)
         boxBarre.add(boutonRedo)
-
 
         boxBarre.set_border_width(5)
 
