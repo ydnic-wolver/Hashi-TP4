@@ -32,7 +32,6 @@ class Ile < Gtk::Button
     # Représente le nombre de degrée restant à connecter avant d'atteindre le degree max
     attr_accessor :degree
 
-    attr_accessor :pontList
 
     def getVoisins
         arr = [@northNode, @eastNode, @southNode, @westNode]

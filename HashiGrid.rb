@@ -20,6 +20,8 @@ class HashiGrid < Gtk::Grid
     # cliquées 
     attr_accessor :nodeLink
 
+    attr_reader :nomniv
+
     def initialize(nomniv,x,y)
         @nomniv=nomniv
         @x=x
@@ -166,8 +168,6 @@ class HashiGrid < Gtk::Grid
         
     end
 
-    
-   
 
     #  Supprime le pont entre deux iles 
     #  Le dernier paramètre undo est un paramètre par défaut à faux 
@@ -433,7 +433,6 @@ class HashiGrid < Gtk::Grid
         for i in 0..(data.length() - 1) 
             data[i].split(':').each_with_index do | ch, index| 
                 # # Création d'une case 
-
                 if ch != '0'
                     btn = Ile.new(self, ch,index,i)
                 else 
@@ -446,6 +445,12 @@ class HashiGrid < Gtk::Grid
         end
     end
 	
+    def saveGrille()
+        File.open("log.txt", "w+") do |f|
+            self.map { |element| f.write("#{element}") }
+        end
+       
+    end
 	
     def partiFini
 

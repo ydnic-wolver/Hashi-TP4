@@ -12,7 +12,7 @@ class MenuSelection < Gtk::Window
             Gtk.main_quit
         end
         
-        set_default_size 10, 200
+        set_default_size 500, 400
         set_border_width 5
         
         set_window_position Gtk::WindowPosition::CENTER
@@ -32,30 +32,19 @@ class MenuSelection < Gtk::Window
         shardwindow=Gtk::ScrolledWindow.new        
         #4 bouton en haut de la fenêtre
         #Creation bouton facile
-        btnFacile = Gtk::Button.new(:label => 'Niveau Facile')
-        facileImage = Gtk::CssProvider.new
-        facileImage.load(data: <<-CSS)
-            button{
-                background-image: url("Ressources/MenuSelection/btnfacile.PNG");
-                border: unset;
-            }
-        CSS
-        btnFacile.style_context.add_provider(facileImage, Gtk::StyleProvider::PRIORITY_USER)
-        btnFacile.set_size_request(40, 40)
+        btnFacile = Gtk::Button.new()
+        btnFacile.image = Gtk::Image.new(:file => "Ressources/MenuSelection/etoileFacile.png") 
+
         #Creation bouton moyen
-        btnMoyen = Gtk::Button.new(:label => 'Niveau Moyen')
-        btnHard = Gtk::Button.new(:label => 'Niveau Difficile')
+        btnMoyen = Gtk::Button.new()
+        btnMoyen.image = Gtk::Image.new(:file => "Ressources/MenuSelection/etoileMoyen.png") 
+
+        btnHard = Gtk::Button.new()
+        btnHard.image = Gtk::Image.new(:file => "Ressources/MenuSelection/etoileDiff.png") 
+
         #Création du bouton retour 
         btnRetour = Gtk::Button.new()
-        retourImage = Gtk::CssProvider.new
-        retourImage.load(data: <<-CSS)
-            button{
-                background-image: url("Ressources/MenuSelection/retour.png");
-                border: unset;
-            }
-        CSS
-        btnRetour.style_context.add_provider(retourImage, Gtk::StyleProvider::PRIORITY_USER)
-        btnRetour.set_size_request(10, 40)
+        btnRetour.image = Gtk::Image.new(:file => "Ressources/MenuSelection/retour.png") 
 
         #Initialisation des boutons de niveau
         tableauBtn=Array.new(22)
@@ -226,11 +215,39 @@ class MenuSelection < Gtk::Window
         }
         #Bouton Lien entre Menu Selection et chaque plateau
         tableauBtn.each_index{|x| tableauBtn[x].signal_connect('clicked'){
-            self.destroy
-            $window = Plateau.new(tableauBtn[x].getNiveau,tableauBtn[x].getY,tableauBtn[x].getX)
-            Gtk.main
-            }   
-       }
+            window=Gtk::Window.new()
+            window.set_title "Chargement"
+            window.set_resizable(true)
+            window.set_default_size 300, 300
+            window.set_window_position Gtk::WindowPosition::CENTER
+            window.signal_connect "destroy" do 
+                window.destroy
+            end
+            pVBox = Gtk::Box.new(:vertical, 25)
+            title = "<span font_desc = \"Verdana 40\">Chargement</span>\n"
+            textTitle = Gtk::Label.new()
+            textTitle.set_markup(title)
+            textTitle.set_justify(Gtk::Justification::CENTER)
+            btnLancer = Gtk::Button.new(:label => 'Nouvelle Partie')
+            btnSave = Gtk::Button.new(:label => 'Charger une Partie')
+            btnLancer.signal_connect('clicked'){
+                window.destroy
+                self.destroy
+                $window = Plateau.new(tableauBtn[x].getNiveau,tableauBtn[x].getY,tableauBtn[x].getX)
+                Gtk.main
+            }
+            btnRetourcharg = Gtk::Button.new(:label => 'Retour')
+            btnRetourcharg.signal_connect('clicked'){
+            window.destroy
+            }
+            pVBox.add(textTitle)
+            pVBox.add(btnLancer)
+            pVBox.add(btnSave)
+            pVBox.add(btnRetourcharg)
+            window.add(pVBox)
+            window.show_all
+        }   
+   }
         
         
         
