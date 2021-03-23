@@ -1,9 +1,9 @@
 require 'gtk3'
 
-class ClassementFacile < Gtk::Window
+class ClassementDifficile < Gtk::Window
     def initialize
         super
-	set_title "Classement Facile"
+	set_title "Classement Difficile"
 	set_resizable(true)
 	signal_connect "destroy" do 
 		self.destroy 
@@ -68,6 +68,10 @@ class ClassementFacile < Gtk::Window
 		self.set_sensitive(true)
 	}
 	btnQuitter = Gtk::Button.new(:label => 'Retour')
+	btnQuitter.signal_connect('clicked'){
+		self.destroy
+		MainMenu.new
+	}
 
 	btnQuitter.signal_connect('clicked'){self.destroy}
 	

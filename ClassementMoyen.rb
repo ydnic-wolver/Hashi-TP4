@@ -1,9 +1,9 @@
 require 'gtk3'
 
-class ClassementFacile < Gtk::Window
+class ClassementMoyen < Gtk::Window
     def initialize
         super
-	set_title "Classement Facile"
+	set_title "Classement Moyen"
 	set_resizable(true)
 	signal_connect "destroy" do 
 		self.destroy 
