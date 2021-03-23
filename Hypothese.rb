@@ -21,9 +21,9 @@ class Hypothese  < Gtk::Window
 		
         #Reglage du bouton indice
         boutonIndice = Gtk::Button.new()
-        boutonIndice.image = Gtk::Image.new(:file => "Ressources/Plateau/hypothese.png")
+        boutonIndice.image = Gtk::Image.new(:file => "Ressources/Plateau/aide.png")
         boutonIndice.signal_connect('clicked'){
-            
+            puts "Indice"
         }
 
         #Reglage du bouton Undo

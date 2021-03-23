@@ -34,17 +34,15 @@ class Plateau < Gtk::Window
         boutonPause = Gtk::Button.new()
         boutonPause.image =  Gtk::Image.new(:file => "Ressources/Plateau/pause.png") 
         boutonPause.signal_connect('clicked'){
-
             self.set_sensitive(false)
             $timerStop = 1
             pause = Pause.new()
-            
         }
 
 
         #Reglage du bouton indice
         boutonIndice = Gtk::Button.new()
-        boutonIndice.image = Gtk::Image.new(:file => "Ressources/Plateau/hypothese.png")
+        boutonIndice.image = Gtk::Image.new(:file => "Ressources/Plateau/aide.png")
         boutonIndice.signal_connect('clicked'){
             print("Indice!")
         }
@@ -61,7 +59,7 @@ class Plateau < Gtk::Window
 
         #Reglage du bouton Hypothèse
         boutonHypo = Gtk::Button.new()
-        boutonHypo.image = Gtk::Image.new(:file => "Ressources/Plateau/aide.png")
+        boutonHypo.image = Gtk::Image.new(:file => "Ressources/Plateau/hypothese.png")
         boutonHypo.signal_connect('clicked'){
             print("Hypo!")
             self.set_sensitive(false)
