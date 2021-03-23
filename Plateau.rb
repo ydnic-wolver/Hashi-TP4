@@ -64,6 +64,7 @@ class Plateau < Gtk::Window
         boutonHypo.image = Gtk::Image.new(:file => "Ressources/Plateau/aide.png")
         boutonHypo.signal_connect('clicked'){
             print("Hypo!")
+            self.set_sensitive(false)
             Hypothese.new(self)
         }
         
@@ -165,6 +166,7 @@ class Plateau < Gtk::Window
     def hypotheseValider(newGrid)
         @boxJeu.remove(@grid)
         @grid = newGrid
+        @grid.saveManager.cleanAll()
         @boxJeu.add(@grid)
     end
 
