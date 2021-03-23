@@ -445,6 +445,12 @@ class HashiGrid < Gtk::Grid
         end
     end
 	
+    def saveGrille()
+        File.open("log.txt", "w+") do |f|
+            self.map { |element| f.write("#{element}") }
+        end
+       
+    end
 	
     def partiFini
 

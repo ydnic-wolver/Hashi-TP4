@@ -79,7 +79,6 @@ class Hypothese  < Gtk::Window
 
         # On parcours le tableau des iles/ponts copies
         copy_grille.each do |x| 
-            
             # Si c'est une ile 
             # On copie les attributs de l'ile
             if x.status != 'p'

@@ -23,12 +23,13 @@ class Pause < Gtk::Window
         boutonReprendre = Gtk::Button.new(:label =>"Reprendre")
         boutonReprendre.signal_connect('clicked'){
             $window.set_sensitive(true)
+            $window.grid.saveGrille()
             self.destroy
         }
 
         
         @boutonRecommencer = Gtk::Button.new(:label =>"Recommencer")
-         @boutonRecommencer.signal_connect('clicked'){
+        @boutonRecommencer.signal_connect('clicked'){
                 $window.set_sensitive(true)
             $window.resetPlateau()
            $timerStop = 0
