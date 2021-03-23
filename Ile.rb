@@ -32,6 +32,7 @@ class Ile < Gtk::Button
     # Représente le nombre de degrée restant à connecter avant d'atteindre le degree max
     attr_accessor :degree
 
+    attr_accessor :pontList
 
     def getVoisins
         arr = [@northNode, @eastNode, @southNode, @westNode]
@@ -66,7 +67,7 @@ class Ile < Gtk::Button
         self.status = 'i'
         
         # Charge une image correspondants au noeud
-        self.image = Gtk::Image.new(:file => "Ressources/Ile/"+degree+".png") 
+        self.image = Gtk::Image.new(:file => "image/noeuds/"+degree+".png") 
         #  Retire les contours
         self.set_relief(Gtk::ReliefStyle::NONE)
         self.always_show_image = false
@@ -109,16 +110,41 @@ class Ile < Gtk::Button
     def update 
         if @degree > @degreeMax
             self.estComplet = false
-            self.image.from_file = "Ressources/Ile/#{degreeMax}_r.png"
+            self.image.from_file = "image/noeuds/#{degreeMax}_r.png"
         elsif @degree == @degreeMax
             self.estComplet = true
-            self.image.from_file = "Ressources/Ile/#{degreeMax}_v.png"
+            self.image.from_file = "image/noeuds/#{degreeMax}_v.png"
         else
-            self.image.from_file = "Ressources/Ile/#{degreeMax}.png"
+            self.image.from_file = "image/noeuds/#{degreeMax}.png"
             self.estComplet = false
         end
     end
 
+	def choixPossible()
+	
+		
+		voisins = self.getVoisins
+		for voisin in voisins
+			if voisin != nil
+				if voisin.estComplet == false
+
+					voisin.image.from_file = "image/noeuds/#{voisin.degreeMax}_s.png"
+				end
+			end
+		end
+	end
+	
+	def enleverChoixPossible()
+		voisins = self.getVoisins
+		for voisin in voisins
+			if voisin != nil
+				if voisin.estComplet == false
+					voisin.image.from_file = "image/noeuds/#{voisin.degreeMax}.png"
+				end
+			end
+		end
+	end
+	
 
     # Affiche la ligne et la colonne 
     def to_s

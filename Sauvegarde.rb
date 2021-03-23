@@ -7,11 +7,6 @@ class Sauvegarde
 
     attr_accessor :redoStack 
 
-
-    def cleanAll
-        @undoStack.clear
-        @redoStack.clear
-    end
     def initialize
         @undoStack = Array.[]
         @redoStack = Array.[]
@@ -22,6 +17,7 @@ class Sauvegarde
     end
 
     def showUndoStack
+        puts "UNDO STACKS"
         @undoStack.each do |el| 
             puts el.to_s
         end

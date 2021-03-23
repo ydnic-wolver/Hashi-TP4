@@ -1,36 +1,11 @@
 require 'gtk3'
+load "APropos.rb"
+load "Classement.rb"
+load "MenuSelection.rb"
 
 class MainMenu < Gtk::Window
     def initialize
         super
-
-  provider = Gtk::CssProvider.new
-  provider.load(data: <<-CSS)
-  
-window {
-  background-color: #5c5c5d;
-}
-
-button {
-	background-color: #727272;
-	background-image: none;
-	border-color:#727272;
- 	font-size: 18px;
-}
-
-button:hover {
-  background-color: #2c4554;
-}
-
-
-label {
-  color: #FFFFFF;
-}
-
-  CSS
-  Gtk::StyleContext.add_provider_for_screen(Gdk::Screen.default,
-                                            provider,
-                                            Gtk::StyleProvider::PRIORITY_APPLICATION)
 
 		set_title "Hashi Game"
 		set_resizable(true)
@@ -42,7 +17,7 @@ label {
 
 		set_window_position Gtk::WindowPosition::CENTER
 		
-		texte = "<span font_desc = \"Brush Script MT, Brush Script Std, cursive 60\">Hashi Game</span>\n"
+		texte = "<span font_desc = \"Verdana 40\">Hashi Game</span>\n"
 
 		boxMenu = Gtk::Table.new(15,3,true)	
 		
@@ -52,29 +27,22 @@ label {
 		btnSelection.signal_connect('clicked'){
 		
 			MenuSelection.new
-			self.destroy
-			Gtk.main
+			self.set_visible(false)
 		}
 		btnTuto = Gtk::Button.new(:label => 'Tutoriel')
-		btnTuto.signal_connect('clicked'){
-			Tuto.new
-			self.destroy
-			Gtk.main
-		}
 		btnClassement = Gtk::Button.new(:label => 'Classement')
 		btnClassement.signal_connect('clicked'){
 		
 			Classement.new
-			self.destroy
-			Gtk.main
+			self.set_visible(false)
 
 		}
 		btnAPropos = Gtk::Button.new(:label => 'A propos')
 		btnAPropos.signal_connect('clicked'){
 		
 			APropos.new
-			self.destroy
-			Gtk.main
+			self.set_visible(false)	
+
 		}
 
 		btnQuitter = Gtk::Button.new(:label => 'Quitter')
@@ -91,8 +59,6 @@ label {
 		boxMenu.attach(btnAPropos, 1,2,10,11)
 
 		boxMenu.attach(btnQuitter, 1,2,12,13)
-		
-
 
 		add(boxMenu)
 

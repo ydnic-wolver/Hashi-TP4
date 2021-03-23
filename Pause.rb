@@ -1,49 +1,37 @@
 require 'gtk3'
 
 class Pause < Gtk::Window
-
-    attr_accessor :boutonRecommencer
-
-    def initialize()
-        super()
+    def initialize
+        super
         set_title "En Pause"
 
         signal_connect "destroy" do
-            $window.set_sensitive(true)
+            $window.set_sensitive(TRUE)
             $timerStop = 0
-            destroy
+            self.destroy
         end
         
         set_default_size 300, 200
         
         set_window_position Gtk::WindowPosition::CENTER
 
-        logoPause = Gtk::Image.new(:file =>"Ressources/Pause/pauseLogo.png")
+        logoPause = Gtk::Image.new(:file =>"Ressources/pauseLogo.png")
 
         boutonReprendre = Gtk::Button.new(:label =>"Reprendre")
         boutonReprendre.signal_connect('clicked'){
-            $window.set_sensitive(true)
-            $window.grid.saveGrille()
+            $window.set_sensitive(TRUE)
             self.destroy
         }
 
-        
-        @boutonRecommencer = Gtk::Button.new(:label =>"Recommencer")
-        @boutonRecommencer.signal_connect('clicked'){
-            $window.set_sensitive(true)
-            $window.resetPlateau()
-           $timerStop = 0
-           destroy #
-        }
-
-        
-
+        boutonRecommencer = Gtk::Button.new(:label =>"Recommencer")
         boutonQuitter = Gtk::Button.new(:label =>"Quitter")
 	    boutonQuitter.signal_connect('clicked'){
             $partieStop = 1
+            
+            MainMenu.new
             self.destroy
             $window.destroy
-            MainMenu.new
+           
             Gtk.main
 	    }
 
@@ -51,7 +39,7 @@ class Pause < Gtk::Window
 
         boxOption.add(logoPause)
         boxOption.add(boutonReprendre)
-        boxOption.add(@boutonRecommencer )
+        boxOption.add(boutonRecommencer)
         boxOption.add(boutonQuitter)
         
 

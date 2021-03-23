@@ -57,20 +57,20 @@ class Pont < Ile
     def update()
     #    p "Type du pont: " + @typePont.to_s # DEBUG
         if @typePont == 0 && @directionPont == 0
-            self.image.from_file= "Ressources/Pont/0.png"
+            self.image.from_file= "image/noeuds/0.png"
         elsif @typePont == 1
             # Si le pont == 1 alors il est horizontal
             # Sinon il est vertical 
             if @directionPont == 1
-                 self.image.from_file= "Ressources/Pont/h_simple.png"
+                 self.image.from_file= "image/noeuds/h_simple.png"
             else
-                self.image.from_file= "Ressources/Pont/v_simple.png"
+                self.image.from_file= "image/noeuds/v_simple.png"
             end
         elsif @typePont == 2 
             if @directionPont == 1
-                self.image.from_file= "Ressources/Pont/h_double.png"
+                self.image.from_file= "image/noeuds/h_double.png"
             else
-                self.image.from_file= "Ressources/Pont/v_double.png"
+                self.image.from_file= "image/noeuds/v_double.png"
                
             end
         end
