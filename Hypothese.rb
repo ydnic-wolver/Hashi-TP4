@@ -6,7 +6,7 @@ load 'HashiGrid.rb'
 class Hypothese  < Gtk::Window
 
     def initialize(plateau)
-
+        
         #Creation de la fenêtre
         super()
         set_title "Hypothèse"

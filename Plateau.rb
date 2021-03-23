@@ -22,6 +22,8 @@ class Plateau < Gtk::Window
         set_title "Hashi Game"
 
         signal_connect "destroy" do 
+
+            puts "DETRUIT "
             $partieStop = 1
             Gtk.main_quit 
         end
@@ -132,7 +134,7 @@ class Plateau < Gtk::Window
 
         #Gestion du temps
         
-        @temps.set_text( "O")
+        @temps.set_text("O")
         @tempsPause = 0
         show_all
 
@@ -141,7 +143,7 @@ class Plateau < Gtk::Window
             while $partieStop == 0 do
                 @tempsDebut = Time.now
 
-                while $timerStop == 0 and $partieStop == 0 do #pause pas acitve ou niveau pas fini
+                while $timerStop == 0 and $partieStop == 0 do #pause pas active ou niveau pas fini
                     @temps.set_text( (Time.now - @tempsDebut + @tempsPause ).round(0).to_s)
                     sleep(1)
                 end
