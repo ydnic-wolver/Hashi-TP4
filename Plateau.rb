@@ -1,15 +1,24 @@
 require 'gtk3'
 
-
+load "HashiGrid.rb"
+load "Ile.rb"
+load "Pont.rb"
+load "Hypothese.rb"
 
 $timerStop = 0
 $partieStop = 0
 
 class Plateau < Gtk::Window
+
+    attr_accessor :grid
+
     def initialize(nomniv,x,y)
         @nomniv=nomniv
         @x=x
         @y=y
+
+        $partieStop = 0
+        $timerStop = 0
 
         #Creation de la fenêtre
         super()
@@ -21,25 +30,26 @@ class Plateau < Gtk::Window
         end
 
         set_default_size 500, 300
-        
         set_window_position Gtk::WindowPosition::CENTER
 
         #Reglage bouton pause
         boutonPause = Gtk::Button.new()
         boutonPause.image =  Gtk::Image.new(:file => "Ressources/Plateau/pause.png") 
         boutonPause.signal_connect('clicked'){
-
-            self.set_sensitive(FALSE)
+            self.set_sensitive(false)
             $timerStop = 1
-            pause = Pause.new
-            
+            pause = Pause.new()
         }
+
 
         #Reglage du bouton indice
         boutonIndice = Gtk::Button.new()
-        boutonIndice.image = Gtk::Image.new(:file => "Ressources/Plateau/hypothese.png")
+        boutonIndice.image = Gtk::Image.new(:file => "Ressources/Plateau/aide.png")
         boutonIndice.signal_connect('clicked'){
             print("Indice!")
+            butt = Gtk::Button.new(:label => "INDICe")
+            @boxPrincipale.add(butt)
+            @boxPrincipale.show_all
         }
 
         #Reglage du bouton Undo
@@ -54,9 +64,11 @@ class Plateau < Gtk::Window
 
         #Reglage du bouton Hypothèse
         boutonHypo = Gtk::Button.new()
-        boutonHypo.image = Gtk::Image.new(:file => "Ressources/Plateau/aide.png")
+        boutonHypo.image = Gtk::Image.new(:file => "Ressources/Plateau/hypothese.png")
         boutonHypo.signal_connect('clicked'){
-            print("Redo!")
+            print("Hypo!")
+            self.set_sensitive(false)
+            Hypothese.new(self)
         }
         
 
@@ -66,8 +78,8 @@ class Plateau < Gtk::Window
        
         boxBarre.add(boutonPause)
 
-        temps = Gtk::Label.new()
-        boxBarre.add(temps)
+        @temps = Gtk::Label.new()
+        boxBarre.add(@temps)
 
         boxBarre.add(boutonIndice)
         boxBarre.add(boutonUndo)
@@ -81,66 +93,69 @@ class Plateau < Gtk::Window
         boxBarreFrame.set_shadow_type(:out)
         boxBarreFrame.add(boxBarre)
 
+       
         #Creation de la zone de jeu
-        boxJeu = Gtk::Box.new(:horizontal, 6)
-        boxJeu.set_homogeneous(true)
+        @boxJeu = Gtk::Box.new(:horizontal, 6)
+        @boxJeu.set_homogeneous(true)
 
-
-        boxJeu.set_border_width(10)
+        @boxJeu.set_border_width(10)
 
         #Initialisation de la grille
-        grid = HashiGrid.new(@nomniv,@x,@y)
-        grid.set_column_homogeneous(true)
-        grid.set_row_homogeneous(true)
-
+        # creerGrid()
+        @grid = HashiGrid.new(@nomniv,@x,@y)
+        @grid.set_column_homogeneous(true)
+        @grid.set_row_homogeneous(true)
         #  Chargement de la grille
-        grid.chargeGrille()
-
-        grid.chargeVoisins
+        @grid.chargeGrille()
+        @grid.chargeVoisins
 
         boutonUndo.signal_connect('clicked'){
-            grid.undoPrevious
+           @grid.undoPrevious
         }
 
         boutonRedo.signal_connect('clicked'){
-            grid.redoPrevious
+            @grid.redoPrevious
         }
 
         #ajoutGrille(grille)
-        boxJeu.add(grid)
+        @boxJeu.add(@grid)
 
-        boxJeuFrame = Gtk::Frame.new()
-        boxJeuFrame.set_shadow_type(:out)
-        boxJeuFrame.add(boxJeu)
-        boxJeuFrame.set_border_width(10)
+        @boxJeuFrame = Gtk::Frame.new()
+        @boxJeuFrame .set_shadow_type(:out)
+        @boxJeuFrame .add(@boxJeu)
+        @boxJeuFrame .set_border_width(10)
 
         #Creation et affichage de la fenêtre principale
+        @boxPrincipale = Gtk::Box.new(:vertical, 6)
 
-        #Gestion du temps
-        boxPrincipale = Gtk::Box.new(:vertical, 6)
+        @boxPrincipale.add(boxBarreFrame)
+        @boxPrincipale.add(@boxJeuFrame)
 
-        boxPrincipale.add(boxBarreFrame)
-        boxPrincipale.add(boxJeuFrame)
-
-        add(boxPrincipale)
+        add(@boxPrincipale)
 
         #Gestion du temps
         
-        temps.set_text( "O")
-        tempsPause = 0
+        @temps.set_text("O")
+        @tempsPause = 0
+
+        @tempsFin = 0
         show_all
 
         #Thread chronomètre
         t = Thread.new{
             while $partieStop == 0 do
-                tempsDebut = Time.now
-
-                while $timerStop == 0 and $partieStop == 0 do #pause pas acitve ou niveau pas fini
-                    temps.set_text( (Time.now - tempsDebut + tempsPause ).round(0).to_s)
+                @tempsDebut = Time.now
+                if( @grid.grilleFini?)
+                    puts "GAGNER"
+                end
+                while $timerStop == 0 and $partieStop == 0 do #pause pas active ou niveau pas fini
+                    
+                    @temps.set_text( (Time.now - @tempsDebut + @tempsPause ).round(0).to_s)
+                    @tempsFin = (Time.now - @tempsDebut + @tempsPause ).round(0)
                     sleep(1)
                 end
 
-                tempsPause = tempsPause + (Time.now - tempsDebut ).round(0)
+                @tempsPause = @tempsPause + (Time.now - @tempsDebut ).round(0)
 
                 while $timerStop == 1 do
                     sleep(0.1)
@@ -149,4 +164,132 @@ class Plateau < Gtk::Window
         }
     end
 
+    def partiFini
+
+        if(@grid.grilleFini?)
+        
+            sleep(0.5) # on attend 0.5 sec afin de voir le coup qu'on a effectuer avant l'affichage #
+            $window.set_sensitive(false)
+            window=Gtk::Window.new()
+            window.set_title "VICTOIRE"
+            window.set_resizable(true)
+        
+            window.set_default_size 300, 400
+            window.set_window_position Gtk::WindowPosition::CENTER
+            pVBox = Gtk::Box.new(:vertical, 25)
+    
+            #Titre de la fenetre
+            title = "<span font_desc = \"Verdana 40\">VICTOIRE</span>\n"
+            textTitle = Gtk::Label.new()
+            textTitle.set_markup(title)
+            textTitle.set_justify(Gtk::Justification::CENTER)
+
+            #Affichage du temps
+            texteTemps = Gtk::Label.new()
+            texteTemps.set_markup("<span font_desc = \"Calibri 10\">Votre temps : </span>\n" +  @tempsFin.to_s + "<span font_desc = \"Calibri 10\"> secondes.</span>\n")
+            texteTemps.set_justify(Gtk::Justification::CENTER)
+            
+            #Affichage du message changeant
+            label = "<span font_desc = \"Calibri 10\">Vous etes vraiment trop fort ! </span>\n"
+            textlabel = Gtk::Label.new()
+            textlabel.set_markup(label)
+            textlabel.set_justify(Gtk::Justification::CENTER)
+
+            saveBox = Gtk::Box.new(:horizontal, 20)
+    
+            #Zone de texte pour entrer son pseudo
+            zonetexte=Gtk::Entry.new()
+            zonetexte.set_placeholder_text("Votre pseudo")
+
+            #Bouton validant le pseudo, sauvegardant et affichant un message de confirmation
+            btnEntrerPseudo= Gtk::Button.new(:label => 'Entrer')
+            btnEntrerPseudo.signal_connect('clicked'){
+                puts zonetexte.text
+                label = zonetexte.text + "<span font_desc = \"Calibri 10\"> sauvegardé.</span>\n"
+                textlabel.set_markup(label)
+            }
+
+            saveBox.add(zonetexte)
+            saveBox.add(btnEntrerPseudo)
+            saveBox.set_homogeneous(true)
+
+            #Bouton pour sauvegarder            
+            btnSauvegarder = Gtk::Button.new(:label => 'Sauvegarder')
+            btnSauvegarder.signal_connect('clicked'){
+                saveBox.show()
+                label = "<span font_desc = \"Calibri 10\">Entrez un nom pour sauvegarder.</span>\n"
+                textlabel.set_markup(label)
+            }
+            $timerStop=1
+
+            #Bouton pour recommencer la partie
+            btnRecommencer = Gtk::Button.new(:label => 'Recommencer')
+            btnRecommencer.signal_connect('clicked'){
+                $window.set_sensitive(true)
+                $window.resetPlateau()
+                window.destroy
+            }
+    
+            #Bouton pour retourner au menu principal
+            btnRetour = Gtk::Button.new(:label => 'Menu Principal')
+            btnRetour.signal_connect('clicked'){
+                window.destroy
+                destroy
+                MainMenu.new
+                Gtk.main
+            }
+    
+
+            pVBox.add(textTitle)
+            pVBox.add(texteTemps)
+            pVBox.add(textlabel)
+            pVBox.add(btnSauvegarder)
+
+            
+            pVBox.add(saveBox)
+
+            pVBox.add(btnRecommencer)
+            pVBox.add(btnRetour)
+            window.add(pVBox)
+            window.show_all
+            saveBox.hide()
+        end
+        
+    end
+
+    # Alteration de la grille
+
+    def hypotheseValider(newGrid)
+        @boxJeu.remove(@grid)
+        @grid = newGrid
+        @grid.saveManager.cleanAll()
+        @boxJeu.add(@grid)
+    end
+
+
+    # Mis à jour du niveau
+    # Dans notre cas on reset le plateau
+    def resetPlateau()
+
+        @tempsDebut = Time.now
+        @tempsPause = 0
+        @temps.set_text("O")
+        $timerStop = 0
+        $partieStop = 0
+        @boxJeu.remove(@grid)
+        #  Chargement de la grille
+        gri = HashiGrid.new(@grid.nomniv,@grid.lignes, @grid.colonnes  )
+        @grid = gri
+
+        gri.colonnes =@grid.colonnes
+        gri.lignes = @grid.lignes
+        gri.set_column_homogeneous(true)
+        gri.set_row_homogeneous(true)
+        gri.chargeGrille()
+        gri.chargeVoisins()
+
+        @boxJeu.add(@grid)
+        @boxJeu.show_all
+
+    end 
 end

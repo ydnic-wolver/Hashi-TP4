@@ -20,6 +20,8 @@ class HashiGrid < Gtk::Grid
     # cliquées 
     attr_accessor :nodeLink
 
+    attr_reader :nomniv
+
     def initialize(nomniv,x,y)
         @nomniv=nomniv
         @x=x
@@ -162,12 +164,10 @@ class HashiGrid < Gtk::Grid
             pont.estDouble = true
             pont.update
         end
-	self.partiFini
+	    $window.partiFini
         
     end
 
-    
-   
 
     #  Supprime le pont entre deux iles 
     #  Le dernier paramètre undo est un paramètre par défaut à faux 
@@ -225,7 +225,7 @@ class HashiGrid < Gtk::Grid
         n1.update
         n2.update
 	  
-        self.partiFini
+        $window.partiFini
 
     end
 
@@ -433,7 +433,6 @@ class HashiGrid < Gtk::Grid
         for i in 0..(data.length() - 1) 
             data[i].split(':').each_with_index do | ch, index| 
                 # # Création d'une case 
-
                 if ch != '0'
                     btn = Ile.new(self, ch,index,i)
                 else 
@@ -446,63 +445,13 @@ class HashiGrid < Gtk::Grid
         end
     end
 	
-	
-    def partiFini
-
-        if(self.grilleFini?)
-            sleep(0.5) # on attend 0.5 sec afin de voir le coup qu'on a effectuer avant l'affichage #
-	    self.set_visible(false)	# on désactive la fenetre du jeu #
-
-            window=Gtk::Window.new()
-            window.set_title "VICTOIRE"
-            window.set_resizable(true)
-        
-            window.set_default_size 300, 300
-            window.set_window_position Gtk::WindowPosition::CENTER
-            pVBox = Gtk::Box.new(:vertical, 25)
-    
-            title = "<span font_desc = \"Verdana 40\">VICTOIRE</span>\n"
-            textTitle = Gtk::Label.new()
-            textTitle.set_markup(title)
-            textTitle.set_justify(Gtk::Justification::CENTER)
-            
-            label = "<span font_desc = \"Calibri 10\">Vous etes vraiment trop fort ! </span>\n"
-            textlabel = Gtk::Label.new()
-            textlabel.set_markup(label)
-            textlabel.set_justify(Gtk::Justification::CENTER)
-    
-            btnSauvegarder = Gtk::Button.new(:label => 'Sauvegarder')
-            btnSauvegarder.signal_connect('clicked'){
-                # Sauvegarder score du jeu #
-                
-            }
-    
-            btnRecommencer = Gtk::Button.new(:label => 'Recommencer ?')
-            btnRecommencer.signal_connect('clicked'){
-                # Recommencer la partie  #
-                #window.destroy
-                #destroy
-                #HashiGame.new
-                
-            }
-    
-            btnRetour = Gtk::Button.new(:label => 'Menu Principale')
-            btnRetour.signal_connect('clicked'){
-                # retour au menu principale  #
-                window.destroy
-                destroy
-                MainMenu.new	
-            }
-    
-            pVBox.add(textTitle)
-            pVBox.add(textlabel)
-            pVBox.add(btnSauvegarder)
-            pVBox.add(btnRecommencer)
-            pVBox.add(btnRetour)
-            window.add(pVBox)
-            window.show_all
+    def saveGrille()
+        File.open("log.txt", "w+") do |f|
+            self.map { |element| f.write("#{element}") }
         end
-        
+       
     end
+	
+   
 
 end
