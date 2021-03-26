@@ -4,40 +4,16 @@ class MainMenu < Gtk::Window
     def initialize
         super
 
-  provider = Gtk::CssProvider.new
-  provider.load(data: <<-CSS)
-  
-window {
-  background-color: #5c5c5d;
-}
-
-button {
-	background-color: #383838;
-	background-image: none;
-	border-color:#383838;
- 	font-size: 18px;
-}
-
-button:hover {
-  background-color: #2c4554;
-}
-
-
-label {
-  color: #FFFFFF;
-}
-
-  CSS
-  Gtk::StyleContext.add_provider_for_screen(Gdk::Screen.default,
-                                            provider,
-                                            Gtk::StyleProvider::PRIORITY_APPLICATION)
-
 		set_title "Hashi Game"
 		set_resizable(true)
 		signal_connect "destroy" do 
 			Gtk.main_quit 
 		end
+		provider = Gtk::CssProvider.new
 
+		#provider.load(path: "style.css")
+		
+		Gtk::StyleContext.add_provider_for_screen(Gdk::Screen.default,provider, Gtk::StyleProvider::PRIORITY_APPLICATION)
 		set_default_size 500, 400
 
 		set_window_position Gtk::WindowPosition::CENTER
@@ -76,11 +52,24 @@ label {
 			self.destroy
 			Gtk.main
 		}
-
+		
 		btnQuitter = Gtk::Button.new(:label => 'Quitter')
 		btnQuitter.signal_connect('clicked'){Gtk.main_quit}
 		
+		 switch = Gtk::Switch.new
+        switch.signal_connect('notify::active') { |s| on_switch_activated s }
+        switch.set_active [true, false].sample
+        switch.active = false
+        switch.halign = :center
+        
+        texte1 = "\n<span font_desc = \"Brush Script MT, Brush Script Std, cursive 13\">Mode Sombre</span>"
 
+    		lab_lumi = Gtk::Label.new()
+   		lab_lumi.set_markup(texte1)
+   		lab_lumi.halign =:fill
+    		
+		boxMenu.attach(lab_lumi,2,3,11,12)
+		boxMenu.attach(switch, 2,3,12,13)
 		boxMenu.attach(textTitle, 0,3,1,4)
 		boxMenu.attach(btnSelection, 1,2,4,5)
 
@@ -98,4 +87,11 @@ label {
 
 		show_all
     end
+    
+    def on_switch_activated(switch)
+			provider = Gtk::CssProvider.new
+		  switch.active? ? provider.load(path: "dark_mode.css") : provider.load(path: "style.css")
+		  Gtk::StyleContext.add_provider_for_screen(Gdk::Screen.default,provider, Gtk::StyleProvider::PRIORITY_APPLICATION)
+
+ 	end
 end
