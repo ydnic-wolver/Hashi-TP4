@@ -18,6 +18,7 @@ class Plateau < Gtk::Window
         @y=y
 
         $partieStop = 0
+        $timerStop = 0
 
         #Creation de la fenêtre
         super()
@@ -137,6 +138,8 @@ class Plateau < Gtk::Window
         
         @temps.set_text("O")
         @tempsPause = 0
+
+        @tempsFin = 0
         show_all
 
         #Thread chronomètre
@@ -149,6 +152,7 @@ class Plateau < Gtk::Window
                 while $timerStop == 0 and $partieStop == 0 do #pause pas active ou niveau pas fini
                     
                     @temps.set_text( (Time.now - @tempsDebut + @tempsPause ).round(0).to_s)
+                    @tempsFin = (Time.now - @tempsDebut + @tempsPause ).round(0)
                     sleep(1)
                 end
 
@@ -171,50 +175,85 @@ class Plateau < Gtk::Window
             window.set_title "VICTOIRE"
             window.set_resizable(true)
         
-            window.set_default_size 300, 300
+            window.set_default_size 300, 400
             window.set_window_position Gtk::WindowPosition::CENTER
             pVBox = Gtk::Box.new(:vertical, 25)
     
+            #Titre de la fenetre
             title = "<span font_desc = \"Verdana 40\">VICTOIRE</span>\n"
             textTitle = Gtk::Label.new()
             textTitle.set_markup(title)
             textTitle.set_justify(Gtk::Justification::CENTER)
+
+            #Affichage du temps
+            texteTemps = Gtk::Label.new()
+            texteTemps.set_markup("<span font_desc = \"Calibri 10\">Votre temps : </span>\n" +  @tempsFin.to_s + "<span font_desc = \"Calibri 10\"> secondes.</span>\n")
+            texteTemps.set_justify(Gtk::Justification::CENTER)
             
+            #Affichage du message changeant
             label = "<span font_desc = \"Calibri 10\">Vous etes vraiment trop fort ! </span>\n"
             textlabel = Gtk::Label.new()
             textlabel.set_markup(label)
             textlabel.set_justify(Gtk::Justification::CENTER)
+
+            saveBox = Gtk::Box.new(:horizontal, 20)
     
+            #Zone de texte pour entrer son pseudo
+            zonetexte=Gtk::Entry.new()
+            zonetexte.set_placeholder_text("Votre pseudo")
+
+            #Bouton validant le pseudo, sauvegardant et affichant un message de confirmation
+            btnEntrerPseudo= Gtk::Button.new(:label => 'Entrer')
+            btnEntrerPseudo.signal_connect('clicked'){
+                puts zonetexte.text
+                label = zonetexte.text + "<span font_desc = \"Calibri 10\"> sauvegardé.</span>\n"
+                textlabel.set_markup(label)
+            }
+
+            saveBox.add(zonetexte)
+            saveBox.add(btnEntrerPseudo)
+            saveBox.set_homogeneous(true)
+
+            #Bouton pour sauvegarder            
             btnSauvegarder = Gtk::Button.new(:label => 'Sauvegarder')
             btnSauvegarder.signal_connect('clicked'){
-                # Sauvegarder score du jeu #
-                
+                saveBox.show()
+                label = "<span font_desc = \"Calibri 10\">Entrez un nom pour sauvegarder.</span>\n"
+                textlabel.set_markup(label)
             }
             $timerStop=1
-            # $partieStop = 1
-            btnRecommencer = Gtk::Button.new(:label => 'Recommencer ?')
+
+            #Bouton pour recommencer la partie
+            btnRecommencer = Gtk::Button.new(:label => 'Recommencer')
             btnRecommencer.signal_connect('clicked'){
-                 # Recommencer la partie 
-                 $window.set_sensitive(true)
-                 $window.resetPlateau()
-                window.destroy #
+                $window.set_sensitive(true)
+                $window.resetPlateau()
+                window.destroy
             }
     
-            btnRetour = Gtk::Button.new(:label => 'Menu Principale')
+            #Bouton pour retourner au menu principal
+            btnRetour = Gtk::Button.new(:label => 'Menu Principal')
             btnRetour.signal_connect('clicked'){
-                # retour au menu principale  #
                 window.destroy
                 destroy
-                MainMenu.new	
+                MainMenu.new
+                Gtk.main
             }
     
+
             pVBox.add(textTitle)
+            pVBox.add(texteTemps)
             pVBox.add(textlabel)
             pVBox.add(btnSauvegarder)
+
+            
+            pVBox.add(saveBox)
+
             pVBox.add(btnRecommencer)
             pVBox.add(btnRetour)
             window.add(pVBox)
             window.show_all
+            saveBox.hide()
         end
         
     end
