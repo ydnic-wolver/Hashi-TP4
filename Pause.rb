@@ -30,7 +30,7 @@ class Pause < Gtk::Window
         
         @boutonRecommencer = Gtk::Button.new(:label =>"Recommencer")
         @boutonRecommencer.signal_connect('clicked'){
-                $window.set_sensitive(true)
+            $window.set_sensitive(true)
             $window.resetPlateau()
            $timerStop = 0
            destroy #
@@ -41,11 +41,9 @@ class Pause < Gtk::Window
         boutonQuitter = Gtk::Button.new(:label =>"Quitter")
 	    boutonQuitter.signal_connect('clicked'){
             $partieStop = 1
-            
-            MainMenu.new
             self.destroy
             $window.destroy
-           
+            MainMenu.new
             Gtk.main
 	    }
 

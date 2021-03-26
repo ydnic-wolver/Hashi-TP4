@@ -215,11 +215,51 @@ class MenuSelection < Gtk::Window
         }
         #Bouton Lien entre Menu Selection et chaque plateau
         tableauBtn.each_index{|x| tableauBtn[x].signal_connect('clicked'){
-            self.destroy
-            $window = Plateau.new(tableauBtn[x].getNiveau,tableauBtn[x].getY,tableauBtn[x].getX)
-            Gtk.main
+                window=Gtk::Window.new()
+                window.set_title "Chargement"
+                window.set_resizable(true)
+                window.set_default_size 300, 300
+                window.set_window_position Gtk::WindowPosition::CENTER
+                window.signal_connect "destroy" do 
+                window.destroy
+                end
+                pVBox = Gtk::Box.new(:vertical, 25)
+                title = "<span font_desc = \"Verdana 40\">Chargement</span>\n"
+                textTitle = Gtk::Label.new()
+                textTitle.set_markup(title)
+                textTitle.set_justify(Gtk::Justification::CENTER)
+                btnLancer = Gtk::Button.new(:label => 'Nouvelle Partie')
+                btnSave = Gtk::Button.new(:label => 'Charger une Partie')
+                btnLancer.signal_connect('clicked'){
+
+                    #Recuperer la difficulté en variable
+                    if(tableauBtn[x].isFacile?)
+                        diff = "Facile"
+                    
+                    elsif(tableauBtn[x].isMoyen?)
+                        diff = "Moyen"
+                    
+                    else
+                        diff = "Hard"
+                    end
+
+                    window.destroy
+                    self.destroy
+                    $window = Plateau.new(tableauBtn[x].getNiveau,tableauBtn[x].getY,tableauBtn[x].getX, diff)
+                    Gtk.main
+                }
+                btnRetourcharg = Gtk::Button.new(:label => 'Retour')
+                btnRetourcharg.signal_connect('clicked'){
+                    window.destroy
+                }
+                pVBox.add(textTitle)
+                pVBox.add(btnLancer)
+                pVBox.add(btnSave)
+                pVBox.add(btnRetourcharg)
+                window.add(pVBox)
+                window.show_all
             }   
-       }
+        }
         
         
         

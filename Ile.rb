@@ -119,6 +119,31 @@ class Ile < Gtk::Button
         end
     end
 
+    def choixPossible()
+	
+		
+		voisins = self.getVoisins
+		for voisin in voisins
+			if voisin != nil
+				if voisin.estComplet == false
+
+					voisin.image.from_file = "Ressources/Ile/#{voisin.degreeMax}_s.png"
+				end
+			end
+		end
+	end
+	
+	def enleverChoixPossible()
+		voisins = self.getVoisins
+		for voisin in voisins
+			if voisin != nil
+				if voisin.estComplet == false
+					voisin.image.from_file = "Ressources/Ile/#{voisin.degreeMax}.png"
+				end
+			end
+		end
+	end
+	
 
     # Affiche la ligne et la colonne 
     def to_s

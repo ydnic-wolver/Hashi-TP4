@@ -6,7 +6,6 @@ load 'HashiGrid.rb'
 class Hypothese  < Gtk::Window
 
     def initialize(plateau)
-
         #Creation de la fenêtre
         super()
         set_title "Hypothèse"
@@ -16,14 +15,13 @@ class Hypothese  < Gtk::Window
 		end 
 
         set_window_position Gtk::WindowPosition::CENTER
-
 		set_default_size 500, 400
 		
         #Reglage du bouton indice
         boutonIndice = Gtk::Button.new()
-        boutonIndice.image = Gtk::Image.new(:file => "Ressources/Plateau/hypothese.png")
+        boutonIndice.image = Gtk::Image.new(:file => "Ressources/Plateau/aide.png")
         boutonIndice.signal_connect('clicked'){
-            print("Indice!")
+            puts "Indice"
         }
 
         #Reglage du bouton Undo
@@ -35,15 +33,6 @@ class Hypothese  < Gtk::Window
         boutonRedo = Gtk::Button.new()
         boutonRedo.image = Gtk::Image.new(:file => "Ressources/Plateau/redo.png")
 
-
-        #Reglage du bouton Hypothèse
-        boutonHypo = Gtk::Button.new()
-        boutonHypo.image = Gtk::Image.new(:file => "Ressources/Plateau/aide.png")
-        boutonHypo.signal_connect('clicked'){
-            
-        }
-        
-
         #Creation de la barre d'outils en haut de la fenêtre
         boxBarre = Gtk::Box.new(:horizontal, 6)
         boxBarre.set_homogeneous(true)
@@ -51,8 +40,6 @@ class Hypothese  < Gtk::Window
         boxBarre.add(boutonIndice)
         boxBarre.add(boutonUndo)
         boxBarre.add(boutonRedo)
-        boxBarre.add(boutonHypo)
-
 
         boxBarre.set_border_width(5)
 
@@ -119,13 +106,25 @@ class Hypothese  < Gtk::Window
 
         boxPrincipale.add(boxBarreFrame)
         boxPrincipale.add(boxJeuFrame)
-        bt = Gtk::Button.new(:label => "OK")
-
-        bt.signal_connect('clicked'){
+        btnValider = Gtk::Button.new(:label => "Valider")
+        btnValider.signal_connect('clicked'){
             boxJeu.remove(hypoGrille)
             plateau.hypotheseValider(hypoGrille)
             self.destroy
+            $window.set_sensitive(true)
         }
+
+        btnAnnuler = Gtk::Button.new(:label => "Annuler")
+        btnAnnuler.signal_connect('clicked'){
+            self.destroy
+            $window.set_sensitive(true)
+        }
+
+        boxBouton = Gtk::Box.new(:horizontal,6)
+        boxBouton.set_homogeneous(true)
+        
+        boxBouton.add(btnValider)
+        boxBouton.add(btnAnnuler)
 
         boutonUndo.signal_connect('clicked'){
             hypoGrille.undoPrevious
@@ -134,8 +133,8 @@ class Hypothese  < Gtk::Window
         boutonRedo.signal_connect('clicked'){
             hypoGrille.redoPrevious
         }
-
-        boxPrincipale.add(bt)
+        
+        boxPrincipale.add(boxBouton)
         add(boxPrincipale)
 
         show_all

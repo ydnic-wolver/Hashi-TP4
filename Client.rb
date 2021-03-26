@@ -7,6 +7,7 @@ load 'Plateau.rb'
 load "APropos.rb"
 load "Classement.rb"
 load "MenuSelection.rb"
+load "SaveTime.rb"
 load "Tuto.rb"
 load 'BoutonChoix.rb'
 load 'MainMenu.rb'
