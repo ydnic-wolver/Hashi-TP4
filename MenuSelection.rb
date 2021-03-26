@@ -52,8 +52,8 @@ class MenuSelection < Gtk::Window
         tabdimfacile=[7,7,7,7,7,7,10,7,10,10,12,12,15,5,15,15]
         tabmoyen=["ListeNiveau/niveau_moyen/7x7.txt","ListeNiveau/niveau_moyen/8x8.txt","ListeNiveau/niveau_moyen/10x7.txt","ListeNiveau/niveau_moyen/10x10_2.txt","ListeNiveau/niveau_moyen/10x10.txt","ListeNiveau/niveau_moyen/12x12.txt","ListeNiveau/niveau_moyen/15x5.txt"]
         tabdimmoyen=[7,7,8,8,10,7,10,10,10,10,12,12,15,5]
-        tabdifficile=["ListeNiveau/niveau_difficile/7x7.txt","ListeNiveau/niveau_difficile/10x7.txt","ListeNiveau/niveau_difficile/10x10.txt","ListeNiveau/niveau_difficile/10X10_2.txt","ListeNiveau/niveau_difficile/12x12.txt","ListeNiveau/niveau_difficile/15x5.txt","ListeNiveau/niveau_difficile/8x8.txt"]
-        tabdimdifficile=[7,7,10,7,10,10,10,10,12,12,15,5,8,8]
+        tabdifficile=["ListeNiveau/niveau_difficile/7x7.txt","ListeNiveau/niveau_difficile/8x8.txt","ListeNiveau/niveau_difficile/10x7.txt","ListeNiveau/niveau_difficile/10x10.txt","ListeNiveau/niveau_difficile/10X10_2.txt","ListeNiveau/niveau_difficile/12x12.txt","ListeNiveau/niveau_difficile/15x5.txt"]
+        tabdimdifficile=[7,7,8,8,10,7,10,10,10,10,12,12,15,5]
         dimfacile=0
         facile=0
         moyen=0
