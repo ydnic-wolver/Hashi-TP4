@@ -108,6 +108,7 @@ class Hypothese  < Gtk::Window
         boxPrincipale.add(boxJeuFrame)
         btnValider = Gtk::Button.new(:label => "Valider")
         btnValider.signal_connect('clicked'){
+           
             boxJeu.remove(hypoGrille)
             plateau.hypotheseValider(hypoGrille)
             self.destroy

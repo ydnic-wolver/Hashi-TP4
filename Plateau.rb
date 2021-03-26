@@ -263,6 +263,11 @@ class Plateau < Gtk::Window
     def hypotheseValider(newGrid)
         @boxJeu.remove(@grid)
         @grid = newGrid
+        if(@grid.grilleFini? )
+            self.partiFini
+        end
+        
+        
         @grid.saveManager.cleanAll()
         @boxJeu.add(@grid)
     end
@@ -271,7 +276,7 @@ class Plateau < Gtk::Window
     # Mis à jour du niveau
     # Dans notre cas on reset le plateau
     def resetPlateau()
-
+        
         @tempsDebut = Time.now
         @tempsPause = 0
         @temps.set_text("O")
