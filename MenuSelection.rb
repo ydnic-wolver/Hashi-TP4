@@ -50,10 +50,10 @@ class MenuSelection < Gtk::Window
         tableauBtn=Array.new(22)
         tabfacile=["ListeNiveau/niveau_facile/7x7_1.txt","ListeNiveau/niveau_facile/7x7_2.txt","ListeNiveau/niveau_facile/7x7_3.txt","ListeNiveau/niveau_facile/10x7.txt","ListeNiveau/niveau_facile/10x10.txt","ListeNiveau/niveau_facile/12x12.txt","ListeNiveau/niveau_facile/15x5.txt","ListeNiveau/niveau_facile/15x15.txt"]
         tabdimfacile=[7,7,7,7,7,7,10,7,10,10,12,12,15,5,15,15]
-        tabmoyen=["ListeNiveau/niveau_moyen/10x7.txt","ListeNiveau/niveau_moyen/10x10_2.txt","ListeNiveau/niveau_moyen/10x10.txt","ListeNiveau/niveau_moyen/12x12.txt","ListeNiveau/niveau_moyen/15x5.txt","ListeNiveau/niveau_moyen/15x15_2.txt","ListeNiveau/niveau_moyen/15x15.txt"]
-        tabdimmoyen=[10,7,10,10,10,10,12,12,15,5,15,15,15,15]
-        tabdifficile=["ListeNiveau/niveau_difficile/10x7.txt","ListeNiveau/niveau_difficile/10x10.txt","ListeNiveau/niveau_difficile/12x12.txt","ListeNiveau/niveau_difficile/15x5.txt","ListeNiveau/niveau_difficile/15x15_1.txt","ListeNiveau/niveau_difficile/15x15_2.txt","ListeNiveau/niveau_difficile/15x15.txt"]
-        tabdimdifficile=[10,7,10,10,12,12,15,5,15,15,15,15,15,15]
+        tabmoyen=["ListeNiveau/niveau_moyen/7x7.txt","ListeNiveau/niveau_moyen/8x8.txt","ListeNiveau/niveau_moyen/10x7.txt","ListeNiveau/niveau_moyen/10x10_2.txt","ListeNiveau/niveau_moyen/10x10.txt","ListeNiveau/niveau_moyen/12x12.txt","ListeNiveau/niveau_moyen/15x5.txt"]
+        tabdimmoyen=[7,7,8,8,10,7,10,10,10,10,12,12,15,5]
+        tabdifficile=["ListeNiveau/niveau_difficile/7x7.txt","ListeNiveau/niveau_difficile/10x7.txt","ListeNiveau/niveau_difficile/10x10.txt","ListeNiveau/niveau_difficile/10X10_2.txt","ListeNiveau/niveau_difficile/12x12.txt","ListeNiveau/niveau_difficile/15x5.txt","ListeNiveau/niveau_difficile/8x8.txt"]
+        tabdimdifficile=[7,7,10,7,10,10,10,10,12,12,15,5,8,8]
         dimfacile=0
         facile=0
         moyen=0
@@ -215,39 +215,39 @@ class MenuSelection < Gtk::Window
         }
         #Bouton Lien entre Menu Selection et chaque plateau
         tableauBtn.each_index{|x| tableauBtn[x].signal_connect('clicked'){
-            window=Gtk::Window.new()
-            window.set_title "Chargement"
-            window.set_resizable(true)
-            window.set_default_size 300, 300
-            window.set_window_position Gtk::WindowPosition::CENTER
-            window.signal_connect "destroy" do 
+                window=Gtk::Window.new()
+                window.set_title "Chargement"
+                window.set_resizable(true)
+                window.set_default_size 300, 300
+                window.set_window_position Gtk::WindowPosition::CENTER
+                window.signal_connect "destroy" do 
                 window.destroy
-            end
-            pVBox = Gtk::Box.new(:vertical, 25)
-            title = "<span font_desc = \"Verdana 40\">Chargement</span>\n"
-            textTitle = Gtk::Label.new()
-            textTitle.set_markup(title)
-            textTitle.set_justify(Gtk::Justification::CENTER)
-            btnLancer = Gtk::Button.new(:label => 'Nouvelle Partie')
-            btnSave = Gtk::Button.new(:label => 'Charger une Partie')
-            btnLancer.signal_connect('clicked'){
-                window.destroy
-                self.destroy
-                $window = Plateau.new(tableauBtn[x].getNiveau,tableauBtn[x].getY,tableauBtn[x].getX)
-                Gtk.main
-            }
-            btnRetourcharg = Gtk::Button.new(:label => 'Retour')
-            btnRetourcharg.signal_connect('clicked'){
-            window.destroy
-            }
-            pVBox.add(textTitle)
-            pVBox.add(btnLancer)
-            pVBox.add(btnSave)
-            pVBox.add(btnRetourcharg)
-            window.add(pVBox)
-            window.show_all
-        }   
-   }
+                end
+                pVBox = Gtk::Box.new(:vertical, 25)
+                title = "<span font_desc = \"Verdana 40\">Chargement</span>\n"
+                textTitle = Gtk::Label.new()
+                textTitle.set_markup(title)
+                textTitle.set_justify(Gtk::Justification::CENTER)
+                btnLancer = Gtk::Button.new(:label => 'Nouvelle Partie')
+                btnSave = Gtk::Button.new(:label => 'Charger une Partie')
+                btnLancer.signal_connect('clicked'){
+                    window.destroy
+                    self.destroy
+                    $window = Plateau.new(tableauBtn[x].getNiveau,tableauBtn[x].getY,tableauBtn[x].getX)
+                    Gtk.main
+                }
+                btnRetourcharg = Gtk::Button.new(:label => 'Retour')
+                btnRetourcharg.signal_connect('clicked'){
+                    window.destroy
+                }
+                pVBox.add(textTitle)
+                pVBox.add(btnLancer)
+                pVBox.add(btnSave)
+                pVBox.add(btnRetourcharg)
+                window.add(pVBox)
+                window.show_all
+            }   
+        }
         
         
         
