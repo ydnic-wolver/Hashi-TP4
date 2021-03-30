@@ -1,4 +1,5 @@
 require 'gtk3'
+load 'Sauvegarde.rb'
 
 ##
 # Représentation du Menu de Selection de Niveau qui hérite de la classe Window de Gtk
@@ -230,8 +231,10 @@ class MenuSelection < Gtk::Window
                 textTitle.set_justify(Gtk::Justification::CENTER)
                 btnLancer = Gtk::Button.new(:label => 'Nouvelle Partie')
                 btnSave = Gtk::Button.new(:label => 'Charger une Partie')
-                btnLancer.signal_connect('clicked'){
 
+                chargement=0
+                btnLancer.signal_connect('clicked'){
+                    chargement=0
                     #Recuperer la difficulté en variable
                     if(tableauBtn[x].isFacile?)
                         diff = "Facile"
@@ -245,7 +248,25 @@ class MenuSelection < Gtk::Window
 
                     window.destroy
                     self.destroy
-                    $window = Plateau.new(tableauBtn[x].getNiveau,tableauBtn[x].getY,tableauBtn[x].getX, diff)
+                    $window = Plateau.new(tableauBtn[x].getNiveau,tableauBtn[x].getY,tableauBtn[x].getX, diff,chargement)
+                    Gtk.main
+                }
+                btnSave.signal_connect('clicked'){
+                    chargement=1
+                    #Recuperer la difficulté en variable
+                    if(tableauBtn[x].isFacile?)
+                        diff = "Facile"
+                    
+                    elsif(tableauBtn[x].isMoyen?)
+                        diff = "Moyen"
+                    
+                    else
+                        diff = "Hard"
+                    end
+
+                    window.destroy
+                    self.destroy
+                    $window = Plateau.new(tableauBtn[x].getNiveau,tableauBtn[x].getY,tableauBtn[x].getX, diff,chargement)
                     Gtk.main
                 }
                 btnRetourcharg = Gtk::Button.new(:label => 'Retour')

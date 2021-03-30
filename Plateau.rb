@@ -12,11 +12,12 @@ class Plateau < Gtk::Window
 
     attr_accessor :grid
 
-    def initialize(nomniv, x, y, diff)
+    def initialize(nomniv, x, y, diff,chargement)
         @nomniv=nomniv
         @x=x
         @y=y
         @diff = diff
+        @chargement=chargement #0 ou 1 si 1 ils s'agit d'un chargement
 
         $partieStop = 0
         $timerStop = 0
@@ -103,12 +104,15 @@ class Plateau < Gtk::Window
 
         #Initialisation de la grille
         # creerGrid()
-        @grid = HashiGrid.new(@nomniv,@x,@y)
+        @grid = HashiGrid.new(@nomniv,@x,@y,@diff)
         @grid.set_column_homogeneous(true)
         @grid.set_row_homogeneous(true)
         #  Chargement de la grille
         @grid.chargeGrille()
         @grid.chargeVoisins
+        if(@chargement==1)
+            @grid.chargeSauvegarde(nomniv,diff)
+        end
 
         boutonUndo.signal_connect('clicked'){
            @grid.undoPrevious

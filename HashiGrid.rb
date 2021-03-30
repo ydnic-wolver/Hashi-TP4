@@ -22,13 +22,14 @@ class HashiGrid < Gtk::Grid
 
     attr_reader :nomniv
 
-    def initialize(nomniv,x,y)
+    def initialize(nomniv,x,y,diff)
         @nomniv=nomniv
         @x=x
         @y=y
+        @diff=diff
         super()
         @nodeLink = []
-        @saveManager = Sauvegarde.new 
+        @saveManager = Sauvegarde.new(nomniv,diff)
     end
     
     # Active le retour en arrière
@@ -85,7 +86,7 @@ class HashiGrid < Gtk::Grid
                 saveManager.undoStack << p2
                 
                 ajoutPont(p1,p2)
-                sauvegarder(self)
+                saveManager.sauvegarder(self)
             end
         end
     end
@@ -167,7 +168,7 @@ class HashiGrid < Gtk::Grid
             pont.update
         end
 
-	    $window.partiFini
+	    #$window.partiFini
         
     end
 
@@ -452,9 +453,38 @@ class HashiGrid < Gtk::Grid
         end
        
     end
-	
-   
     
+
+    def chargeSauvegarde(nomniv,dif)
+        titre = nomniv.match(/[^\/]*.txt/)
+        #sauvegarde devient un tableau
+        puts "./Sauvegarde/#{dif}/save#{titre}"
+        saveTab = File.readlines("save.txt").map { |str| str.split(":") }
+        puts saveTab
     
+        for x in 0..(self.lignes-1)
+            for y in 0..(self.colonnes-1)
+                noeud = self.get_child_at(y,x)
+                if ( noeud.status == 'i')
+                    if(noeud.eastNode != nil)
+                        if (saveTab[x][y+1] == '-')
+                            ajoutPont(noeud, noeud.eastNode)
+                        elsif (saveTab[x][y+1] == '=')
+                            ajoutPont(noeud, noeud.eastNode)
+                            ajoutPont(noeud, noeud.eastNode)
+                        end
+                    end
+                    if(noeud.southNode != nil)
+                        if (saveTab[x+1][y] == "I")
+                            ajoutPont(noeud, noeud.southNode)
+                        elsif (saveTab[x+1][y] == 'H')
+                            ajoutPont(noeud, noeud.southNode)
+                            ajoutPont(noeud, noeud.southNode)
+                        end
+                    end
+                end
+            end
+        end
+    end
 
 end
