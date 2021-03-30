@@ -239,7 +239,7 @@ class HashiGrid < Gtk::Grid
                     # DROITE
                     for x2 in (x+1).upto(self.lignes-1)
                         if (self.get_child_at(x2, y).status == 'i')
-                            self.get_child_at(x, y).eastNode = self.get_child_at(x2,y)
+                            self.get_child_at(x, y).eastNode = Ile.new(self,self.get_child_at(x2, y),x2,y)
                             break
                         end
                     end
@@ -247,7 +247,7 @@ class HashiGrid < Gtk::Grid
                     #BAS
                     for y2 in (y+1).upto(self.colonnes-1)
                         if (self.get_child_at(x,y2).status == 'i')
-                            self.get_child_at(x,y).southNode = self.get_child_at(x,y2)
+                            self.get_child_at(x, y).southNode = Ile.new(self,self.get_child_at(x, y2),x,y2)                            
                             break
                         end
                     end
@@ -255,7 +255,7 @@ class HashiGrid < Gtk::Grid
                     #HAUT
                     for y2 in (y-1).downto(0)
                         if (self.get_child_at(x,y2).status == 'i')
-                            self.get_child_at(x,y).northNode = self.get_child_at(x,y2)
+                            self.get_child_at(x, y).northNode = Ile.new(self,self.get_child_at(x, y2),x,y2)      
                             break
                         end
                     end
@@ -263,7 +263,7 @@ class HashiGrid < Gtk::Grid
                     # Gauche
                     for x2 in (x-1).downto(0)
                         if (self.get_child_at(x2,y).status == 'i')
-                            self.get_child_at(x,y).westNode = self.get_child_at(x2,y)
+                            self.get_child_at(x, y).westNode = Ile.new(self,self.get_child_at(x2, y),x2,y)
                             break
                         end
                     end
