@@ -139,7 +139,7 @@ class Plateau < Gtk::Window
         @temps.set_text("0")
         @tempsPause = 0
 
-        @tempsFin = 0
+        $tempsFin = 0
         show_all
 
         #Thread chronomètre
@@ -152,7 +152,7 @@ class Plateau < Gtk::Window
                 while $timerStop == 0 and $partieStop == 0 do #pause pas active ou niveau pas fini
                     
                     @temps.set_text( (Time.now - @tempsDebut + @tempsPause ).round(0).to_s)
-                    @tempsFin = (Time.now - @tempsDebut + @tempsPause ).round(0)
+                    $tempsFin = (Time.now - @tempsDebut + @tempsPause ).round(0)
                     sleep(1)
                 end
 
@@ -187,7 +187,7 @@ class Plateau < Gtk::Window
 
             #Affichage du temps
             texteTemps = Gtk::Label.new()
-            texteTemps.set_markup("<span font_desc = \"Calibri 10\">Votre temps : </span>\n" +  @tempsFin.to_s + "<span font_desc = \"Calibri 10\"> secondes.</span>\n")
+            texteTemps.set_markup("<span font_desc = \"Calibri 10\">Votre temps : </span>\n" +  $tempsFin.to_s + "<span font_desc = \"Calibri 10\"> secondes.</span>\n")
             texteTemps.set_justify(Gtk::Justification::CENTER)
             
             #Affichage du message changeant
@@ -210,7 +210,7 @@ class Plateau < Gtk::Window
                 label = zonetexte.text + "<span font_desc = \"Calibri 10\"> sauvegardé.</span>\n"
                 textlabel.set_markup(label)
 
-                SaveTime.new(@nomniv, @diff, @tempsFin.to_s, zonetexte.text)
+                SaveTime.new(@nomniv, @diff, $tempsFin.to_s, zonetexte.text)
 
                 partiSaveBox.hide()
             }
