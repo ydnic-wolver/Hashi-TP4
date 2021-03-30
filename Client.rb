@@ -12,6 +12,7 @@ load "Tuto.rb"
 load 'BoutonChoix.rb'
 load 'MainMenu.rb'
 
+$dark_mode = false
 
 window = MainMenu.new
 

@@ -1,9 +1,11 @@
 require 'gtk3'
 
 class MainMenu < Gtk::Window
+
+	
     def initialize
         super
-
+		
 		set_title "Hashi Game"
 		set_resizable(true)
 		signal_connect "destroy" do 
@@ -11,11 +13,16 @@ class MainMenu < Gtk::Window
 		end
 		provider = Gtk::CssProvider.new
 
-		#provider.load(path: "style.css")
+		if $dark_mode == true
+			provider.load(path: "dark_mode.css")
+		elsif $dark_mode == false
+			provider.load(path: "style.css")
+		
+		end
 		
 		Gtk::StyleContext.add_provider_for_screen(Gdk::Screen.default,provider, Gtk::StyleProvider::PRIORITY_APPLICATION)
-		set_default_size 500, 400
-
+		
+		set_default_size 580, 520
 		set_window_position Gtk::WindowPosition::CENTER
 		
 		texte = "<span font_desc = \"Brush Script MT, Brush Script Std, cursive 60\">Hashi Game</span>\n"
@@ -56,10 +63,11 @@ class MainMenu < Gtk::Window
 		btnQuitter = Gtk::Button.new(:label => 'Quitter')
 		btnQuitter.signal_connect('clicked'){Gtk.main_quit}
 		
-		 switch = Gtk::Switch.new
+		switch = Gtk::Switch.new
+	
         switch.signal_connect('notify::active') { |s| on_switch_activated s }
-        switch.set_active [true, false].sample
-        switch.active = false
+  
+        switch.active = $dark_mode
         switch.halign = :center
         
         texte1 = "\n<span font_desc = \"Brush Script MT, Brush Script Std, cursive 13\">Mode Sombre</span>"
@@ -68,18 +76,15 @@ class MainMenu < Gtk::Window
    		lab_lumi.set_markup(texte1)
    		lab_lumi.halign =:fill
     		
-		boxMenu.attach(lab_lumi,2,3,11,12)
-		boxMenu.attach(switch, 2,3,12,13)
 		boxMenu.attach(textTitle, 0,3,1,4)
 		boxMenu.attach(btnSelection, 1,2,4,5)
-
 		boxMenu.attach(btnTuto, 1,2,6,7)
-
 		boxMenu.attach(btnClassement, 1,2,8,9)
-
 		boxMenu.attach(btnAPropos, 1,2,10,11)
-
+		boxMenu.attach(lab_lumi,2,3,11,12)
+		boxMenu.attach(switch, 2,3,12,13)
 		boxMenu.attach(btnQuitter, 1,2,12,13)
+		
 		
 
 
@@ -90,7 +95,15 @@ class MainMenu < Gtk::Window
     
     def on_switch_activated(switch)
 			provider = Gtk::CssProvider.new
-		  switch.active? ? provider.load(path: "dark_mode.css") : provider.load(path: "style.css")
+		  if switch.active?
+		  	$dark_mode = true 
+		  	provider.load(path: "dark_mode.css")
+		  	
+		  else
+		  	$dark_mode = false
+		  	provider.load(path: "style.css")
+		  	
+		  end
 		  Gtk::StyleContext.add_provider_for_screen(Gdk::Screen.default,provider, Gtk::StyleProvider::PRIORITY_APPLICATION)
 
  	end

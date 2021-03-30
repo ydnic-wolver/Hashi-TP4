@@ -48,12 +48,12 @@ class MenuSelection < Gtk::Window
 
         #Initialisation des boutons de niveau
         tableauBtn=Array.new(22)
-        tabfacile=["ListeNiveau/niveau_facile/7x7_1.txt","ListeNiveau/niveau_facile/7x7_2.txt","ListeNiveau/niveau_facile/7x7_3.txt","ListeNiveau/niveau_facile/10x7.txt","ListeNiveau/niveau_facile/10x10.txt","ListeNiveau/niveau_facile/12x12.txt","ListeNiveau/niveau_facile/15x5.txt","ListeNiveau/niveau_facile/15x15.txt"]
-        tabdimfacile=[7,7,7,7,7,7,10,7,10,10,12,12,15,5,15,15]
-        tabmoyen=["ListeNiveau/niveau_moyen/10x7.txt","ListeNiveau/niveau_moyen/10x10_2.txt","ListeNiveau/niveau_moyen/10x10.txt","ListeNiveau/niveau_moyen/12x12.txt","ListeNiveau/niveau_moyen/15x5.txt","ListeNiveau/niveau_moyen/15x15_2.txt","ListeNiveau/niveau_moyen/15x15.txt"]
-        tabdimmoyen=[10,7,10,10,10,10,12,12,15,5,15,15,15,15]
-        tabdifficile=["ListeNiveau/niveau_difficile/10x7.txt","ListeNiveau/niveau_difficile/10x10.txt","ListeNiveau/niveau_difficile/12x12.txt","ListeNiveau/niveau_difficile/15x5.txt","ListeNiveau/niveau_difficile/15x15_1.txt","ListeNiveau/niveau_difficile/15x15_2.txt","ListeNiveau/niveau_difficile/15x15.txt"]
-        tabdimdifficile=[10,7,10,10,12,12,15,5,15,15,15,15,15,15]
+        tabfacile=["ListeNiveau/niveau_facile/7x7_1.txt","ListeNiveau/niveau_facile/7x7_2.txt","ListeNiveau/niveau_facile/7x7_3.txt","ListeNiveau/niveau_facile/10x7.txt","ListeNiveau/niveau_facile/10x10.txt","ListeNiveau/niveau_facile/12x12.txt","ListeNiveau/niveau_facile/15x5.txt","ListeNiveau/niveau_facile/12x12_1.txt"]
+        tabdimfacile=[7,7,7,7,7,7,10,7,10,10,12,12,15,5,12,12]
+        tabmoyen=["ListeNiveau/niveau_moyen/7x7.txt","ListeNiveau/niveau_moyen/8x8.txt","ListeNiveau/niveau_moyen/10x7.txt","ListeNiveau/niveau_moyen/10x10_2.txt","ListeNiveau/niveau_moyen/10x10.txt","ListeNiveau/niveau_moyen/12x12.txt","ListeNiveau/niveau_moyen/15x5.txt"]
+        tabdimmoyen=[7,7,8,8,10,7,10,10,10,10,12,12,15,5]
+        tabdifficile=["ListeNiveau/niveau_difficile/7x7.txt","ListeNiveau/niveau_difficile/8x8.txt","ListeNiveau/niveau_difficile/10x7.txt","ListeNiveau/niveau_difficile/10x10.txt","ListeNiveau/niveau_difficile/10X10_2.txt","ListeNiveau/niveau_difficile/12x12.txt","ListeNiveau/niveau_difficile/15x5.txt"]
+        tabdimdifficile=[7,7,8,8,10,7,10,10,10,10,12,12,15,5]
         dimfacile=0
         facile=0
         moyen=0
