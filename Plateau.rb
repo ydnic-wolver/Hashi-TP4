@@ -4,6 +4,7 @@ load "HashiGrid.rb"
 load "Ile.rb"
 load "Pont.rb"
 load "Hypothese.rb"
+load "Aide.rb"
 
 $timerStop = 0
 $partieStop = 0
@@ -20,6 +21,10 @@ class Plateau < Gtk::Window
         $partieStop = 0
         $timerStop = 0
 
+         #Initialisation de la grille
+        # creerGrid()
+        @grid = HashiGrid.new(@nomniv,@x,@y)
+    
         #Creation de la fenêtre
         super()
         set_title "Hashi Game"
@@ -41,15 +46,19 @@ class Plateau < Gtk::Window
             $timerStop = 1
             pause = Pause.new()
         }
-
-
+        @aide = Aide.new(@grid)
+        @label = Gtk::Label.new( "")
+       
         #Reglage du bouton indice
         boutonIndice = Gtk::Button.new()
         boutonIndice.image = Gtk::Image.new(:file => "Ressources/Plateau/aide.png")
         boutonIndice.signal_connect('clicked'){
-            print("Indice!")
-            butt = Gtk::Button.new(:label => "INDICe")
-            @boxPrincipale.add(butt)
+           
+            @boxPrincipale.remove(@label )
+            title = "<span font_desc = 'Calibri 20'>#{@aide.getMessageAide}</span>\n"
+            @label = Gtk::Label.new()
+            @label.set_markup(title)
+            @boxPrincipale.add(@label)
             @boxPrincipale.show_all
         }
 
@@ -101,15 +110,13 @@ class Plateau < Gtk::Window
 
         @boxJeu.set_border_width(10)
 
-        #Initialisation de la grille
-        # creerGrid()
-        @grid = HashiGrid.new(@nomniv,@x,@y)
+       
         @grid.set_column_homogeneous(true)
         @grid.set_row_homogeneous(true)
         #  Chargement de la grille
         @grid.chargeGrille()
         @grid.chargeVoisins
-
+        
         boutonUndo.signal_connect('clicked'){
            @grid.undoPrevious
         }
@@ -132,6 +139,7 @@ class Plateau < Gtk::Window
         @boxPrincipale.add(boxBarreFrame)
         @boxPrincipale.add(@boxJeuFrame)
 
+        @boxPrincipale.add(@label )
         add(@boxPrincipale)
 
         #Gestion du temps
@@ -266,8 +274,6 @@ class Plateau < Gtk::Window
         if(@grid.grilleFini? )
             self.partiFini
         end
-        
-        
         @grid.saveManager.cleanAll()
         @boxJeu.add(@grid)
     end

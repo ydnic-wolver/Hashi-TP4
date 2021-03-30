@@ -18,9 +18,5 @@ nom = "ListeNiveau/niveau_facile/7x7_1.txt"
 
 # titre = nom.match(/[^\/]*.txt/)
 
-# puts titre# double quotes are important!
-tab = File.read(nom).split("\n") 
-p tab
-
 
 Gtk.main

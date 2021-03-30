@@ -20,12 +20,17 @@ class HashiGrid < Gtk::Grid
     # cliquées 
     attr_accessor :nodeLink
 
+    attr_reader :sommets 
+
+    
     attr_reader :nomniv
 
     def initialize(nomniv,x,y)
         @nomniv=nomniv
         @x=x
+        @nb_iles = 0
         @y=y
+        @sommets = Array.new()
         super()
         @nodeLink = []
         @saveManager = Sauvegarde.new 
@@ -435,6 +440,7 @@ class HashiGrid < Gtk::Grid
                 # # Création d'une case 
                 if ch != '0'
                     btn = Ile.new(self, ch,index,i)
+                    @sommets << btn
                 else 
                     btn = Pont.new(self, ch, index, i)
                 end

@@ -33,10 +33,19 @@ class Ile < Gtk::Button
     attr_accessor :degree
 
 
-    def getVoisins
-        arr = [@northNode, @eastNode, @southNode, @westNode]
-        return arr
+
+    def compterVoisins() 
+        liste = self.getVoisins()
+        compteur = 0
+        liste.each do |voisin|
+            if voisin != nil
+                compteur += 1
+            end
+        end
+        # puts self.to_s + " VOISINS => " + compteur.to_s
+        return compteur
     end
+
 
     def initialize(grid, degree, col, lig )
         super()
@@ -85,6 +94,48 @@ class Ile < Gtk::Button
         return compteur
     end
 
+    def pontAvecVoisins
+        liste = self.getVoisins()
+        cmpPontRestants = self.pontRestants()
+        
+       return cmpPontRestants >= liste.size
+    end
+
+
+    
+    def getVoisins
+        arr = Array.new 
+        if( @northNode != nil )
+            arr.push(@northNode)
+        end
+        if( @eastNode != nil )
+            arr.push(@eastNode)
+        end
+        if( @southNode != nil )
+            arr.push(@southNode)
+        end
+        if( @westNode != nil )
+            arr.push(@westNode)
+        end
+        return arr
+    end
+
+    # Retourne la liste des voisins non complets
+    def voisinsNonComplets()
+        liste = self.getVoisins()
+        array = Array.new()
+
+        liste.each do |voisin|
+            if voisin.pontRestants() != 0
+                array.push(voisin)
+            end
+        end
+        return array
+    end
+
+    def compterVoisinsNonComplets
+        return self.voisinsNonComplets().size
+    end
     
     #  Décrémente le nombre de pont sur la case
     def dec
@@ -129,6 +180,7 @@ class Ile < Gtk::Button
     def click()
         @gridRef.notify(self)
         
+        self.pontAvecVoisins
         # puts "H #{@northNode} B #{@southNode} D #{@eastNode} G #{@westNode}"
     end
 
