@@ -11,6 +11,7 @@ load "SaveTime.rb"
 load "Tuto.rb"
 load 'BoutonChoix.rb'
 load 'MainMenu.rb'
+load 'Sauvegarde.rb'
 
 
 window = MainMenu.new
