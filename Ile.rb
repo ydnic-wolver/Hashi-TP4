@@ -34,17 +34,6 @@ class Ile < Gtk::Button
 
 
 
-    def compterVoisins() 
-        liste = self.getVoisins()
-        compteur = 0
-        liste.each do |voisin|
-            if voisin != nil
-                compteur += 1
-            end
-        end
-        # puts self.to_s + " VOISINS => " + compteur.to_s
-        return compteur
-    end
 
 
     def initialize(grid, degree, col, lig )
@@ -94,15 +83,22 @@ class Ile < Gtk::Button
         return compteur
     end
 
+    # Renvoi vrai si l'ile est relie a
+    # chacun de ses voisins 
+    # sinon faux
     def pontAvecVoisins
-        liste = self.getVoisins()
-        cmpPontRestants = self.pontRestants()
-        
-       return cmpPontRestants >= liste.size
+       return self.pontRestants() >= self.compterVoisins()
     end
 
+    # Retourne le nombre de voisins
+    def compterVoisins() 
+        return self.getVoisins().size
+    end
 
-    
+    # Retourne un tableau contenant les voisins d'une ile
+    # Un noeud à nil équivaut à une absence de voisin dans cette
+    # direction
+    # On ne retourne donc que les voisins valides 
     def getVoisins
         arr = Array.new 
         if( @northNode != nil )
@@ -121,6 +117,7 @@ class Ile < Gtk::Button
     end
 
     # Retourne la liste des voisins non complets
+    # d'une ile
     def voisinsNonComplets()
         liste = self.getVoisins()
         array = Array.new()
@@ -133,6 +130,7 @@ class Ile < Gtk::Button
         return array
     end
 
+    # Renvoi le nombre de voisins non complets
     def compterVoisinsNonComplets
         return self.voisinsNonComplets().size
     end
@@ -176,12 +174,9 @@ class Ile < Gtk::Button
         return "[#{@row}-#{@column}]"
     end
 
-    # Méthode de test afin de s'assurer du bon fonctionnement des clics
+    # Méthode permettant de notifier la grille d'un clic
     def click()
         @gridRef.notify(self)
-        
-        self.pontAvecVoisins
-        # puts "H #{@northNode} B #{@southNode} D #{@eastNode} G #{@westNode}"
     end
 
 end

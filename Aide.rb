@@ -39,7 +39,6 @@ class Aide
         @grille.sommets.each_with_index do |x, i|
             @nb_voisins[i] = x.compterVoisins()
         end
-
         if estCas1?()
             return 1
           elsif estCas2?()
@@ -75,7 +74,8 @@ class Aide
     # # VALIDE
     def estCas1?()
         @grille.sommets.each_with_index do |x, i|
-          if @nb_voisins[i] == 1 && x.pontRestants() != x.degreeMax
+          # if @nb_voisins[i] == 1 && x.pontRestants() != x.degreeMax
+          if @nb_voisins[i] == 1 &&  !x.estComplet()
             @position = @grille.get_child_at(x.column, x.row)
             return true
           end
@@ -87,7 +87,7 @@ class Aide
   # Cas 2 : île avec une seule île voisine restante dans la grille
   def estCas2?()
     @grille.sommets.each_with_index do |x, i|
-      if x.compterVoisinsNonComplets() == 1 && x.pontRestants() != x.degreeMax
+      if x.compterVoisinsNonComplets() == 1 && !x.estComplet()
         @position =  @grille.get_child_at(x.column, x.row)
         return true
       end
@@ -98,7 +98,7 @@ class Aide
   # Cas 3 : île à 8 restante dans la grille
   def estCas3?()
     @grille.sommets.each_with_index do |x, i|
-      if x.degreeMax == 8 && x.pontRestants() != x.degreeMax
+      if x.degreeMax == 8 && !x.estComplet()
         @position = @grille.get_child_at(x.column, x.row)
         return true
       end
@@ -109,7 +109,7 @@ class Aide
   # Cas 4 : île à 6 avec 3 îles voisines restante dans la grille
   def estCas4?()
     @grille.sommets.each_with_index do |x, i|
-      if x.degreeMax == 6 && @nb_voisins[i] == 3 && x.degree() != x.degreeMax
+      if x.degreeMax == 6 && @nb_voisins[i] == 3 && !x.estComplet()
         @position = @grille.get_child_at(x.column, x.row)
         return true
       end
@@ -120,7 +120,7 @@ class Aide
   # Cas 5 : île à 4 avec 2 îles voisines restante dans la grille
   def estCas5?()
     @grille.sommets.each_with_index do |x, i|
-      if x.degreeMax == 4 && @nb_voisins[i] == 2 && x.pontRestants() != x.degreeMax
+      if x.degreeMax == 4 && @nb_voisins[i] == 2 && !x.estComplet()
         @position = @grille.get_child_at(x.column, x.row)
         return true
       end
@@ -128,13 +128,13 @@ class Aide
     return false
   end
 
-  # Cas 6 : île à 7 avec une île voisine à 1 restante dans la grille
+  # Cas 6 : île à 4 avec une île voisine à 1 restante dans la grille
   def estCas6?()
     compteur = 0
     @grille.sommets.each_with_index do |x, i|
-      if x.degreeMax == 4 && x.pontRestants() != x.degreeMax
+      if x.degreeMax == 4 && !x.estComplet()
         x.getVoisins().each do |v|
-          if v.degreeMax == 1 && v.degree != v.degreeMax
+          if v.degreeMax == 1 && !x.estComplet()
             compteur += 1
           end
         end
@@ -151,7 +151,7 @@ class Aide
   def estCas7?()
     compteur = 0
     @grille.sommets.each_with_index do |x, i|
-      if x.degreeMax == 5 && @nb_voisins[i] == 3 && x.pontRestants() != x.degreeMax
+      if x.degreeMax == 5 && @nb_voisins[i] == 3 && !x.estComplet()
         x.getVoisins().each do |v|
           if v.degreeMax == 1
             compteur += 1
@@ -171,7 +171,7 @@ class Aide
   def estCas8?()
     compteur = 0
     @grille.sommets.each_with_index do |x, i|
-      if x.degreeMax == 3 && @nb_voisins[i] == 2 && x.pontRestants() != x.degreeMax
+      if x.degreeMax == 3 && @nb_voisins[i] == 2 && !x.estComplet()
         x.getVoisins().each do |v|
           if v.degreeMax == 1 && v.degree != v.degreeMax
             compteur += 1
@@ -224,7 +224,7 @@ class Aide
   def estCas12?()
     compteur = 0
     @grille.sommets.each_with_index do |x, i|
-      if x.valeur == 6 &&  x.pontRestants() != x.degreeMax
+      if x.degreeMax == 6 &&  !x.estComplet()
         x.getVoisins().each do |v|
           compteur = 0
           if v.degreeMax == 1
@@ -245,7 +245,7 @@ class Aide
   def estCas13?()
     compteur = 0
     @grille.sommets.each_with_index do |x, i|
-      if x.degreeMax == 4 && @nb_voisins[i] == 3 && x.degree != x.degreeMax
+      if x.degreeMax == 4 && @nb_voisins[i] == 3 && !x.estComplet()
         x.getVoisins().each do |v|
           compteur = 0
           if v.degreeMax == 1
@@ -277,57 +277,5 @@ class Aide
     return voisinDeux
   end
 
-  # ## Méthode testant si un cas 15 est présent dans la grille
-  # # Cas 15 : île à 2 avec deux îles voisines dont une île à 1 restante
-  # # Cas 15 : île avec deux connexions restantes et deux îles voisines non reliées dont une île à 1 restante dans la grille
-  # #
-  # # === Return
-  # #
-  # # true si le cas est vérifié pour un des sommets de la grille, false sinon
-  # def estCas15?()
-  #   voisinUn = false
-  #   @grille.sommets.each_with_index do |x, i|
-  #     if x.connexionsRestantes == 2 && x.compterVoisinsNonRelies() == 2 && x.compterVoisinsComplets() + x.compterVoisinsNonRelies() == x.compterVoisins()
-  #       x.getListeVoisins().each do |v|
-  #         if v.valeur == 1 && !(v.possedeAreteAvec(x))
-  #           @position = @grille.getCase(x.position.x, x.position.y)
-  #           voisinUn = true
-  #         end
-  #       end
-  #     end
-  #   end
-  #   return voisinUn
-  # end
 
-  # ## Méthode testant si un cas 16 est présent dans la grille
-  # # Cas 16 : île avec suffisamment de connexion restantes pour être connectée avec toutes ses voisines restante dans la grille
-  # #
-  # # === Return
-  # #
-  # # true si le cas est vérifié pour un des sommets de la grille, false sinon
-  # def estCas16?()
-  #   @grille.sommets.each_with_index do |x, i|
-  #     if (x.compterVoisinsNonComplets() * 2) - 1 <= x.connexionsRestantes() && x.connexionsRestantes() > 0
-  #       if !x.areteAvecChaqueVoisin()
-  #         @position = @grille.getCase(x.position.x, x.position.y)
-  #         return true
-  #       end
-  #     end
-  #   end
-  #   return false
-  # end
-
-  # # VALIDE
-  #   def estCas5?()
-  #       @grille.sommets.each_with_index do |x, i|
-  #         if x.degreeMax == 4 && @nb_voisins[i] == 2 && x.pontRestants() != x.degreeMax
-  #           @position = @grille.get_child_at(x.column, x.row)
-  #           return true
-  #         end
-  #       end
-  #       return false
-  #   end
-
-  
-   
 end

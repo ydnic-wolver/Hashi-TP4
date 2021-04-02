@@ -53,12 +53,19 @@ class Plateau < Gtk::Window
         boutonIndice = Gtk::Button.new()
         boutonIndice.image = Gtk::Image.new(:file => "Ressources/Plateau/aide.png")
         boutonIndice.signal_connect('clicked'){
-           
+            
+            # Supprime le label déjà en place dans la grille
             @boxPrincipale.remove(@label )
-            title = "<span font_desc = 'Calibri 20'>#{@aide.getMessageAide}</span>\n"
+            # Personnalisation du texte de l'aide
+            title = "<span font_desc = 'Calibri 13'>#{@aide.getMessageAide}</span>\n"
+            # Création d'un nouveau label
             @label = Gtk::Label.new()
             @label.set_markup(title)
+            # Ajout du label dans la fenêtre 
             @boxPrincipale.add(@label)
+            # Affichage de tous les composants 
+            # Lors de l'ajout d'un composant, il faut réindiquer à la boîte de se 
+            # rafraîchir et de tous afficher..
             @boxPrincipale.show_all
         }
 
