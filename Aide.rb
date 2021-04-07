@@ -65,6 +65,8 @@ class Aide
             return 12
           elsif estCas13?()
             return 13
+          elsif estCas14?()
+            return 14
           else
             return 0
         end
