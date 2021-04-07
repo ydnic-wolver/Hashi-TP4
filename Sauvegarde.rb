@@ -19,7 +19,6 @@ class Sauvegarde
         @dif=dif
         titre = nomniv.match(/[^\/]*.txt/)
         @path = "./Sauvegarde/#{dif}/save#{titre}"
-        File.open(@path, 'w')
     end
 
     def saveUserClick(action)
@@ -41,7 +40,6 @@ class Sauvegarde
     end
 
     def sauvegarder(grille)
-        puts "Sauvegarde en cours!"
 
         f=File.open(@path, 'w')
         

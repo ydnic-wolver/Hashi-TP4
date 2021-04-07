@@ -1,4 +1,5 @@
 require 'gtk3'
+require 'fileutils'
 load "Sauvegarde.rb"
 load "MainMenu.rb"
 
@@ -15,6 +16,8 @@ class HashiGrid < Gtk::Grid
     
     # Nombre de lignes
     attr_accessor :lignes
+
+    attr_accessor :diff
 
     # Tableau permettant de contenir temporairement les deux cases 
     # cliquées 
@@ -87,6 +90,7 @@ class HashiGrid < Gtk::Grid
                 
                 ajoutPont(p1,p2)
                 saveManager.sauvegarder(self)
+                $window.partiFini
             end
         end
     end
@@ -168,7 +172,7 @@ class HashiGrid < Gtk::Grid
             pont.update
         end
 
-	    #$window.partiFini
+	    
         
     end
 
@@ -226,6 +230,7 @@ class HashiGrid < Gtk::Grid
         n2.set_degree ( n2.pontRestants )
         n1.update
         n2.update
+        saveManager.sauvegarder(self)
 	  
         $window.partiFini
 
@@ -458,9 +463,7 @@ class HashiGrid < Gtk::Grid
     def chargeSauvegarde(nomniv,dif)
         titre = nomniv.match(/[^\/]*.txt/)
         #sauvegarde devient un tableau
-        puts "./Sauvegarde/#{dif}/save#{titre}"
-        saveTab = File.readlines("save.txt").map { |str| str.split(":") }
-        puts saveTab
+        saveTab = File.readlines("./Sauvegarde/#{dif}/save#{titre}").map { |str| str.split(":") }
     
         for x in 0..(self.lignes-1)
             for y in 0..(self.colonnes-1)
@@ -485,6 +488,8 @@ class HashiGrid < Gtk::Grid
                 end
             end
         end
+        puts saveTab[lignes][0]
+        $tempsPause = saveTab[lignes][0]
     end
 
 end

@@ -141,7 +141,14 @@ class Plateau < Gtk::Window
         #Gestion du temps
         
         @temps.set_text("0")
-        @tempsPause = 0
+
+        if(@chargement != 1)
+            $tempsPause = 0
+        end
+
+        if(@chargement == 1)
+            puts $tempsPause
+        end
 
         $tempsFin = 0
         show_all
@@ -155,12 +162,12 @@ class Plateau < Gtk::Window
                 end
                 while $timerStop == 0 and $partieStop == 0 do #pause pas active ou niveau pas fini
                     
-                    @temps.set_text( (Time.now - @tempsDebut + @tempsPause ).round(0).to_s)
-                    $tempsFin = (Time.now - @tempsDebut + @tempsPause ).round(0)
+                    @temps.set_text( (Time.now - @tempsDebut + $tempsPause.to_f ).round(0).to_s)
+                    $tempsFin = (Time.now - @tempsDebut + $tempsPause.to_f ).round(0)
                     sleep(1)
                 end
 
-                @tempsPause = @tempsPause + (Time.now - @tempsDebut ).round(0)
+                $tempsPause = $tempsPause + (Time.now - @tempsDebut ).round(0)
 
                 while $timerStop == 1 do
                     sleep(0.1)
@@ -288,13 +295,16 @@ class Plateau < Gtk::Window
     def resetPlateau()
 
         @tempsDebut = Time.now
-        @tempsPause = 0
+        $tempsPause = 0
         @temps.set_text("O")
         $timerStop = 0
         $partieStop = 0
         @boxJeu.remove(@grid)
         #  Chargement de la grille
-        gri = HashiGrid.new(@grid.nomniv,@grid.lignes, @grid.colonnes  )
+        gri = HashiGrid.new(@grid.nomniv,@grid.lignes, @grid.colonnes  , @grid.diff)
+        #creer un fichier de sauvegarde vide
+        titre = @grid.nomniv.match(/[^\/]*.txt/)
+        f=File.open("./Sauvegarde/#{@grid.diff}/save#{titre}", 'w')
         @grid = gri
 
         gri.colonnes =@grid.colonnes
