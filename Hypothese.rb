@@ -57,7 +57,7 @@ class Hypothese  < Gtk::Window
         # Copie des noeuds contenus dans la grille
         copy_grille = plateau.grid.collect(&:dup)
         # Création d'une nouvelle grille
-        hypoGrille = HashiGrid.new(plateau.grid.nomniv,plateau.grid.lignes, plateau.grid.colonnes  )
+        hypoGrille = HashiGrid.new(plateau.grid.nomniv,plateau.grid.lignes, plateau.grid.colonnes, @diff)
         hypoGrille.set_column_homogeneous(true)
         hypoGrille.set_row_homogeneous(true)
         hypoGrille.colonnes = plateau.grid.colonnes

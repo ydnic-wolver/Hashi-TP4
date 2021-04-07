@@ -41,7 +41,6 @@ class Sauvegarde
     end
 
     def sauvegarder(grille)
-        puts "Sauvegarde en cours!"
 
         f=File.open(@path, 'w')
         

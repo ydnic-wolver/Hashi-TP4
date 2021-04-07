@@ -168,7 +168,7 @@ class HashiGrid < Gtk::Grid
             pont.update
         end
 
-	    #$window.partiFini
+	    $window.partiFini
         
     end
 

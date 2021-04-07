@@ -25,48 +25,56 @@ class ClassementFacile < Gtk::Window
 	btnNiveau1 = Gtk::Button.new(:label => 'Niveau 1')
 	btnNiveau1.signal_connect('clicked'){
 		self.set_sensitive(false)
+		File.open("Classement/Facile/classement7x7_1.txt", 'a')
 		classement = ClassementNiveau.new("Classement/Facile/classement7x7_1.txt")
 		self.set_sensitive(true)
 	}
 	btnNiveau2 = Gtk::Button.new(:label => 'Niveau 2')
 	btnNiveau2.signal_connect('clicked'){
 		self.set_sensitive(false)
+		File.open("Classement/Facile/classement7x7_2.txt", 'a')
 		classement = ClassementNiveau.new("Classement/Facile/classement7x7_2.txt")
 		self.set_sensitive(true)
 	}
 	btnNiveau3 = Gtk::Button.new(:label => 'Niveau 3')
 	btnNiveau3.signal_connect('clicked'){
 		self.set_sensitive(false)
+		File.open("Classement/Facile/classement7x7_3.txt", 'a')
 		classement = ClassementNiveau.new("Classement/Facile/classement7x7_3.txt")
 		self.set_sensitive(true)
 	}
 	btnNiveau4 = Gtk::Button.new(:label => 'Niveau 4')
 	btnNiveau4.signal_connect('clicked'){
 		self.set_sensitive(false)
+		File.open("Classement/Facile/classement10x7.txt", 'a')
 		classement = ClassementNiveau.new("Classement/Facile/classement10x7.txt")
 		self.set_sensitive(true)
 	}
 	btnNiveau5 = Gtk::Button.new(:label => 'Niveau 5')
 	btnNiveau5.signal_connect('clicked'){
 		self.set_sensitive(false)
+		File.open("Classement/Facile/classement10x10.txt", 'a')
 		classement = ClassementNiveau.new("Classement/Facile/classement10x10.txt")
 		self.set_sensitive(true)
 	}
 	btnNiveau6 = Gtk::Button.new(:label => 'Niveau 6')
 	btnNiveau6.signal_connect('clicked'){
 		self.set_sensitive(false)
+		File.open("Classement/Facile/classement12x12.txt", 'a')
 		classement = ClassementNiveau.new("Classement/Facile/classement12x12.txt")
 		self.set_sensitive(true)
 	}
 	btnNiveau7 = Gtk::Button.new(:label => 'Niveau 7')
 	btnNiveau7.signal_connect('clicked'){
 		self.set_sensitive(false)
+		File.open("Classement/Facile/classement12x12_1.txt", 'a')
 		classement = ClassementNiveau.new("Classement/Facile/classement12x12_1.txt")
 		self.set_sensitive(true)
 	}
 	btnNiveau8 = Gtk::Button.new(:label => 'Niveau 8')
 	btnNiveau8.signal_connect('clicked'){
 		self.set_sensitive(false)
+		File.open("Classement/Facile/classement15x5.txt", 'a')
 		classement = ClassementNiveau.new("Classement/Facile/classement15x5.txt")
 		self.set_sensitive(true)
 	}
