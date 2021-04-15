@@ -305,6 +305,7 @@ class Plateau < Gtk::Window
         #creer un fichier de sauvegarde vide
         titre = @grid.nomniv.match(/[^\/]*.txt/)
         f=File.open("./Sauvegarde/#{@grid.diff}/save#{titre}", 'w')
+        f.close()
         @grid = gri
 
         gri.colonnes =@grid.colonnes
