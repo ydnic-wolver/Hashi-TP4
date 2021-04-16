@@ -224,7 +224,6 @@ class Plateau
             $timerStop=1
 
             # #Bouton pour recommencer la partie
-            # btnRecommencer = Gtk::Button.new(:label => 'Recommencer')
             btnRecommencer = builder.get_object('btnRecommencer')
             btnRecommencer.signal_connect('clicked'){
                 self.resetPlateau()

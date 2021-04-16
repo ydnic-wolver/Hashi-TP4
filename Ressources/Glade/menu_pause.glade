@@ -38,6 +38,8 @@
                 <property name="margin-top">20</property>
                 <property name="margin-bottom">20</property>
                 <property name="pixbuf">../Pause/pause.svg</property>
+              </object>
+              <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">0</property>
