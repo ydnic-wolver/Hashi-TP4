@@ -43,12 +43,9 @@ class Ile < Gtk::Button
     def initialize(grid, degreeMax, col, lig )
         super()
         @gridRef = grid
-        
         @degreeMax = degreeMax.to_i
         @degree = 0
-        
         @row = lig
-
         @estComplet = false
         @column = col
 

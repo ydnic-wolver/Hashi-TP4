@@ -18,6 +18,7 @@ class Plateau
     # Référence sur la grille
     attr_accessor :grid
 
+    # Constructeur du plateau 
     def initialize(nomniv, x, y, diff, chargement)
         @nomniv=nomniv
         @x=x
@@ -166,10 +167,12 @@ class Plateau
         }
     end
 
+    # Retourne le plateau de jeu
     def getPlateau()
         return @plateau
     end
 
+    # Méthode responsable de la gestion d'une parti fini 
     def partiFini
 
         if(@grid.grilleFini?)
@@ -249,8 +252,9 @@ class Plateau
         
     end
 
-    # Alteration de la grille
-
+    # Cette méthode permet de gérer tous les traitements 
+    # lors de la validation de l'hypothèse
+    # Elle supprime l'ancienne grille et met en place la nouvelle
     def hypotheseValider(newGrid)
         
         @boxJeu.remove(@grid)

@@ -4,7 +4,7 @@ require 'gtk3'
 # Cette classe représente le menu A Propos
 class APropos < Gtk::Window
 
-	
+	# Constructeur du menu A propos
     def initialize
         super
 

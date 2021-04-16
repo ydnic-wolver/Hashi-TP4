@@ -459,7 +459,7 @@ class HashiGrid < Gtk::Grid
                     btn = Ile.new(self, ch,index,i)
                     @sommets << btn
                 else 
-                    btn = Pont.new(self, ch, index, i)
+                    btn = Pont.new(self, index, i)
                 end
 
                 # On attache la référence de la grille

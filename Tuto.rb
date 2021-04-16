@@ -7,6 +7,7 @@ $id=1
 # Cette classe représente le menu Tutoriel
 class Tuto 
 
+	# Constructeur du menu tutoriel 
 	def initialize
 		
 		main_window_res = "./Ressources/Glade/tutoriel.glade"

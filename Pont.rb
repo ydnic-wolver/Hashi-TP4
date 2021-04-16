@@ -13,18 +13,15 @@ class Pont < Ile
     # Représente la direction du pont. (0 = pas de pont, 1 = horizontal, 2 = vertical)
     attr_accessor :directionPont
 
-    attr_accessor :stable
-
+    # Attribut permettant de savoir si un pont est double ou non 
     attr_accessor :estDouble 
 
-    # début du pont
-    attr_accessor :debut
-
-    # fin du pont
-    attr_accessor :fin
-
-    def initialize(grid, degree, col, lig ) 
-        super(grid, degree, col, lig )
+    # Constructeur d'un pont 
+    # * +grid+ Référence sur la grille
+    # * +col+ Référence sur la grille
+    # * +lig+ Référence sur la grille
+    def initialize(grid, col, lig ) 
+        super(grid, '0', col, lig )
         @typePont = 0
         @estDouble = false
         @directionPont = 0
@@ -35,15 +32,21 @@ class Pont < Ile
                 @import url("css/plateau_style.css");
                 CSS
         self.style_context.add_provider(css_file, Gtk::StyleProvider::PRIORITY_USER)
-            
         self.set_sensitive(false)  # Un pont n'est pas cliquable par défaut
         self.status = 'p'
     end
 
+    # Retourne la direction du pont
     def get_directionPont
         return @directionPont
     end
 
+     # Modifie la direction du pont
+    def set_directionPont(val)
+        @directionPont = val
+    end
+
+    # Modifie le type du pont
     def set_typePont(val)
         if val >= 0
             @typePont = val
@@ -52,21 +55,15 @@ class Pont < Ile
         end
     end
     
+     # Retourne le type du pont
     def get_typePont
         return @typePont
     end
 
-    def set_directionPont(val)
-        @directionPont = val
-    end
-
-    #  Méthode mettant à jour un noeud
-    # Il faudrait pouvoir factoriser
-    # En fonction du type de ponts des images différentes sont charger
-    #  stable serait potentielle utiliser pour le survol ( mais pas sûr  c'est très chiant à implémenter comme feature )
-    # d
+   
+    #  Méthode responsable de la mise à jour d'un pont.
     def update()
-    #    p "Type du pont: " + @typePont.to_s # DEBUG
+        
         if @typePont == 0 && @directionPont == 0
             self.image.from_file= "Ressources/Pont/0.png"
         elsif @typePont == 1

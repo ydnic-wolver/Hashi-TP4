@@ -104,16 +104,6 @@
         <h3>Attributes</h3>
       </header>
 
-      <div id="attribute-i-debut" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">debut</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        <p>début du pont</p>
-        </div>
-      </div>
       <div id="attribute-i-directionPont" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">directionPont</span><span
@@ -131,27 +121,7 @@
         </div>
 
         <div class="method-description">
-        
-        </div>
-      </div>
-      <div id="attribute-i-fin" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">fin</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        <p>fin du pont</p>
-        </div>
-      </div>
-      <div id="attribute-i-stable" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">stable</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
+        <p>Attribut permettant de savoir si un pont est double ou non</p>
         </div>
       </div>
       <div id="attribute-i-typePont" class="method-detail">
@@ -180,14 +150,23 @@
         </div>
 
         <div class="method-description">
-          
+          <p>Constructeur d&#39;un pont </p>
+<ul><li>
+<p><code>grid</code> Référence sur la grille</p>
+</li><li>
+<p><code>degree</code> Référence sur la grille</p>
+</li><li>
+<p><code>col</code> Référence sur la grille</p>
+</li><li>
+<p><code>lig</code> Référence sur la grille</p>
+</li></ul>
             <div class="method-calls-super">
               Calls superclass method
               <a href="Ile.html#method-c-new"><code>Ile::new</code></a>
             </div>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File Pont.rb, line 26</span>
+            <pre><span class="ruby-comment"># File Pont.rb, line 24</span>
     <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">grid</span>, <span class="ruby-identifier">degree</span>, <span class="ruby-identifier">col</span>, <span class="ruby-identifier">lig</span> ) 
         <span class="ruby-keyword">super</span>(<span class="ruby-identifier">grid</span>, <span class="ruby-identifier">degree</span>, <span class="ruby-identifier">col</span>, <span class="ruby-identifier">lig</span> )
         <span class="ruby-ivar">@typePont</span> = <span class="ruby-value">0</span>
@@ -228,7 +207,7 @@
           
 
           <div class="method-source-code" id="get_directionPont-source">
-            <pre><span class="ruby-comment"># File Pont.rb, line 43</span>
+            <pre><span class="ruby-comment"># File Pont.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_directionPont</span>
     <span class="ruby-keyword">return</span> <span class="ruby-ivar">@directionPont</span>
 <span class="ruby-keyword">end</span></pre>
@@ -249,7 +228,7 @@
           
 
           <div class="method-source-code" id="get_typePont-source">
-            <pre><span class="ruby-comment"># File Pont.rb, line 55</span>
+            <pre><span class="ruby-comment"># File Pont.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_typePont</span>
     <span class="ruby-keyword">return</span> <span class="ruby-ivar">@typePont</span>
 <span class="ruby-keyword">end</span></pre>
@@ -270,7 +249,7 @@
           
 
           <div class="method-source-code" id="set_directionPont-source">
-            <pre><span class="ruby-comment"># File Pont.rb, line 59</span>
+            <pre><span class="ruby-comment"># File Pont.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_directionPont</span>(<span class="ruby-identifier">val</span>)
     <span class="ruby-ivar">@directionPont</span> = <span class="ruby-identifier">val</span>
 <span class="ruby-keyword">end</span></pre>
@@ -291,7 +270,7 @@
           
 
           <div class="method-source-code" id="set_typePont-source">
-            <pre><span class="ruby-comment"># File Pont.rb, line 47</span>
+            <pre><span class="ruby-comment"># File Pont.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_typePont</span>(<span class="ruby-identifier">val</span>)
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span>
         <span class="ruby-ivar">@typePont</span> = <span class="ruby-identifier">val</span>
@@ -318,12 +297,8 @@
 
 <p>Il faudrait pouvoir factoriser En fonction du type de ponts des images différentes sont charger</p>
 
-<pre>stable serait potentielle utiliser pour le survol ( mais pas sûr  c&#39;est très chiant à implémenter comme feature )</pre>
-
-<p>d</p>
-
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File Pont.rb, line 68</span>
+            <pre><span class="ruby-comment"># File Pont.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>()
 <span class="ruby-comment">#    p &quot;Type du pont: &quot; + @typePont.to_s # DEBUG</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@typePont</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@directionPont</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>

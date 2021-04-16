@@ -17,6 +17,7 @@ class Aide
     # Identifiant correspondant a l'état dans laquelle se trouve le plateau 
     attr_reader :id
 
+    # Constructeur du menu Aide 
     def initialize(grille)
         @grille = grille
         @nb_voisins = Array.new(@grille.sommets.size)

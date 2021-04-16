@@ -75,7 +75,6 @@
     <li ><a href="#method-c-new">::new</a>
     <li ><a href="#method-i-cleanAll">#cleanAll</a>
     <li ><a href="#method-i-saveUserClick">#saveUserClick</a>
-    <li ><a href="#method-i-showUndoStack">#showUndoStack</a>
     <li ><a href="#method-i-undoEmpty-3F">#undoEmpty?</a>
     <li ><a href="#method-i-undoUserAction">#undoUserAction</a>
   </ul>
@@ -91,7 +90,7 @@
 
   <section class="description">
     
-<p>Cette classe représente les fonctionnalités Undo / Redo</p>
+<p>Cette classe implémente les fonctionnalités Undo / Redo</p>
 
   </section>
 
@@ -111,7 +110,7 @@
         </div>
 
         <div class="method-description">
-        
+        <p>Pile contenant les action à replacer tant que l&#39;utilisateur n&#39;effectue pas une autre action que le Redo</p>
         </div>
       </div>
       <div id="attribute-i-undoStack" class="method-detail">
@@ -121,7 +120,7 @@
         </div>
 
         <div class="method-description">
-        
+        <p>Pile contenant les action à enlever</p>
         </div>
       </div>
     </section>
@@ -140,10 +139,10 @@
         </div>
 
         <div class="method-description">
-          
+          <p>Constructeur de la classe <a href="UndoRedo.html"><code>UndoRedo</code></a> Initialise les deux tableaux</p>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File UndoRedo.rb, line 15</span>
+            <pre><span class="ruby-comment"># File UndoRedo.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
     <span class="ruby-ivar">@undoStack</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">[]</span>
     <span class="ruby-ivar">@redoStack</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">[]</span>
@@ -169,10 +168,10 @@
         </div>
 
         <div class="method-description">
-          
+          <p>Cette méthode est responsable de nettoyer la pile undo et redo</p>
 
           <div class="method-source-code" id="cleanAll-source">
-            <pre><span class="ruby-comment"># File UndoRedo.rb, line 11</span>
+            <pre><span class="ruby-comment"># File UndoRedo.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">cleanAll</span>
     <span class="ruby-ivar">@undoStack</span>.<span class="ruby-identifier">clear</span>
     <span class="ruby-ivar">@redoStack</span>.<span class="ruby-identifier">clear</span>
@@ -191,35 +190,12 @@
         </div>
 
         <div class="method-description">
-          
+          <p><a href="Sauvegarde.html"><code>Sauvegarde</code></a> le clic de l&#39;utilisateur</p>
 
           <div class="method-source-code" id="saveUserClick-source">
-            <pre><span class="ruby-comment"># File UndoRedo.rb, line 20</span>
+            <pre><span class="ruby-comment"># File UndoRedo.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">saveUserClick</span>(<span class="ruby-identifier">action</span>)
     <span class="ruby-ivar">@undoStack</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">action</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-        </div>
-
-
-      </div>
-
-      <div id="method-i-showUndoStack" class="method-detail ">
-        <div class="method-heading">
-          <span class="method-name">showUndoStack</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-
-        <div class="method-description">
-          
-
-          <div class="method-source-code" id="showUndoStack-source">
-            <pre><span class="ruby-comment"># File UndoRedo.rb, line 24</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">showUndoStack</span>
-    <span class="ruby-ivar">@undoStack</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">el</span><span class="ruby-operator">|</span> 
-        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">el</span>.<span class="ruby-identifier">to_s</span>
-    <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -235,10 +211,10 @@
         </div>
 
         <div class="method-description">
-          
+          <p>Retourne true si la pile est vide  Sinon false</p>
 
           <div class="method-source-code" id="undoEmpty-3F-source">
-            <pre><span class="ruby-comment"># File UndoRedo.rb, line 34</span>
+            <pre><span class="ruby-comment"># File UndoRedo.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">undoEmpty?</span>
     <span class="ruby-keyword">return</span> <span class="ruby-ivar">@undoStack</span>.<span class="ruby-identifier">empty?</span> 
 <span class="ruby-keyword">end</span></pre>
@@ -256,10 +232,10 @@
         </div>
 
         <div class="method-description">
-          
+          <p>Supprime et renvoi la dernière action utilisateur</p>
 
           <div class="method-source-code" id="undoUserAction-source">
-            <pre><span class="ruby-comment"># File UndoRedo.rb, line 30</span>
+            <pre><span class="ruby-comment"># File UndoRedo.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">undoUserAction</span>(<span class="ruby-identifier">action</span>)
     <span class="ruby-ivar">@undoStack</span>.<span class="ruby-identifier">pop!</span>()
 <span class="ruby-keyword">end</span></pre>

@@ -129,10 +129,10 @@
         </div>
 
         <div class="method-description">
-          
+          <p>Constructeur du plateau</p>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File Plateau.rb, line 21</span>
+            <pre><span class="ruby-comment"># File Plateau.rb, line 22</span>
     <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">nomniv</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">diff</span>, <span class="ruby-identifier">chargement</span>)
         <span class="ruby-ivar">@nomniv</span>=<span class="ruby-identifier">nomniv</span>
         <span class="ruby-ivar">@x</span>=<span class="ruby-identifier">x</span>
@@ -301,10 +301,10 @@
         </div>
 
         <div class="method-description">
-          
+          <p>Retourne le plateau de jeu</p>
 
           <div class="method-source-code" id="getPlateau-source">
-            <pre><span class="ruby-comment"># File Plateau.rb, line 169</span>
+            <pre><span class="ruby-comment"># File Plateau.rb, line 171</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getPlateau</span>()
     <span class="ruby-keyword">return</span> <span class="ruby-ivar">@plateau</span>
 <span class="ruby-keyword">end</span></pre>
@@ -322,10 +322,10 @@
         </div>
 
         <div class="method-description">
-          <p>Alteration de la grille</p>
+          <p>Cette méthode permet de gérer tous les traitements  lors de la validation de l&#39;hypothèse Elle supprime l&#39;ancienne grille et met en place la nouvelle</p>
 
           <div class="method-source-code" id="hypotheseValider-source">
-            <pre><span class="ruby-comment"># File Plateau.rb, line 254</span>
+            <pre><span class="ruby-comment"># File Plateau.rb, line 258</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">hypotheseValider</span>(<span class="ruby-identifier">newGrid</span>)
     
     <span class="ruby-ivar">@boxJeu</span>.<span class="ruby-identifier">remove</span>(<span class="ruby-ivar">@grid</span>)
@@ -355,10 +355,10 @@
         </div>
 
         <div class="method-description">
-          
+          <p>Méthode responsable de la gestion d&#39;une parti fini</p>
 
           <div class="method-source-code" id="partiFini-source">
-            <pre><span class="ruby-comment"># File Plateau.rb, line 173</span>
+            <pre><span class="ruby-comment"># File Plateau.rb, line 176</span>
     <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">partiFini</span>
 
         <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">grilleFini?</span>)
@@ -454,7 +454,7 @@
           <p>Mis à jour du niveau Dans notre cas on reset le plateau</p>
 
           <div class="method-source-code" id="resetPlateau-source">
-            <pre><span class="ruby-comment"># File Plateau.rb, line 273</span>
+            <pre><span class="ruby-comment"># File Plateau.rb, line 277</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">resetPlateau</span>()
     <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;RESET&quot;</span>
     <span class="ruby-ivar">@tempsDebut</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>

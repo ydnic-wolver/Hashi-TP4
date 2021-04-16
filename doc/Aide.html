@@ -142,10 +142,10 @@
         </div>
 
         <div class="method-description">
-          
+          <p>Constructeur du menu <a href="Aide.html"><code>Aide</code></a></p>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 20</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">grille</span>)
     <span class="ruby-ivar">@grille</span> = <span class="ruby-identifier">grille</span>
     <span class="ruby-ivar">@nb_voisins</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">size</span>)
@@ -175,7 +175,7 @@
           <p>Méthode responsable de l&#39;analyse de la grille ainsi que ses sommets  afin de déduire le cas dans lequel on se trouve.</p>
 
           <div class="method-source-code" id="definirCas-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 46</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">definirCas</span>()
     <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
         <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-identifier">x</span>.<span class="ruby-identifier">compterVoisins</span>()
@@ -229,7 +229,7 @@
           <p>Cas 10 : île à 5 avec trois îles voisines restante dans la grille</p>
 
           <div class="method-source-code" id="estCas10-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 211</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 212</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas10?</span>()
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">5</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontAvecVoisins</span>()
@@ -256,7 +256,7 @@
           <p>Cas 11 : île à 3 avec deux îles voisines restante dans la grille</p>
 
           <div class="method-source-code" id="estCas11-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 222</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 223</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas11?</span>()
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontAvecVoisins</span>()
@@ -283,7 +283,7 @@
           <p>Cas 12 : île à 6 avec deux des îles voisines à 1</p>
 
           <div class="method-source-code" id="estCas12-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 233</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 234</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas12?</span>()
   <span class="ruby-identifier">compteur</span> = <span class="ruby-value">0</span>
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
@@ -319,7 +319,7 @@
           <p>Cas 13 : île à 4 avec deux des îles voisines à 1</p>
 
           <div class="method-source-code" id="estCas13-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 254</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 255</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas13?</span>()
   <span class="ruby-identifier">compteur</span> = <span class="ruby-value">0</span>
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
@@ -355,7 +355,7 @@
           <p>Cas 14 : île à 2 avec deux îles voisines dont une île à 2 restante</p>
 
           <div class="method-source-code" id="estCas14-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 274</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 275</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas14?</span>()
   <span class="ruby-identifier">voisinDeux</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
@@ -387,7 +387,7 @@
           <p>VALIDE</p>
 
           <div class="method-source-code" id="estCas1-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 84</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas1?</span>()
     <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
       <span class="ruby-comment"># if @nb_voisins[i] == 1 &amp;&amp; x.pontRestants() != x.degreeMax</span>
@@ -415,7 +415,7 @@
           <p>Cas 2 : île avec une seule île voisine restante dans la grille</p>
 
           <div class="method-source-code" id="estCas2-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 97</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 98</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas2?</span>()
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">compterVoisinsNonComplets</span>() <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>()
@@ -442,7 +442,7 @@
           <p>Cas 3 : île à 8 restante dans la grille</p>
 
           <div class="method-source-code" id="estCas3-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 108</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 109</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas3?</span>()
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">8</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>()
@@ -469,7 +469,7 @@
           <p>Cas 4 : île à 6 avec 3 îles voisines restante dans la grille</p>
 
           <div class="method-source-code" id="estCas4-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 119</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 120</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas4?</span>()
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">6</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>()
@@ -496,7 +496,7 @@
           <p>Cas 5 : île à 4 avec 2 îles voisines restante dans la grille</p>
 
           <div class="method-source-code" id="estCas5-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 130</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 131</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas5?</span>()
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">4</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>()
@@ -523,7 +523,7 @@
           <p>Cas 6 : île à 4 avec une île voisine à 1 restante dans la grille</p>
 
           <div class="method-source-code" id="estCas6-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 141</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 142</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas6?</span>()
   <span class="ruby-identifier">compteur</span> = <span class="ruby-value">0</span>
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
@@ -558,7 +558,7 @@
           <p>Cas 7 : île à 5 avec trois îles voisines dont une à 1 restante dans la grille</p>
 
           <div class="method-source-code" id="estCas7-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 160</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 161</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas7?</span>()
   <span class="ruby-identifier">compteur</span> = <span class="ruby-value">0</span>
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
@@ -593,7 +593,7 @@
           <p>Cas 8 : île à 3 avec deux îles voisines dont une à 1 restante dans la grille</p>
 
           <div class="method-source-code" id="estCas8-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 180</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 181</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas8?</span>()
   <span class="ruby-identifier">compteur</span> = <span class="ruby-value">0</span>
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
@@ -628,7 +628,7 @@
           <p>Cas 9 : île à 7 restante dans la grille</p>
 
           <div class="method-source-code" id="estCas9-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 200</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 201</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas9?</span>()
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">7</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontAvecVoisins</span>()
@@ -655,7 +655,7 @@
           <p>Méthode permettant d&#39;obtenir le message d&#39;aide correspondant un id</p>
 
           <div class="method-source-code" id="getMessageAide-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 32</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getMessageAide</span> 
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lireId</span>()
   <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">readlines</span>(<span class="ruby-string">&quot;AideTexte.txt&quot;</span>)
@@ -683,7 +683,7 @@
           <p>Méthode permettant de definir un cas en fonction de l&#39;etat du tableau</p>
 
           <div class="method-source-code" id="lireId-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 27</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lireId</span> 
     <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">definirCas</span>()
 <span class="ruby-keyword">end</span></pre>

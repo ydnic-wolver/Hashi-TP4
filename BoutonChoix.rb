@@ -26,7 +26,6 @@ class BoutonChoix < Gtk::Button
     # * +niv+ Variable qui correspond au PATH vers le niveau que redirige le bouton
     # * +x+ Coordonnée X du plateau qui correspond au niveau renvoyer par le plateau
     # * +y+ Coordonnée Y du plateau qui correspond au niveau renvoyer par le plateau
-    #
     def initialize(facile,moyen,hard,niv,x,y)
         super()
         # Charge une image correspondants au noeud
