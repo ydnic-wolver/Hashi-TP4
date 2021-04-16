@@ -19,7 +19,7 @@ class APropos < Gtk::Window
 	set_window_position Gtk::WindowPosition::CENTER
 	
 	title = "<span font_desc = \"Toledo 30\">A Propos</span>\n"
-	texte = "<span font_desc = \"Toledo 15\">Créé par les plus beaux : \n Aaron Amani \n Axel Jourry  \n Clement Janvier  \n Cindy Calvados  \n Collins Soares  \n Florian Dreux  \n Rayyan Lajnef  \n Thomas Malabry  \n Willhem Liban </span>\n"
+	texte = "<span font_desc = \"Toledo 15\">Créé par le groupe 4\n\n Aaron Amani \n Axel Jourry  \n Clement Janvier  \n Cindy Calvados  \n Collins Soares  \n Florian Dreux  \n Rayyan Lajnef  \n Thomas Malabry  \n Willhem Liban </span>\n"
 	
 	boxMenu = Gtk::Box.new(:vertical, 6)
 	
