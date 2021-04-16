@@ -79,7 +79,7 @@ class Hypothese
             else 
                 # Si c'est un pont on copie les attributs 
                 # et on met à jour le pont 
-                btn = Pont.new(hypoGrille,x.degreeMax.to_s,x.column,x.row)
+                btn = Pont.new(hypoGrille,x.column,x.row)
                 btn.set_typePont( x.get_typePont )
                 btn.estDouble = x.estDouble
                 btn.set_directionPont ( x.get_directionPont )
