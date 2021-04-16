@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <!-- interface-css-provider-path ..\..\css\\style.css -->
+  <object class="GtkImage" id="aide">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">..\Plateau\aide.png</property>
+  </object>
+  <object class="GtkImage" id="hypothese">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">..\Plateau\hypothese.png</property>
+  </object>
+  <object class="GtkImage" id="pause">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="valign">center</property>
+    <property name="pixbuf">..\Plateau\pause.png</property>
+  </object>
+  <object class="GtkImage" id="redo">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">..\Plateau\redo.png</property>
+  </object>
+  <object class="GtkImage" id="undo">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">..\Plateau\undo.png</property>
+  </object>
+  <object class="GtkWindow" id="plateau">
+    <property name="width-request">1000</property>
+    <property name="height-request">700</property>
+    <property name="can-focus">False</property>
+    <property name="resizable">False</property>
+    <child>
+      <object class="GtkFrame">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="margin-start">50</property>
+        <property name="margin-end">50</property>
+        <property name="label-xalign">0</property>
+        <property name="shadow-type">none</property>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkBox" id="boxPrincipale">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="name">menu_haut</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">20</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <object class="GtkBox" id="menu_gauche">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="homogeneous">True</property>
+                        <child>
+                          <object class="GtkButton" id="boutonPause">
+                            <property name="name">boutonPause</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="halign">start</property>
+                            <property name="image">pause</property>
+                            <style>
+                              <class name="btn-menu"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="temps">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">""</property>
+                            <attributes>
+                              <attribute name="font-desc" value="Arial Rounded MT Bold, Bold 12"/>
+                            </attributes>
+                            <style>
+                              <class name="btn-menu"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="menu_droite">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">end</property>
+                        <property name="valign">center</property>
+                        <property name="spacing">15</property>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="boutonIndice">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="image">aide</property>
+                            <style>
+                              <class name="btn-menu"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="boutonHypo">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="image">hypothese</property>
+                            <style>
+                              <class name="btn-menu"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="pack-type">end</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="menu_milieu">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <property name="spacing">15</property>
+                        <child>
+                          <object class="GtkButton" id="boutonUndo">
+                            <property name="name">boutonUndo</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="image">undo</property>
+                            <style>
+                              <class name="btn-menu"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="boutonRedo">
+                            <property name="name">boutonRedo</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="image">redo</property>
+                            <style>
+                              <class name="btn-menu"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+              <child>
+                  <object class="GtkBox" id="boxJeu">
+                    <property name="name">menu_haut</property>
+                    <property name="visible">True</property>
+                     <property name="halign">center</property>
+                     <property name="valign">center</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">20</property>
+                    <property name="margin-start">20</property>
+                    <property name="margin-end">20</property>
+                    <property name="homogeneous">True</property>
+                      <!-- <style>
+                      <class name="tuto_"/>
+                    </style> -->
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+            
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_aide">
+                    <property name="visible">True</property>
+                    <property name="margin-bottom">20</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">""</property>
+                    <style>
+                      <class name="label_aide"/>
+                    </style>
+                  </object>
+            </child>
+          </object>
+        </child>
+        <child type="label_item">
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+    <style>
+      <class name="bg-black"/>
+    </style>
+  </object>
+</interface>

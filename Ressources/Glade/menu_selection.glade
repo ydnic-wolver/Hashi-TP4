@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <!-- interface-css-provider-path ..\..\css\\style.css -->
+  <object class="GtkImage" id="btn_retour_img">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="halign">center</property>
+    <property name="valign">center</property>
+    <property name="pixbuf">..\MenuSelection\back.png</property>
+  </object>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="halign">end</property>
+    <property name="pixbuf">..\MenuSelection\btn_grille.png</property>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">..\MenuSelection\facile_star.svg</property>
+  </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">..\MenuSelection\moyen_star.svg</property>
+  </object>
+  <object class="GtkImage" id="image4">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">..\MenuSelection\difficile_star.svg</property>
+  </object>
+  <object class="GtkWindow" id="main_window" >
+    <property name="width-request">900</property>
+    <property name="height-request">700</property>
+    <property name="can-focus">False</property>
+    <property name="resizable">False</property>
+    <child>
+      <object class="GtkFrame">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="margin-start">20</property>
+        <property name="margin-end">20</property>
+        <property name="margin-top">20</property>
+        <property name="margin-bottom">20</property>
+        <property name="label-xalign">0</property>
+        <property name="shadow-type">none</property>
+        <child>
+          <object class="GtkBox" id="box_principale">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkButton" id="btn_retour">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="image">btn_retour_img</property>
+                    <style>
+                      <class name="back"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="menu_haut">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">end</property>
+                    <property name="valign">center</property>
+                    <property name="spacing">15</property>
+                    <child>
+                      <object class="GtkButton" id="btn_facile">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="image">image2</property>
+                        <style>
+                          <class name="btn_niveau"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="btn_moyen">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="image">image3</property>
+                        <style>
+                          <class name="btn_niveau"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="btn_difficile">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="image">image4</property>
+                        <style>
+                          <class name="btn_niveau"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="pack-type">end</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkImage" id="logo-menu">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="stock">gtk-missing-image</property>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="box_contenu">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="orientation">vertical</property>
+                <property name="baseline-position">bottom</property>
+                <child>
+                  <object class="GtkImage" id="niveau">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="pixbuf">..\MenuSelection\facile.png</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">-1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow" id="scrolledwindow">
+                    <property name="name">scrolledwindow</property>
+                    <property name="width-request">700</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="halign">center</property>
+                    <child>
+                      <object class="GtkViewport">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="shadow-type">none</property>
+                        <property name="halign">center</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="orientation">vertical</property>
+                            <property name="homogeneous">True</property>
+                            <child>
+                              <object class="GtkListBox" id="facile_box">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                
+                                <property name="selection-mode">none</property>
+                                <property name="activate-on-single-click">False</property>
+                                <child>
+                                  <object class="GtkListBoxRow">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                     <property name="halign">center</property>
+                    <property name="valign">center</property>
+                                    <property name="activatable">False</property>
+                                    <property name="selectable">False</property>
+                                    <child>
+                                      <placeholder/>
+                                    </child>
+                                  </object>
+                                </child>
+                                <style>
+                                  <class name="listbox"/>
+                                </style>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkListBox" id="moyen_box">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="selection-mode">none</property>
+                                <property name="activate-on-single-click">False</property>
+                                <child>
+                                  <object class="GtkListBoxRow">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="activatable">False</property>
+                                    <property name="selectable">False</property>
+                                    <child>
+                                      <placeholder/>
+                                    </child>
+                                  </object>
+                                </child>
+                                <style>
+                                  <class name="listbox"/>
+                                </style>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkListBox" id="difficile_box">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="selection-mode">none</property>
+                                <property name="activate-on-single-click">False</property>
+                                <child>
+                                  <object class="GtkListBoxRow">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="activatable">False</property>
+                                    <property name="selectable">False</property>
+                                    <child>
+                                      <placeholder/>
+                                    </child>
+                                  </object>
+                                </child>
+                                <style>
+                                  <class name="listbox"/>
+                                </style>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">2</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <style>
+                      <class name="scroll-btn"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+        <child type="label_item">
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+    <style>
+      <class name="bg-selection"/>
+    </style>
+  </object>
+</interface>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <!-- interface-css-provider-path css\\styleMENU.css -->
+  <object class="GtkWindow" id="main_window"  >
+    <property name="width-request">500</property>
+    <property name="height-request">300</property>
+    <property name="can-focus">False</property>
+    <property name="type">popup</property>
+    <property name="resizable">False</property>
+    <property name="window-position">center-on-parent</property>
+    <property name="default-width">440</property>
+    <property name="default-height">250</property>
+       <property name="destroy-with-parent">True</property>
+    <property name="skip-taskbar-hint">True</property>
+       <property name="decorated">False</property>
+    <child>
+      <object class="GtkFrame" id="frame">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="margin-start">20</property>
+        <property name="margin-end">20</property>
+        <property name="margin-bottom">20</property>
+        <property name="label-xalign">0</property>
+        <property name="shadow-type">none</property>
+        <child>
+          <object class="GtkBox" >
+            <property name="width-request">100</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">20</property>
+                <property name="margin-bottom">20</property>
+                <property name="pixbuf">../flowers.svg</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" >
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">center</property>
+                <property name="orientation">vertical</property>
+                <property name="homogeneous">True</property>
+                <child>
+                  <object class="GtkButton" id="btnLancer">
+                    <property name="label" translatable="yes">Nouvelle partie</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="valign">center</property>
+                    <style>
+                      <class name="btn-select"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="btnSave">
+                    <property name="label" translatable="yes">Charger Partie</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="valign">center</property>
+                    <style>
+                      <class name="btn-select"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="btnRetourcharg">
+                    <property name="label" translatable="yes">Retour</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="valign">center</property>
+                    <style>
+                      <class name="btn-select"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+        <child type="label_item">
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+    <style>
+      <class name="menu"/>
+    </style>
+  </object>
+</interface>

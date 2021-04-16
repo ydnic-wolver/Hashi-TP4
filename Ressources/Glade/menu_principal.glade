@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <!-- interface-css-provider-path css\\style.css -->
+  <object class="GtkWindow" id="main_window">
+    <signal name="destroy" handler="on_main_window_destroy" swapped="no"/>
+    <property name="width-request">900</property>
+    <property name="height-request">700</property>
+    <property name="can-focus">False</property>
+    <property name="resizable">False</property>
+    <child>
+      <object class="GtkFrame" id="Plateau">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="label-xalign">0</property>
+        <property name="shadow-type">none</property>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-start">20</property>
+            <property name="margin-end">20</property>
+            <property name="margin-top">20</property>
+            <!-- <property name="margin-bottom">10</property> -->
+            <property name="orientation">vertical</property>
+            <property name="baseline-position">bottom</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="pixbuf">..\logo-principal.png</property>
+                <style>
+                  <class name="hashi_img"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">33</property>
+                <child>
+                  <object class="GtkButton" id="btn-selection-menu">
+                    <property name="label" translatable="yes">Selection niveau</property>
+                    <property name="width-request">222</property>
+                    <property name="height-request">56</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <style>
+                      <class name="btn-blue"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="btn-tutoriel">
+                    <property name="label" translatable="yes">Tutoriel</property>
+                    <property name="width-request">222</property>
+                    <property name="height-request">56</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <style>
+                      <class name="btn-blue"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="btn-classement">
+                    <property name="label" translatable="yes">Classement</property>
+                    <property name="width-request">222</property>
+                    <property name="height-request">56</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <style>
+                      <class name="btn-blue"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="btn-quitter">
+                    <property name="label" translatable="yes">Quitter</property>
+                    <property name="width-request">222</property>
+                    <property name="height-request">56</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <style>
+                      <class name="btn-blue"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="btn-about">
+                    <property name="label" translatable="yes">A propos</property>
+                    <property name="width-request">117</property>
+                    <property name="height-request">50</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="halign">end</property>
+                    <property name="valign">end</property>
+                    <property name="always-show-image">True</property>
+                    <style>
+                      <class name="btn-blue"/>
+                      <class name="btn-blue__about"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">4</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+        <child type="label_item">
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+    <style>
+      <class name="bg-menu"/>
+    </style>
+  </object>
+</interface>

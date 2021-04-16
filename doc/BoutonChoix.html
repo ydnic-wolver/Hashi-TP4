@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class BoutonChoix - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link">Gtk::Button
+</div>
+
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-i-getNiveau">#getNiveau</a>
+    <li ><a href="#method-i-getX">#getX</a>
+    <li ><a href="#method-i-getY">#getY</a>
+    <li ><a href="#method-i-isFacile-3F">#isFacile?</a>
+    <li ><a href="#method-i-isHard-3F">#isHard?</a>
+    <li ><a href="#method-i-isMoyen-3F">#isMoyen?</a>
+    <li ><a href="#method-i-set_path">#set_path</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-BoutonChoix">
+  <h1 id="class-BoutonChoix" class="class">
+    class BoutonChoix
+  </h1>
+
+  <section class="description">
+    
+<p>Représentation d&#39;un Bouton qui fait le lien entre le menu de sélection et chaque plateau qui hérite de la classe Button de Gtk</p>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      <div id="attribute-i-niveau" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">niveau</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        <p>Variable qui correspond au PATH vers le niveau que redirige le bouton</p>
+        </div>
+      </div>
+      <div id="attribute-i-path" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">path</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        <p>Variable contenant le path complet du bouton</p>
+        </div>
+      </div>
+      <div id="attribute-i-x" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">x</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        <p>Coordonnée X du plateau qui correspond au niveau renvoyer par le plateau</p>
+        </div>
+      </div>
+      <div id="attribute-i-y" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">y</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        <p>Coordonnée Y du plateau qui correspond au niveau renvoyer par le plateau</p>
+        </div>
+      </div>
+    </section>
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(facile,moyen,hard,niv,x,y)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Constructeur du bouton</p>
+<ul><li>
+<p><code>facile</code> Variable qui permet de savoir si le bouton renvoit vers un niveau facile</p>
+</li><li>
+<p><code>moyen</code> Variable qui permet de savoir si le bouton renvoit vers un niveau moyen</p>
+</li><li>
+<p><code>hard</code> Variable qui permet de savoir si le bouton renvoit vers un niveau difficile</p>
+</li><li>
+<p><code>niv</code> Variable qui correspond au PATH vers le niveau que redirige le bouton</p>
+</li><li>
+<p><code>x</code> Coordonnée X du plateau qui correspond au niveau renvoyer par le plateau</p>
+</li><li>
+<p><code>y</code> Coordonnée Y du plateau qui correspond au niveau renvoyer par le plateau</p>
+</li></ul>
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File BoutonChoix.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">facile</span>,<span class="ruby-identifier">moyen</span>,<span class="ruby-identifier">hard</span>,<span class="ruby-identifier">niv</span>,<span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span>)
+    <span class="ruby-keyword">super</span>()
+    <span class="ruby-comment"># Charge une image correspondants au noeud</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">image</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:file</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;./Ressources/MenuSelection/btn_grille.png&quot;</span>) 
+    <span class="ruby-comment">#  Retire les contours</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">set_relief</span>(<span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">ReliefStyle</span><span class="ruby-operator">::</span><span class="ruby-constant">NONE</span>)
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">always_show_image</span> = <span class="ruby-keyword">true</span>
+     
+   <span class="ruby-ivar">@facile</span>=<span class="ruby-identifier">facile</span>  
+   <span class="ruby-ivar">@moyen</span>=<span class="ruby-identifier">moyen</span>
+   <span class="ruby-ivar">@hard</span>=<span class="ruby-identifier">hard</span> 
+   <span class="ruby-ivar">@niveau</span>=<span class="ruby-identifier">niv</span>
+   <span class="ruby-ivar">@x</span>=<span class="ruby-identifier">x</span>
+   <span class="ruby-ivar">@y</span>=<span class="ruby-identifier">y</span>
+   <span class="ruby-keyword">if</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">isFacile?</span>)
+       <span class="ruby-keyword">self</span>.<span class="ruby-identifier">set_label</span>(<span class="ruby-ivar">@x</span>.<span class="ruby-identifier">to_s</span><span class="ruby-string">+&quot;x&quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@y</span>.<span class="ruby-identifier">to_s</span>)
+   <span class="ruby-keyword">elsif</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">isMoyen?</span>)
+       <span class="ruby-keyword">self</span>.<span class="ruby-identifier">set_label</span>(<span class="ruby-ivar">@x</span>.<span class="ruby-identifier">to_s</span><span class="ruby-string">+&quot;x&quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@y</span>.<span class="ruby-identifier">to_s</span>)
+   <span class="ruby-keyword">else</span>
+       <span class="ruby-keyword">self</span>.<span class="ruby-identifier">set_label</span>(<span class="ruby-ivar">@x</span>.<span class="ruby-identifier">to_s</span><span class="ruby-string">+&quot;x&quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@y</span>.<span class="ruby-identifier">to_s</span>)
+   <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-getNiveau" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">getNiveau</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Getter du niveau du plateau</p>
+
+          <div class="method-source-code" id="getNiveau-source">
+            <pre><span class="ruby-comment"># File BoutonChoix.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getNiveau</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-ivar">@niveau</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-getX" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">getX</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Getter De la Coordonnée X de la grille du plateau</p>
+
+          <div class="method-source-code" id="getX-source">
+            <pre><span class="ruby-comment"># File BoutonChoix.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getX</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-ivar">@x</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-getY" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">getY</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Getter De la Coordonnée Y de la grille du plateau</p>
+
+          <div class="method-source-code" id="getY-source">
+            <pre><span class="ruby-comment"># File BoutonChoix.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getY</span> 
+    <span class="ruby-keyword">return</span> <span class="ruby-ivar">@y</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-isFacile-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">isFacile?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Permet au bouton de savoir si le niveau qu&#39;il renvoit est facile</p>
+
+          <div class="method-source-code" id="isFacile-3F-source">
+            <pre><span class="ruby-comment"># File BoutonChoix.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">isFacile?</span> 
+    <span class="ruby-keyword">return</span> <span class="ruby-ivar">@facile</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-isHard-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">isHard?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Permet au bouton de savoir si le niveau qu&#39;il renvoit est difficile</p>
+
+          <div class="method-source-code" id="isHard-3F-source">
+            <pre><span class="ruby-comment"># File BoutonChoix.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">isHard?</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-ivar">@hard</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-isMoyen-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">isMoyen?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Permet au bouton de savoir si le niveau qu&#39;il renvoit est Moyen</p>
+
+          <div class="method-source-code" id="isMoyen-3F-source">
+            <pre><span class="ruby-comment"># File BoutonChoix.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">isMoyen?</span> 
+    <span class="ruby-keyword">return</span> <span class="ruby-ivar">@moyen</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-set_path" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">set_path</span><span
+            class="method-args">(path)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode permettant de modifier le path d&#39;un bouton</p>
+
+          <div class="method-source-code" id="set_path-source">
+            <pre><span class="ruby-comment"># File BoutonChoix.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_path</span>(<span class="ruby-identifier">path</span>)
+    <span class="ruby-ivar">@path</span> = <span class="ruby-identifier">path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
