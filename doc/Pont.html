@@ -145,7 +145,7 @@
       <div id="method-c-new" class="method-detail ">
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(grid, degree, col, lig )</span>
+            class="method-args">(grid, col, lig )</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
@@ -153,8 +153,6 @@
           <p>Constructeur d&#39;un pont </p>
 <ul><li>
 <p><code>grid</code> Référence sur la grille</p>
-</li><li>
-<p><code>degree</code> Référence sur la grille</p>
 </li><li>
 <p><code>col</code> Référence sur la grille</p>
 </li><li>
@@ -166,9 +164,9 @@
             </div>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File Pont.rb, line 24</span>
-    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">grid</span>, <span class="ruby-identifier">degree</span>, <span class="ruby-identifier">col</span>, <span class="ruby-identifier">lig</span> ) 
-        <span class="ruby-keyword">super</span>(<span class="ruby-identifier">grid</span>, <span class="ruby-identifier">degree</span>, <span class="ruby-identifier">col</span>, <span class="ruby-identifier">lig</span> )
+            <pre><span class="ruby-comment"># File Pont.rb, line 23</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">grid</span>, <span class="ruby-identifier">col</span>, <span class="ruby-identifier">lig</span> ) 
+        <span class="ruby-keyword">super</span>(<span class="ruby-identifier">grid</span>, <span class="ruby-string">&#39;0&#39;</span>, <span class="ruby-identifier">col</span>, <span class="ruby-identifier">lig</span> )
         <span class="ruby-ivar">@typePont</span> = <span class="ruby-value">0</span>
         <span class="ruby-ivar">@estDouble</span> = <span class="ruby-keyword">false</span>
         <span class="ruby-ivar">@directionPont</span> = <span class="ruby-value">0</span>
@@ -179,7 +177,6 @@
 <span class="ruby-value">                @import url(&quot;css/plateau_style.css&quot;);
 </span><span class="ruby-identifier">                CSS</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
-            
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">set_sensitive</span>(<span class="ruby-keyword">false</span>)  <span class="ruby-comment"># Un pont n&#39;est pas cliquable par défaut</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&#39;p&#39;</span>
     <span class="ruby-keyword">end</span></pre>
@@ -204,10 +201,10 @@
         </div>
 
         <div class="method-description">
-          
+          <p>Retourne la direction du pont</p>
 
           <div class="method-source-code" id="get_directionPont-source">
-            <pre><span class="ruby-comment"># File Pont.rb, line 41</span>
+            <pre><span class="ruby-comment"># File Pont.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_directionPont</span>
     <span class="ruby-keyword">return</span> <span class="ruby-ivar">@directionPont</span>
 <span class="ruby-keyword">end</span></pre>
@@ -225,10 +222,10 @@
         </div>
 
         <div class="method-description">
-          
+          <p>Retourne le type du pont</p>
 
           <div class="method-source-code" id="get_typePont-source">
-            <pre><span class="ruby-comment"># File Pont.rb, line 53</span>
+            <pre><span class="ruby-comment"># File Pont.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_typePont</span>
     <span class="ruby-keyword">return</span> <span class="ruby-ivar">@typePont</span>
 <span class="ruby-keyword">end</span></pre>
@@ -246,10 +243,10 @@
         </div>
 
         <div class="method-description">
-          
+          <p>Modifie la direction du pont</p>
 
           <div class="method-source-code" id="set_directionPont-source">
-            <pre><span class="ruby-comment"># File Pont.rb, line 57</span>
+            <pre><span class="ruby-comment"># File Pont.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_directionPont</span>(<span class="ruby-identifier">val</span>)
     <span class="ruby-ivar">@directionPont</span> = <span class="ruby-identifier">val</span>
 <span class="ruby-keyword">end</span></pre>
@@ -267,10 +264,10 @@
         </div>
 
         <div class="method-description">
-          
+          <p>Modifie le type du pont</p>
 
           <div class="method-source-code" id="set_typePont-source">
-            <pre><span class="ruby-comment"># File Pont.rb, line 45</span>
+            <pre><span class="ruby-comment"># File Pont.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_typePont</span>(<span class="ruby-identifier">val</span>)
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span>
         <span class="ruby-ivar">@typePont</span> = <span class="ruby-identifier">val</span>
@@ -292,15 +289,12 @@
         </div>
 
         <div class="method-description">
-          <pre class="ruby"><span class="ruby-constant">Méthode</span> <span class="ruby-identifier">mettant</span> <span class="ruby-identifier">à</span> <span class="ruby-identifier">jour</span> <span class="ruby-identifier">un</span> <span class="ruby-identifier">noeud</span>
-</pre>
-
-<p>Il faudrait pouvoir factoriser En fonction du type de ponts des images différentes sont charger</p>
+          <p>Méthode responsable de la mise à jour d&#39;un pont.</p>
 
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File Pont.rb, line 64</span>
+            <pre><span class="ruby-comment"># File Pont.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>()
-<span class="ruby-comment">#    p &quot;Type du pont: &quot; + @typePont.to_s # DEBUG</span>
+    
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@typePont</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@directionPont</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">image</span>.<span class="ruby-identifier">from_file</span>= <span class="ruby-string">&quot;Ressources/Pont/0.png&quot;</span>
     <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@typePont</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
