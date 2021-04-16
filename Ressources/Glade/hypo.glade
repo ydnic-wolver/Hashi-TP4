@@ -5,27 +5,27 @@
    <object class="GtkImage" id="aide">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="pixbuf">..\Plateau\aide.png</property>
+    <property name="pixbuf">../Plateau/aide.png</property>
   </object>
    <object class="GtkImage" id="valider">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="pixbuf">..\Plateau\valider.png</property>
+    <property name="pixbuf">../Plateau/valider.png</property>
   </object>
    <object class="GtkImage" id="annuler">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="pixbuf">..\Plateau\annuler.png</property>
+    <property name="pixbuf">../Plateau/annuler.png</property>
   </object>
   <object class="GtkImage" id="redo">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="pixbuf">..\Plateau\redo.png</property>
+    <property name="pixbuf">../Plateau/redo.png</property>
   </object>
   <object class="GtkImage" id="undo">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="pixbuf">..\Plateau\undo.png</property>
+    <property name="pixbuf">../Plateau/undo.png</property>
   </object>
   <object class="GtkWindow" id="hypo">
     <property name="can-focus">False</property>

@@ -6,17 +6,17 @@
   <object class="GtkImage" id="droite_img">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="pixbuf">..\Tuto\droite.svg</property>
+    <property name="pixbuf">../Tuto/droite.svg</property>
   </object>
   <object class="GtkImage" id="gauche_img">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="pixbuf">..\Tuto\gauche.svg</property>
+    <property name="pixbuf">../Tuto/gauche.svg</property>
   </object>
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="pixbuf">..\Tuto\home.svg</property>
+    <property name="pixbuf">../Tuto/home.svg</property>
   </object>
   <object class="GtkWindow" id="tutoriel">
     <property name="can-focus">False</property>
@@ -59,7 +59,7 @@
                 <property name="can-focus">False</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
-                <property name="pixbuf">..\Tuto\tuto_2.svg</property>
+                <property name="pixbuf">../Tuto/tuto_2.svg</property>
               </object>
               <packing>
                 <property name="expand">True</property>

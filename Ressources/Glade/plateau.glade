@@ -6,28 +6,28 @@
   <object class="GtkImage" id="aide">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="pixbuf">..\Plateau\aide.png</property>
+    <property name="pixbuf">../Plateau/aide.png</property>
   </object>
   <object class="GtkImage" id="hypothese">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="pixbuf">..\Plateau\hypothese.png</property>
+    <property name="pixbuf">../Plateau/hypothese.png</property>
   </object>
   <object class="GtkImage" id="pause">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="valign">center</property>
-    <property name="pixbuf">..\Plateau\pause.png</property>
+    <property name="pixbuf">../Plateau/pause.png</property>
   </object>
   <object class="GtkImage" id="redo">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="pixbuf">..\Plateau\redo.png</property>
+    <property name="pixbuf">../Plateau/redo.png</property>
   </object>
   <object class="GtkImage" id="undo">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="pixbuf">..\Plateau\undo.png</property>
+    <property name="pixbuf">../Plateau/undo.png</property>
   </object>
   <object class="GtkWindow" id="plateau">
     <property name="width-request">1000</property>

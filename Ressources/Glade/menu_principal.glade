@@ -29,7 +29,7 @@
               <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="pixbuf">..\logo-principal.png</property>
+                <property name="pixbuf">../logo-principal.png</property>
                 <style>
                   <class name="hashi_img"/>
                 </style>
