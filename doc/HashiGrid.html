@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class HashiGrid - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link">Gtk::Grid
+</div>
+
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-i-ajoutPont">#ajoutPont</a>
+    <li ><a href="#method-i-ajoutValid-3F">#ajoutValid?</a>
+    <li ><a href="#method-i-chargeGrille">#chargeGrille</a>
+    <li ><a href="#method-i-chargeVoisins">#chargeVoisins</a>
+    <li ><a href="#method-i-getPontEntre">#getPontEntre</a>
+    <li ><a href="#method-i-grilleFini-3F">#grilleFini?</a>
+    <li ><a href="#method-i-handleClick">#handleClick</a>
+    <li ><a href="#method-i-notify">#notify</a>
+    <li ><a href="#method-i-redoPrevious">#redoPrevious</a>
+    <li ><a href="#method-i-supprimePont">#supprimePont</a>
+    <li ><a href="#method-i-undoPrevious">#undoPrevious</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-HashiGrid">
+  <h1 id="class-HashiGrid" class="class">
+    class HashiGrid
+  </h1>
+
+  <section class="description">
+    
+<p>Cette classe représente la grille contenant les boutons ( autrement dit les noeuds , et les</p>
+
+<pre>ponts d&#39;un point de vue graphique )</pre>
+
+<p>Il y  à peu de méthode encore mais ça arrive</p>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      <div id="attribute-i-colonnes" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">colonnes</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        <p>Nombre de colonnes</p>
+        </div>
+      </div>
+      <div id="attribute-i-diff" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">diff</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        <p>Attribut correspondant au niveau de difficulté de la grille</p>
+        </div>
+      </div>
+      <div id="attribute-i-lignes" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">lignes</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        <p>Nombre de lignes</p>
+        </div>
+      </div>
+      <div id="attribute-i-nodeLink" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">nodeLink</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        <p>Tableau permettant de contenir temporairement les deux cases  cliquées</p>
+        </div>
+      </div>
+      <div id="attribute-i-nomniv" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">nomniv</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        <p>Attribut correspondant au nom du niveau</p>
+        </div>
+      </div>
+      <div id="attribute-i-saveManager" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">saveManager</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        <p>Attribut de type <a href="Sauvegarde.html"><code>Sauvegarde</code></a></p>
+        </div>
+      </div>
+      <div id="attribute-i-sommets" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">sommets</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        <p>Attribut correspondant au nombre de sommets contenus dans la grille</p>
+        </div>
+      </div>
+      <div id="attribute-i-undoRedo" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">undoRedo</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        <p>Attribut de type <a href="UndoRedo.html"><code>UndoRedo</code></a></p>
+        </div>
+      </div>
+    </section>
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(nomniv,diff, x,y)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Constructeur de la grille </p>
+<ul><li>
+<p><code>nomniv</code> Nom du niveau</p>
+</li><li>
+<p><code>diff</code>  Difficulté du niveau</p>
+</li><li>
+<p><code>x</code> Nombre de colonnes</p>
+</li><li>
+<p><code>y</code> Nombre de lignes</p>
+</li></ul>
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">nomniv</span>,<span class="ruby-identifier">diff</span>, <span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span>)
+    <span class="ruby-keyword">super</span>()
+    <span class="ruby-ivar">@diff</span> = <span class="ruby-identifier">diff</span>
+    <span class="ruby-ivar">@nomniv</span>=<span class="ruby-identifier">nomniv</span>
+    <span class="ruby-ivar">@x</span>=<span class="ruby-identifier">x</span>
+    <span class="ruby-ivar">@y</span>=<span class="ruby-identifier">y</span>
+    <span class="ruby-ivar">@undoRedo</span> = <span class="ruby-constant">UndoRedo</span>.<span class="ruby-identifier">new</span> 
+    <span class="ruby-ivar">@nb_iles</span> = <span class="ruby-value">0</span>
+    <span class="ruby-ivar">@sommets</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>()
+    <span class="ruby-ivar">@nodeLink</span> = []
+    <span class="ruby-ivar">@saveManager</span> = <span class="ruby-constant">Sauvegarde</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">nomniv</span>, <span class="ruby-identifier">diff</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-ajoutPont" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">ajoutPont</span><span
+            class="method-args">(n1,n2)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Ajoute un pont entre deux iles</p>
+
+          <div class="method-source-code" id="ajoutPont-source">
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 139</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ajoutPont</span>(<span class="ruby-identifier">n1</span>,<span class="ruby-identifier">n2</span>)
+
+    <span class="ruby-comment"># incrémente le nombre de pont sur les iles</span>
+    <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">inc</span>()
+    <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">inc</span>()
+
+    <span class="ruby-comment"># Récupère les cases entre les deux iles ( le pont )</span>
+    <span class="ruby-identifier">ponts</span> = <span class="ruby-identifier">getPontEntre</span>(<span class="ruby-identifier">n1</span>,<span class="ruby-identifier">n2</span>)
+
+    <span class="ruby-comment"># Ile Nord</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">northNode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span> 
+                    <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">northEdge</span> = <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">northEdge</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+                    <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">southEdge</span> = <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">southEdge</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> 
+        <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">update</span>
+        <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">update</span>
+
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">eastNode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span>  <span class="ruby-comment">#Ile droit</span>
+        <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">eastEdge</span> = <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">eastEdge</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+                    <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">westEdge</span> = <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">westEdge</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">update</span>
+        <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">update</span>
+
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">westNode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span> <span class="ruby-comment"># Ile gauche</span>
+
+        <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">westEdge</span> = <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">westEdge</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> 
+                    <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">eastEdge</span> = <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">eastEdge</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">update</span>
+        <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">update</span>
+
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">southNode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span> <span class="ruby-comment"># Ile bas</span>
+
+        <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">southEdge</span> = <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">southEdge</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+                    <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">northEdge</span> = <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">northEdge</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">update</span>
+        <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">update</span>
+        
+    <span class="ruby-keyword">else</span> 
+        <span class="ruby-identifier">p</span> <span class="ruby-string">&quot;Erreur: n2 n&#39;est pas un noeud valide pour n1&quot;</span>
+            <span class="ruby-keyword">end</span>
+    
+    <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">pontRestants</span>
+    <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">pontRestants</span>
+
+    <span class="ruby-comment"># Ajout le pont entre deux iles</span>
+    <span class="ruby-identifier">ponts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pont</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">pont</span>.<span class="ruby-identifier">set_typePont</span>( <span class="ruby-identifier">pont</span>.<span class="ruby-identifier">get_typePont</span>() <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
+        <span class="ruby-identifier">pont</span>.<span class="ruby-identifier">estDouble</span> = <span class="ruby-keyword">true</span>
+        <span class="ruby-identifier">pont</span>.<span class="ruby-identifier">update</span>
+    <span class="ruby-keyword">end</span>
+       
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-ajoutValid-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">ajoutValid?</span><span
+            class="method-args">(n1,n2)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Vérifie si l&#39;ajout est valide  Autrement dit :</p>
+<ul><li>
+<p>vérifie si les noeuds sont bien voisins sinon renvoi faux</p>
+</li><li>
+<p>vérifie si il existe un croisement d&#39;arêtes entre les noeuds </p>
+</li><li>
+<p><code>n1</code> Premier pont </p>
+</li><li>
+<p><code>n2</code> Deuxieme pont</p>
+</li></ul>
+
+          <div class="method-source-code" id="ajoutValid-3F-source">
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 300</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ajoutValid?</span>(<span class="ruby-identifier">n1</span>,<span class="ruby-identifier">n2</span>)
+
+        <span class="ruby-keyword">if</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">northNode</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">n2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">eastNode</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">n2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">southNode</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">n2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">westNode</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">n2</span>)
+            <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>;
+        <span class="ruby-keyword">end</span>
+        
+        <span class="ruby-comment"># Voisins NORD</span>
+        <span class="ruby-keyword">if</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">northNode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span>)
+            <span class="ruby-keyword">if</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">northEdge</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>)
+                <span class="ruby-identifier">supprimePont</span>(<span class="ruby-identifier">n1</span>,<span class="ruby-identifier">n2</span>)
+                <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>;
+            <span class="ruby-keyword">else</span>
+                <span class="ruby-comment"># renvoie faux s&#39;il existe déjà un croisement d&#39;arêtes entre ces deux nœuds.</span>
+                <span class="ruby-keyword">for</span> <span class="ruby-identifier">y2</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">row</span><span class="ruby-value">-1</span>).<span class="ruby-identifier">downto</span>(<span class="ruby-value">0</span>)
+                    <span class="ruby-keyword">if</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">column</span>,<span class="ruby-identifier">y2</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span>) 
+                        <span class="ruby-keyword">break</span>;
+                    <span class="ruby-keyword">else</span>
+                        <span class="ruby-keyword">if</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">column</span>,<span class="ruby-identifier">y2</span>).<span class="ruby-identifier">get_directionPont</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>)
+                            <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>;
+                        <span class="ruby-keyword">end</span>
+                    <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+    
+        <span class="ruby-comment"># Voisins DROIT</span>
+        <span class="ruby-keyword">if</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">eastNode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span>)
+            <span class="ruby-keyword">if</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">eastEdge</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>)
+                <span class="ruby-identifier">supprimePont</span>(<span class="ruby-identifier">n1</span>,<span class="ruby-identifier">n2</span>)
+                <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>;
+            <span class="ruby-keyword">else</span>
+                <span class="ruby-comment"># renvoie faux s&#39;il existe déjà un croisement d&#39;arêtes entre ces deux nœuds.</span>
+                <span class="ruby-keyword">for</span> <span class="ruby-identifier">x2</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">column</span><span class="ruby-value">+1</span>).<span class="ruby-identifier">upto</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">lignes</span><span class="ruby-value">-1</span>)
+                    <span class="ruby-keyword">if</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x2</span>,<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">row</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span>) 
+                        <span class="ruby-keyword">break</span>;
+                    <span class="ruby-keyword">else</span>
+                        <span class="ruby-keyword">if</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x2</span>,<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">row</span>).<span class="ruby-identifier">get_directionPont</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>)
+                            <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>;
+                        <span class="ruby-keyword">end</span>
+                    <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        
+        <span class="ruby-comment"># Voisins BAS</span>
+        <span class="ruby-keyword">if</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">southNode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span>)
+          
+            <span class="ruby-keyword">if</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">southEdge</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>)
+                <span class="ruby-identifier">supprimePont</span>(<span class="ruby-identifier">n1</span>,<span class="ruby-identifier">n2</span>)
+                <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>;
+            <span class="ruby-keyword">else</span>
+                <span class="ruby-comment"># renvoie faux s&#39;il existe déjà un croisement d&#39;arêtes entre ces deux nœuds.</span>
+                <span class="ruby-keyword">for</span> <span class="ruby-identifier">y2</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">row</span><span class="ruby-value">+1</span>).<span class="ruby-identifier">upto</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">colonnes</span><span class="ruby-value">-1</span>)
+                    <span class="ruby-keyword">if</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">column</span>,<span class="ruby-identifier">y2</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span>)
+                        <span class="ruby-keyword">break</span>;
+                    <span class="ruby-keyword">else</span>
+                        <span class="ruby-keyword">if</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">column</span>,<span class="ruby-identifier">y2</span>).<span class="ruby-identifier">get_directionPont</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>)
+                            <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>;
+                        <span class="ruby-keyword">end</span>
+                    <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">end</span>
+           
+        <span class="ruby-keyword">end</span>
+         <span class="ruby-comment"># Voisins GAUCHE</span>
+         <span class="ruby-keyword">if</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">westNode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span>)
+            <span class="ruby-keyword">if</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">westEdge</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>)
+                <span class="ruby-identifier">supprimePont</span>(<span class="ruby-identifier">n1</span>,<span class="ruby-identifier">n2</span>)
+                <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>;
+            <span class="ruby-keyword">else</span>
+                <span class="ruby-comment"># renvoie faux s&#39;il existe déjà un croisement d&#39;arêtes entre ces deux nœuds.</span>
+                <span class="ruby-keyword">for</span> <span class="ruby-identifier">x2</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">column</span><span class="ruby-value">-1</span>).<span class="ruby-identifier">downto</span>(<span class="ruby-value">0</span>)
+                    <span class="ruby-keyword">if</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x2</span>,<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">row</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span>) 
+                        <span class="ruby-keyword">break</span>;
+                    <span class="ruby-keyword">else</span>
+                        <span class="ruby-keyword">if</span>( <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x2</span>,<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">row</span>).<span class="ruby-identifier">get_directionPont</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>)
+                            <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>;
+                        <span class="ruby-keyword">end</span>
+                    <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-chargeGrille" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">chargeGrille</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Chargement d&#39;une grille depuis un fichier</p>
+
+          <div class="method-source-code" id="chargeGrille-source">
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 442</span>
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">chargeGrille</span>()
+    <span class="ruby-identifier">data</span> = []
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">foreach</span>(<span class="ruby-ivar">@nomniv</span>).<span class="ruby-identifier">with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span>, <span class="ruby-identifier">line_no</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment"># Slice permet de récupérer la taille de la matrice</span>
+    <span class="ruby-comment"># tel que 7:7</span>
+    <span class="ruby-identifier">num</span> = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">0</span>)
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">colonnes</span> = <span class="ruby-ivar">@x</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lignes</span> = <span class="ruby-ivar">@y</span>
+
+    <span class="ruby-comment"># Parcours des données récupérés afin de charger</span>
+    <span class="ruby-comment"># les boutons</span>
+    <span class="ruby-keyword">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-identifier">data</span>.<span class="ruby-identifier">length</span>() <span class="ruby-operator">-</span> <span class="ruby-value">1</span>) 
+        <span class="ruby-identifier">data</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;:&#39;</span>).<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">ch</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span> 
+            <span class="ruby-comment"># # Création d&#39;une case</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-identifier">ch</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&#39;0&#39;</span>
+                <span class="ruby-identifier">btn</span> = <span class="ruby-constant">Ile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">ch</span>,<span class="ruby-identifier">index</span>,<span class="ruby-identifier">i</span>)
+                <span class="ruby-ivar">@sommets</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">btn</span>
+            <span class="ruby-keyword">else</span> 
+                <span class="ruby-identifier">btn</span> = <span class="ruby-constant">Pont</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">index</span>, <span class="ruby-identifier">i</span>)
+            <span class="ruby-keyword">end</span>
+
+            <span class="ruby-comment"># On attache la référence de la grille</span>
+            <span class="ruby-keyword">self</span>.<span class="ruby-identifier">attach</span>(<span class="ruby-identifier">btn</span>, <span class="ruby-identifier">index</span>,<span class="ruby-identifier">i</span>, <span class="ruby-value">1</span>,<span class="ruby-value">1</span>)
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-chargeVoisins" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">chargeVoisins</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Charge les voisins accessibles d&#39;une case en HAUT, BAS, GAUCHE, DROITE</p>
+
+          <div class="method-source-code" id="chargeVoisins-source">
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 252</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">chargeVoisins</span>
+    <span class="ruby-keyword">for</span> <span class="ruby-identifier">x</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">lignes</span><span class="ruby-value">-1</span>)
+        <span class="ruby-keyword">for</span> <span class="ruby-identifier">y</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">colonnes</span><span class="ruby-value">-1</span>)
+            <span class="ruby-keyword">if</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span>).<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;i&#39;</span>)
+
+                <span class="ruby-comment"># DROITE</span>
+                <span class="ruby-keyword">for</span> <span class="ruby-identifier">x2</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">x</span><span class="ruby-value">+1</span>).<span class="ruby-identifier">upto</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">lignes</span><span class="ruby-value">-1</span>)
+                    <span class="ruby-keyword">if</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y</span>).<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;i&#39;</span>)
+                        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>).<span class="ruby-identifier">eastNode</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x2</span>,<span class="ruby-identifier">y</span>)
+                        <span class="ruby-keyword">break</span>
+                    <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+
+                <span class="ruby-comment">#BAS</span>
+                <span class="ruby-keyword">for</span> <span class="ruby-identifier">y2</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">y</span><span class="ruby-value">+1</span>).<span class="ruby-identifier">upto</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">colonnes</span><span class="ruby-value">-1</span>)
+                    <span class="ruby-keyword">if</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>,<span class="ruby-identifier">y2</span>).<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;i&#39;</span>)
+                        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span>).<span class="ruby-identifier">southNode</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>,<span class="ruby-identifier">y2</span>)
+                        <span class="ruby-keyword">break</span>
+                    <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+                
+                <span class="ruby-comment">#HAUT</span>
+                <span class="ruby-keyword">for</span> <span class="ruby-identifier">y2</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">y</span><span class="ruby-value">-1</span>).<span class="ruby-identifier">downto</span>(<span class="ruby-value">0</span>)
+                    <span class="ruby-keyword">if</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>,<span class="ruby-identifier">y2</span>).<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;i&#39;</span>)
+                        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span>).<span class="ruby-identifier">northNode</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>,<span class="ruby-identifier">y2</span>)
+                        <span class="ruby-keyword">break</span>
+                    <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+
+                <span class="ruby-comment"># Gauche</span>
+                <span class="ruby-keyword">for</span> <span class="ruby-identifier">x2</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">x</span><span class="ruby-value">-1</span>).<span class="ruby-identifier">downto</span>(<span class="ruby-value">0</span>)
+                    <span class="ruby-keyword">if</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x2</span>,<span class="ruby-identifier">y</span>).<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;i&#39;</span>)
+                        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span>).<span class="ruby-identifier">westNode</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x2</span>,<span class="ruby-identifier">y</span>)
+                        <span class="ruby-keyword">break</span>
+                    <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>        
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-getPontEntre" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">getPontEntre</span><span
+            class="method-args">(n1, n2)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Retourne un tableau contenant les cases correspondants aux pont entre deux iles </p>
+<ul><li>
+<p><code>n1</code> Premier pont </p>
+</li><li>
+<p><code>n2</code> Deuxieme pont</p>
+</li></ul>
+
+          <div class="method-source-code" id="getPontEntre-source">
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 388</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getPontEntre</span>(<span class="ruby-identifier">n1</span>, <span class="ruby-identifier">n2</span>)
+
+    <span class="ruby-comment"># Tableau temporaire visant à contenir l&#39;index des cases formant le pont</span>
+    <span class="ruby-identifier">arr</span> = [] 
+
+    <span class="ruby-comment"># Cas où la case est le voisin du haut</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">northNode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span> <span class="ruby-comment"># Ile HAUT</span>
+
+        <span class="ruby-keyword">for</span> <span class="ruby-identifier">y2</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">row</span><span class="ruby-value">-1</span>).<span class="ruby-identifier">downto</span>(<span class="ruby-value">0</span>)
+            <span class="ruby-keyword">if</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">column</span>,<span class="ruby-identifier">y2</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span>) 
+                <span class="ruby-keyword">break</span>;
+                            <span class="ruby-keyword">else</span>
+                <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">column</span>,<span class="ruby-identifier">y2</span>).<span class="ruby-identifier">set_directionPont</span>(<span class="ruby-value">2</span>)
+                <span class="ruby-identifier">arr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">column</span>,<span class="ruby-identifier">y2</span>)
+            <span class="ruby-keyword">end</span>
+                    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment"># Cas où la case est le voisin de droite</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">eastNode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span>  <span class="ruby-comment">#Ile droit</span>
+
+        <span class="ruby-keyword">for</span> <span class="ruby-identifier">x2</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">column</span><span class="ruby-value">+1</span>).<span class="ruby-identifier">upto</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">lignes</span><span class="ruby-value">-1</span>)
+            <span class="ruby-keyword">if</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x2</span>,<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">row</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span>) 
+                <span class="ruby-keyword">break</span>;
+                            <span class="ruby-keyword">else</span>
+                <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x2</span>,<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">row</span>).<span class="ruby-identifier">set_directionPont</span>(<span class="ruby-value">1</span>)
+                <span class="ruby-identifier">arr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x2</span>,<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">row</span>)
+            <span class="ruby-keyword">end</span>
+                    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment"># Cas où la case est le voisin de gauche</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">westNode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span> <span class="ruby-comment"># Ile gauche</span>
+
+        <span class="ruby-keyword">for</span> <span class="ruby-identifier">x2</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">column</span><span class="ruby-value">-1</span>).<span class="ruby-identifier">downto</span>(<span class="ruby-value">0</span>)
+            <span class="ruby-keyword">if</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x2</span>,<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">row</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span>) 
+                <span class="ruby-keyword">break</span>;
+            <span class="ruby-keyword">else</span>
+                <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x2</span>,<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">row</span>).<span class="ruby-identifier">set_directionPont</span>(<span class="ruby-value">1</span>)
+                <span class="ruby-identifier">arr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x2</span>,<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">row</span>)
+            <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Cas où la case est le voisin du bas</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">southNode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span>   <span class="ruby-comment"># Ile bas</span>
+        <span class="ruby-keyword">for</span> <span class="ruby-identifier">y2</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">row</span><span class="ruby-value">+1</span>).<span class="ruby-identifier">upto</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">colonnes</span><span class="ruby-value">-1</span>)
+            <span class="ruby-keyword">if</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">column</span>,<span class="ruby-identifier">y2</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span>) 
+                <span class="ruby-keyword">break</span>;
+            <span class="ruby-keyword">else</span>
+                <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">column</span>,<span class="ruby-identifier">y2</span>).<span class="ruby-identifier">set_directionPont</span>(<span class="ruby-value">2</span>)
+               <span class="ruby-identifier">arr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">column</span>,<span class="ruby-identifier">y2</span>)
+            <span class="ruby-keyword">end</span>
+                    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span> 
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">arr</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-grilleFini-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">grilleFini?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Vérifie si la grille est fini  autrement dit que tous les noeuds ont correment etait rempli</p>
+
+          <div class="method-source-code" id="grilleFini-3F-source">
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">grilleFini?</span> 
+    <span class="ruby-keyword">for</span> <span class="ruby-identifier">x</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">lignes</span><span class="ruby-value">-1</span>)
+        <span class="ruby-keyword">for</span> <span class="ruby-identifier">y</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">colonnes</span><span class="ruby-value">-1</span>)
+            <span class="ruby-identifier">ile</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span>)
+            <span class="ruby-keyword">if</span> (<span class="ruby-identifier">ile</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;i&#39;</span>)
+                <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">ile</span>.<span class="ruby-identifier">estComplet</span>
+                    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+                <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-handleClick" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">handleClick</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <pre class="ruby"><span class="ruby-constant">Méthode</span> <span class="ruby-identifier">à</span> <span class="ruby-identifier">renommer</span>
+</pre>
+
+<p>permettant de lancer les traitements lié aux cases</p>
+<ul><li>
+<p>Ajout d&#39;un pont</p>
+</li><li>
+<p>Suppression d&#39;un pont</p>
+</li><li>
+<p>Récupération des cases cliquées conservé par le SaveManager</p>
+</li></ul>
+
+          <div class="method-source-code" id="handleClick-source">
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">handleClick</span>() 
+    <span class="ruby-ivar">@nodeLink</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">choixPossible</span>()
+    <span class="ruby-keyword">if</span>( <span class="ruby-ivar">@nodeLink</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">2</span> )
+        <span class="ruby-ivar">@nodeLink</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">enleverChoixPossible</span>()
+        <span class="ruby-comment"># Si l&#39;utilisateur clique autre part que sur le bouton REDO</span>
+        <span class="ruby-comment"># La pile du REDO est vidé</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">redoStack</span>.<span class="ruby-identifier">empty?</span>
+            <span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">redoStack</span>.<span class="ruby-identifier">clear</span>()
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">p2</span> = <span class="ruby-ivar">@nodeLink</span>.<span class="ruby-identifier">pop</span>()
+        <span class="ruby-identifier">p1</span> = <span class="ruby-ivar">@nodeLink</span>.<span class="ruby-identifier">pop</span>()
+      
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">ajoutValid?</span>(<span class="ruby-identifier">p1</span>,<span class="ruby-identifier">p2</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+           
+            <span class="ruby-comment">#Important pour les REDOS et Undo de conserver</span>
+            <span class="ruby-comment"># Sauvegarde les case cliqué</span>
+            <span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">undoStack</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">p1</span> 
+            <span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">undoStack</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">p2</span>
+            
+            <span class="ruby-identifier">ajoutPont</span>(<span class="ruby-identifier">p1</span>,<span class="ruby-identifier">p2</span>)
+            <span class="ruby-identifier">saveManager</span>.<span class="ruby-identifier">sauvegarder</span>(<span class="ruby-keyword">self</span>)
+            <span class="ruby-identifier">$window</span>.<span class="ruby-identifier">partiFini</span>
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-notify" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">notify</span><span
+            class="method-args">(_case)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode permettant de notifier la grille qu&#39;une case à était  cliqué</p>
+
+          <div class="method-source-code" id="notify-source">
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 133</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">notify</span>(<span class="ruby-identifier">_case</span>)
+    <span class="ruby-ivar">@nodeLink</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">_case</span>
+    <span class="ruby-identifier">handleClick</span>()
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-redoPrevious" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">redoPrevious</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Active le retour en avant</p>
+
+          <div class="method-source-code" id="redoPrevious-source">
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">redoPrevious</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">redoStack</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-identifier">n2</span> = <span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">redoStack</span>.<span class="ruby-identifier">pop</span>()
+        <span class="ruby-identifier">n1</span> = <span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">redoStack</span>.<span class="ruby-identifier">pop</span>()
+
+        <span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">undoStack</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">n2</span>
+        <span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">undoStack</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">n1</span>
+        
+        
+        <span class="ruby-identifier">ajoutPont</span>(<span class="ruby-identifier">n2</span>,<span class="ruby-identifier">n1</span>)
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-supprimePont" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">supprimePont</span><span
+            class="method-args">(n1, n2, undo = false)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <pre class="ruby"><span class="ruby-constant">Supprime</span> <span class="ruby-identifier">le</span> <span class="ruby-identifier">pont</span> <span class="ruby-identifier">entre</span> <span class="ruby-identifier">deux</span> <span class="ruby-identifier">iles</span>
+</pre>
+<ul><li>
+<p><code>n1</code>  Premier pont </p>
+</li><li>
+<p><code>n2</code>  Deuxieme pont </p>
+</li><li>
+<p><code>undo</code> Attribut par défaut à false permettant permettant d&#39;adapter le traitement de suppression au besoin</p>
+</li></ul>
+
+          <div class="method-source-code" id="supprimePont-source">
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 196</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">supprimePont</span>(<span class="ruby-identifier">n1</span>, <span class="ruby-identifier">n2</span>, <span class="ruby-identifier">undo</span> = <span class="ruby-keyword">false</span>)
+   
+
+     <span class="ruby-comment"># Récupère les cases entre les deux iles ( le pont )</span>
+     <span class="ruby-identifier">ponts</span> = <span class="ruby-identifier">getPontEntre</span>(<span class="ruby-identifier">n1</span>,<span class="ruby-identifier">n2</span>)
+
+    <span class="ruby-comment"># Mis à jour des pont ( tout du moins de leurs edges )</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">northNode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span> 
+                    <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">northEdge</span> = <span class="ruby-value">0</span>
+                    <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">southEdge</span> = <span class="ruby-value">0</span>
+
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">eastNode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span>  <span class="ruby-comment">#Ile droit</span>
+        <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">eastEdge</span> = <span class="ruby-value">0</span>
+                    <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">westEdge</span> = <span class="ruby-value">0</span>
+
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">westNode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span> <span class="ruby-comment"># Ile gauche</span>
+
+        <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">westEdge</span> = <span class="ruby-value">0</span>
+                    <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">eastEdge</span> = <span class="ruby-value">0</span>
+
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">southNode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n2</span> <span class="ruby-comment"># Ile bas</span>
+
+        <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">southEdge</span> = <span class="ruby-value">0</span>
+                    <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">northEdge</span> = <span class="ruby-value">0</span>
+        
+    <span class="ruby-keyword">else</span> 
+        <span class="ruby-identifier">p</span> <span class="ruby-string">&quot;Erreur: n2 n&#39;est pas un noeud valide pour n1&quot;</span>
+            <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Supprime le pont</span>
+    <span class="ruby-identifier">ponts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pont</span><span class="ruby-operator">|</span>
+        
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">undo</span> 
+            <span class="ruby-identifier">pont</span>.<span class="ruby-identifier">set_typePont</span>( <span class="ruby-identifier">pont</span>.<span class="ruby-identifier">get_typePont</span> <span class="ruby-operator">-</span>  <span class="ruby-value">1</span> )
+        <span class="ruby-keyword">else</span> 
+            <span class="ruby-identifier">pont</span>.<span class="ruby-identifier">set_typePont</span>( <span class="ruby-identifier">pont</span>.<span class="ruby-identifier">get_typePont</span> <span class="ruby-operator">-</span>  ( <span class="ruby-identifier">pont</span>.<span class="ruby-identifier">estDouble</span> <span class="ruby-operator">?</span> <span class="ruby-value">2</span> <span class="ruby-operator">:</span> <span class="ruby-value">1</span> ) )
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">pont</span>.<span class="ruby-identifier">estDouble</span> = <span class="ruby-keyword">false</span>
+
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">pont</span>.<span class="ruby-identifier">get_typePont</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+            <span class="ruby-identifier">pont</span>.<span class="ruby-identifier">set_directionPont</span>(<span class="ruby-value">0</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">pont</span>.<span class="ruby-identifier">update</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">set_degree</span>( <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">pontRestants</span> )
+    <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">set_degree</span> ( <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">pontRestants</span> )
+    <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">update</span>
+    <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">update</span>
+      
+    <span class="ruby-identifier">saveManager</span>.<span class="ruby-identifier">sauvegarder</span>(<span class="ruby-keyword">self</span>)
+        <span class="ruby-identifier">$window</span>.<span class="ruby-identifier">partiFini</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-undoPrevious" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">undoPrevious</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Active le retour en arrière</p>
+
+          <div class="method-source-code" id="undoPrevious-source">
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">undoPrevious</span> 
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">undoStack</span>.<span class="ruby-identifier">empty?</span>
+      
+        <span class="ruby-identifier">n2</span> = <span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">undoStack</span>.<span class="ruby-identifier">pop</span>()
+        <span class="ruby-identifier">n1</span> = <span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">undoStack</span>.<span class="ruby-identifier">pop</span>()
+        
+        <span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">redoStack</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">n2</span>
+        <span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">redoStack</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">n1</span>
+        
+        <span class="ruby-identifier">supprimePont</span>(<span class="ruby-identifier">n2</span>,<span class="ruby-identifier">n1</span>, <span class="ruby-keyword">true</span>)
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

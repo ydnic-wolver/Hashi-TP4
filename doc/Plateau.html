@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Plateau - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link">Object
+</div>
+
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-i-getPlateau">#getPlateau</a>
+    <li ><a href="#method-i-hypotheseValider">#hypotheseValider</a>
+    <li ><a href="#method-i-partiFini">#partiFini</a>
+    <li ><a href="#method-i-resetPlateau">#resetPlateau</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Plateau">
+  <h1 id="class-Plateau" class="class">
+    class Plateau
+  </h1>
+
+  <section class="description">
+    
+<p>Cette classe représente le plateau du plateau du jeu</p>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      <div id="attribute-i-grid" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">grid</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        <p>Référence sur la grille</p>
+        </div>
+      </div>
+    </section>
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(nomniv, x, y, diff, chargement)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Constructeur du plateau</p>
+
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File Plateau.rb, line 22</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">nomniv</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">diff</span>, <span class="ruby-identifier">chargement</span>)
+        <span class="ruby-ivar">@nomniv</span>=<span class="ruby-identifier">nomniv</span>
+        <span class="ruby-ivar">@x</span>=<span class="ruby-identifier">x</span>
+        <span class="ruby-ivar">@y</span>=<span class="ruby-identifier">y</span>
+        <span class="ruby-ivar">@diff</span> = <span class="ruby-identifier">diff</span>
+        <span class="ruby-ivar">@chargement</span>=<span class="ruby-identifier">chargement</span> <span class="ruby-comment">#0 ou 1 si 1 ils s&#39;agit d&#39;un chargement</span>
+        <span class="ruby-identifier">$partieStop</span> = <span class="ruby-value">0</span>
+        <span class="ruby-identifier">$timerStop</span> = <span class="ruby-value">0</span>
+
+        <span class="ruby-comment"># Initialisation de la grille</span>
+        <span class="ruby-ivar">@grid</span> = <span class="ruby-constant">HashiGrid</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@nomniv</span>, <span class="ruby-ivar">@diff</span>, <span class="ruby-ivar">@x</span>,<span class="ruby-ivar">@y</span>)
+       
+         <span class="ruby-comment">#Creation de la fenêtre</span>
+        <span class="ruby-identifier">main_window_res</span> = <span class="ruby-string">&quot;./Ressources/Glade/plateau.glade&quot;</span>
+        <span class="ruby-identifier">builder</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Builder</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">add_from_file</span>(<span class="ruby-identifier">main_window_res</span>)
+
+        <span class="ruby-ivar">@plateau</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;plateau&#39;</span>)
+        <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">set_title</span> <span class="ruby-string">&quot;Hashi Game&quot;</span>
+        <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">signal_connect</span> <span class="ruby-string">&quot;destroy&quot;</span> <span class="ruby-keyword">do</span> 
+            <span class="ruby-identifier">$partieStop</span> = <span class="ruby-value">1</span>
+            <span class="ruby-constant">Gtk</span>.<span class="ruby-identifier">main_quit</span> 
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">set_window_position</span> <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">WindowPosition</span><span class="ruby-operator">::</span><span class="ruby-constant">CENTER</span>
+        <span class="ruby-identifier">css_file</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">CssProvider</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">css_file</span>.<span class="ruby-identifier">load</span>(<span class="ruby-value">data:</span> <span class="ruby-identifier">&lt;&lt;-CSS</span>)
+<span class="ruby-value">            @import url(&quot;css/plateau_style.css&quot;);
+</span><span class="ruby-identifier">        CSS</span>
+
+        <span class="ruby-comment">#Reglage bouton pause</span>
+        <span class="ruby-identifier">boutonPause</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;boutonPause&#39;</span>)
+        <span class="ruby-identifier">boutonPause</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
+            <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">set_sensitive</span>(<span class="ruby-keyword">false</span>)
+            <span class="ruby-identifier">$timerStop</span> = <span class="ruby-value">1</span>
+            <span class="ruby-identifier">pause</span> = <span class="ruby-constant">Pause</span>.<span class="ruby-identifier">new</span>()
+        }
+        <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
+        <span class="ruby-ivar">@label_aide</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;label_aide&#39;</span>)
+        <span class="ruby-ivar">@label_aide</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
+        
+
+        <span class="ruby-ivar">@aide</span> = <span class="ruby-constant">Aide</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@grid</span>)
+        <span class="ruby-ivar">@label_aide</span>.<span class="ruby-identifier">set_label</span>(<span class="ruby-string">&quot;&quot;</span>)
+      
+
+        <span class="ruby-comment"># #Reglage du bouton indice</span>
+        <span class="ruby-identifier">boutonIndice</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;boutonIndice&#39;</span>)
+        <span class="ruby-identifier">boutonIndice</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
+            <span class="ruby-ivar">@label_aide</span>.<span class="ruby-identifier">set_label</span>(<span class="ruby-ivar">@aide</span>.<span class="ruby-identifier">getMessageAide</span>)
+            <span class="ruby-ivar">@boxPrincipale</span>.<span class="ruby-identifier">show_all</span>
+        }
+
+        <span class="ruby-comment"># #Reglage du bouton Undo</span>
+        <span class="ruby-identifier">boutonUndo</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;boutonUndo&#39;</span>)
+       
+        <span class="ruby-comment"># #Reglage du bouton Redo</span>
+        <span class="ruby-identifier">boutonRedo</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;boutonRedo&#39;</span>)
+
+        <span class="ruby-comment"># #Reglage du bouton Hypothèse</span>
+        <span class="ruby-identifier">boutonHypo</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;boutonHypo&#39;</span>)
+        <span class="ruby-identifier">boutonHypo</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
+            <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">set_sensitive</span>(<span class="ruby-keyword">false</span>)
+            <span class="ruby-constant">Hypothese</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>)
+        }
+        
+        <span class="ruby-identifier">boutonPause</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
+        <span class="ruby-identifier">boutonIndice</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
+        <span class="ruby-identifier">boutonRedo</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
+        <span class="ruby-identifier">boutonUndo</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
+        <span class="ruby-identifier">boutonHypo</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
+        <span class="ruby-comment"># #Creation de la barre d&#39;outils en haut de la fenêtre</span>
+    
+        <span class="ruby-ivar">@temps</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;temps&#39;</span>)
+        
+
+        <span class="ruby-ivar">@boxJeu</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;boxJeu&#39;</span>)
+        <span class="ruby-ivar">@boxJeu</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
+        
+        <span class="ruby-comment"># @boxJeu.set_border_width(10)</span>
+        <span class="ruby-ivar">@temps</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;temps&#39;</span>)
+       
+        <span class="ruby-comment">#  Chargement de la grille</span>
+        <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">chargeGrille</span>()
+        <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">chargeVoisins</span>
+        <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@chargement</span><span class="ruby-operator">==</span><span class="ruby-value">1</span>)
+            <span class="ruby-constant">Sauvegarde</span>.<span class="ruby-identifier">charge</span>(<span class="ruby-ivar">@grid</span>,<span class="ruby-identifier">nomniv</span>,<span class="ruby-identifier">diff</span>)
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">expand</span> = <span class="ruby-keyword">true</span> 
+        <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">halign</span> =  <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Align</span><span class="ruby-operator">::</span><span class="ruby-constant">CENTER</span>
+        <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">valign</span> =  <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Align</span><span class="ruby-operator">::</span><span class="ruby-constant">CENTER</span>
+        <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">set_row_homogeneous</span>(<span class="ruby-keyword">true</span>)
+        <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">set_column_homogeneous</span>(<span class="ruby-keyword">true</span>)
+      
+
+        <span class="ruby-identifier">boutonUndo</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
+           <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">undoPrevious</span>
+        }
+
+        <span class="ruby-identifier">boutonRedo</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
+            <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">redoPrevious</span>
+        }
+
+        <span class="ruby-comment"># ajoutGrille(grid)</span>
+        <span class="ruby-ivar">@boxJeu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-ivar">@grid</span>)
+        <span class="ruby-ivar">@boxJeu</span>.<span class="ruby-identifier">show_all</span>
+
+        <span class="ruby-comment">#Creation et affichage de la fenêtre principale</span>
+        <span class="ruby-ivar">@boxPrincipale</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;boxPrincipale&#39;</span>)
+        <span class="ruby-ivar">@boxPrincipale</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
+
+        <span class="ruby-comment">#Gestion du temps</span>
+        <span class="ruby-ivar">@temps</span>.<span class="ruby-identifier">set_text</span>(<span class="ruby-string">&quot;0&quot;</span>)
+        <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@chargement</span> <span class="ruby-operator">!=</span> <span class="ruby-value">1</span>)
+            <span class="ruby-identifier">$tempsPause</span> = <span class="ruby-value">0</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@chargement</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>)
+            <span class="ruby-identifier">puts</span> <span class="ruby-identifier">$tempsPause</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">$tempsFin</span> = <span class="ruby-value">0</span>
+
+        <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">show</span>
+
+        <span class="ruby-comment">#Thread chronomètre</span>
+        <span class="ruby-identifier">t</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span>{
+            <span class="ruby-keyword">while</span> <span class="ruby-identifier">$partieStop</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-keyword">do</span>
+                <span class="ruby-ivar">@tempsDebut</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+                <span class="ruby-keyword">if</span>( <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">grilleFini?</span>)
+                    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;GAGNER&quot;</span>
+                <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">while</span> <span class="ruby-identifier">$timerStop</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">$partieStop</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-keyword">do</span> <span class="ruby-comment">#pause pas active ou niveau pas fini</span>
+                    
+                    <span class="ruby-ivar">@temps</span>.<span class="ruby-identifier">set_text</span>((<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@tempsDebut</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">$tempsPause</span>.<span class="ruby-identifier">to_f</span> ).<span class="ruby-identifier">round</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">to_s</span>)
+                    <span class="ruby-identifier">$tempsFin</span> = (<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@tempsDebut</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">$tempsPause</span>.<span class="ruby-identifier">to_f</span> ).<span class="ruby-identifier">round</span>(<span class="ruby-value">0</span>)
+                    <span class="ruby-identifier">sleep</span>(<span class="ruby-value">1</span>)
+                <span class="ruby-keyword">end</span>
+
+                <span class="ruby-identifier">$tempsPause</span> = <span class="ruby-identifier">$tempsPause</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> (<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@tempsDebut</span> ).<span class="ruby-identifier">round</span>(<span class="ruby-value">0</span>)
+
+                <span class="ruby-keyword">while</span> <span class="ruby-identifier">$timerStop</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-keyword">do</span>
+                    <span class="ruby-identifier">sleep</span>(<span class="ruby-value">0.1</span>)
+                <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">end</span>
+        }
+    <span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-getPlateau" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">getPlateau</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Retourne le plateau de jeu</p>
+
+          <div class="method-source-code" id="getPlateau-source">
+            <pre><span class="ruby-comment"># File Plateau.rb, line 171</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getPlateau</span>()
+    <span class="ruby-keyword">return</span> <span class="ruby-ivar">@plateau</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-hypotheseValider" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">hypotheseValider</span><span
+            class="method-args">(newGrid)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Cette méthode permet de gérer tous les traitements  lors de la validation de l&#39;hypothèse Elle supprime l&#39;ancienne grille et met en place la nouvelle</p>
+
+          <div class="method-source-code" id="hypotheseValider-source">
+            <pre><span class="ruby-comment"># File Plateau.rb, line 258</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">hypotheseValider</span>(<span class="ruby-identifier">newGrid</span>)
+    
+    <span class="ruby-ivar">@boxJeu</span>.<span class="ruby-identifier">remove</span>(<span class="ruby-ivar">@grid</span>)
+    <span class="ruby-ivar">@grid</span> = <span class="ruby-identifier">newGrid</span>
+    <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">expand</span> = <span class="ruby-keyword">true</span> 
+    <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">halign</span> =  <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Align</span><span class="ruby-operator">::</span><span class="ruby-constant">CENTER</span>
+    <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">valign</span> =  <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Align</span><span class="ruby-operator">::</span><span class="ruby-constant">CENTER</span>
+    <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">set_row_homogeneous</span>(<span class="ruby-keyword">true</span>)
+    <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">set_column_homogeneous</span>(<span class="ruby-keyword">true</span>)
+    <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">grilleFini?</span> )
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">partiFini</span>
+    <span class="ruby-keyword">end</span> 
+    <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">undoRedo</span>.<span class="ruby-identifier">cleanAll</span>()
+    <span class="ruby-ivar">@boxJeu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-ivar">@grid</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-partiFini" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">partiFini</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode responsable de la gestion d&#39;une parti fini</p>
+
+          <div class="method-source-code" id="partiFini-source">
+            <pre><span class="ruby-comment"># File Plateau.rb, line 176</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">partiFini</span>
+
+        <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">grilleFini?</span>)
+        
+            <span class="ruby-identifier">sleep</span>(<span class="ruby-value">0.5</span>) <span class="ruby-comment"># on attend 0.5 sec afin de voir le coup qu&#39;on a effectuer avant l&#39;affichage #</span>
+            <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">set_sensitive</span>(<span class="ruby-keyword">false</span>)
+        
+            <span class="ruby-identifier">main_window_res</span> = <span class="ruby-string">&quot;./Ressources/Glade/menu_win.glade&quot;</span>
+            <span class="ruby-identifier">builder</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Builder</span>.<span class="ruby-identifier">new</span>
+            <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">add_from_file</span>(<span class="ruby-identifier">main_window_res</span>)
+
+            <span class="ruby-identifier">window</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;menu_gain&#39;</span>)
+            <span class="ruby-identifier">window</span>.<span class="ruby-identifier">set_title</span> <span class="ruby-string">&quot;VICTOIRE&quot;</span>
+            <span class="ruby-identifier">window</span>.<span class="ruby-identifier">set_window_position</span> <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">WindowPosition</span><span class="ruby-operator">::</span><span class="ruby-constant">CENTER</span>
+            <span class="ruby-identifier">window</span>.<span class="ruby-identifier">signal_connect</span> <span class="ruby-string">&quot;destroy&quot;</span> <span class="ruby-keyword">do</span> 
+                <span class="ruby-identifier">$partieStop</span> = <span class="ruby-value">1</span>
+                <span class="ruby-constant">Gtk</span>.<span class="ruby-identifier">main_quit</span> 
+            <span class="ruby-keyword">end</span>
+
+            <span class="ruby-identifier">css_file</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">CssProvider</span>.<span class="ruby-identifier">new</span>
+            <span class="ruby-identifier">css_file</span>.<span class="ruby-identifier">load</span>(<span class="ruby-value">data:</span> <span class="ruby-identifier">&lt;&lt;-CSS</span>)
+<span class="ruby-value">                @import url(&quot;css/menu_pause.css&quot;);
+</span><span class="ruby-identifier">            CSS</span>
+
+            <span class="ruby-identifier">window</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
+         
+            <span class="ruby-comment">#Affichage du temps</span>
+            <span class="ruby-identifier">texteTemps</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;texteTemps&#39;</span>)
+            <span class="ruby-identifier">texteTemps</span>.<span class="ruby-identifier">set_markup</span>(<span class="ruby-string">&quot;&lt;span font_desc = \&quot;Toledo 15\&quot;&gt;Votre temps : &quot;</span> <span class="ruby-operator">+</span>  <span class="ruby-identifier">$tempsFin</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; secondes.&lt;/span&gt;\n&quot;</span>)
+            <span class="ruby-identifier">texteTemps</span>.<span class="ruby-identifier">set_justify</span>(<span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Justification</span><span class="ruby-operator">::</span><span class="ruby-constant">CENTER</span>)
+            
+            <span class="ruby-identifier">saveBox</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;saveBox&#39;</span>)
+    
+            <span class="ruby-comment"># #Zone de texte pour entrer son pseudo</span>
+            <span class="ruby-identifier">zonetexte</span>= <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;zonetexte&#39;</span>)
+            <span class="ruby-identifier">zonetexte</span>.<span class="ruby-identifier">set_placeholder_text</span>(<span class="ruby-string">&quot;Votre pseudo&quot;</span>)
+
+            <span class="ruby-comment"># #Bouton pour sauvegarder</span>
+            <span class="ruby-identifier">btnSauvegarder</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;btnSauvegarder&#39;</span>)
+            <span class="ruby-identifier">textLabel</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&quot;textLabel&quot;</span>)
+
+            <span class="ruby-identifier">btnSauvegarder</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
+                <span class="ruby-identifier">label</span> = <span class="ruby-identifier">zonetexte</span>.<span class="ruby-identifier">text</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;&lt;span font_desc = \&quot;Calibri 10\&quot;&gt; sauvegardé.&lt;/span&gt;\n&quot;</span>
+                <span class="ruby-constant">Sauvegarde</span>.<span class="ruby-identifier">saveTime</span>(<span class="ruby-ivar">@nomniv</span>, <span class="ruby-ivar">@diff</span>, <span class="ruby-identifier">$tempsFin</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">zonetexte</span>.<span class="ruby-identifier">text</span>)
+                <span class="ruby-identifier">textLabel</span>.<span class="ruby-identifier">set_markup</span>(<span class="ruby-identifier">label</span>)
+                <span class="ruby-identifier">btnSauvegarder</span>.<span class="ruby-identifier">hide</span>()
+               
+            }
+            <span class="ruby-identifier">$timerStop</span>=<span class="ruby-value">1</span>
+
+            <span class="ruby-comment"># #Bouton pour recommencer la partie</span>
+            <span class="ruby-comment"># btnRecommencer = Gtk::Button.new(:label =&gt; &#39;Recommencer&#39;)</span>
+            <span class="ruby-identifier">btnRecommencer</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;btnRecommencer&#39;</span>)
+            <span class="ruby-identifier">btnRecommencer</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
+                <span class="ruby-keyword">self</span>.<span class="ruby-identifier">resetPlateau</span>()
+                <span class="ruby-keyword">self</span>.<span class="ruby-identifier">getPlateau</span>().<span class="ruby-identifier">set_sensitive</span>(<span class="ruby-keyword">true</span>)
+                <span class="ruby-identifier">window</span>.<span class="ruby-identifier">destroy</span>
+                <span class="ruby-constant">Gtk</span>.<span class="ruby-identifier">main</span>
+            }
+    
+            <span class="ruby-comment"># #Bouton pour retourner au menu principal</span>
+            <span class="ruby-identifier">btnRetour</span> =  <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;btnRetour&#39;</span>)
+            <span class="ruby-identifier">btnRetour</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
+                <span class="ruby-identifier">window</span>.<span class="ruby-identifier">destroy</span>
+                <span class="ruby-ivar">@plateau</span>.<span class="ruby-identifier">destroy</span>
+                <span class="ruby-constant">MainMenu</span>.<span class="ruby-identifier">new</span>
+                <span class="ruby-constant">Gtk</span>.<span class="ruby-identifier">main</span>
+            }
+            
+            <span class="ruby-identifier">btnRecommencer</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
+            <span class="ruby-identifier">btnRetour</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
+            <span class="ruby-identifier">btnSauvegarder</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
+         
+
+            <span class="ruby-identifier">window</span>.<span class="ruby-identifier">show_all</span>
+        <span class="ruby-keyword">end</span>
+        
+    <span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-resetPlateau" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">resetPlateau</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Mis à jour du niveau Dans notre cas on reset le plateau</p>
+
+          <div class="method-source-code" id="resetPlateau-source">
+            <pre><span class="ruby-comment"># File Plateau.rb, line 277</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">resetPlateau</span>()
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;RESET&quot;</span>
+    <span class="ruby-ivar">@tempsDebut</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+    <span class="ruby-identifier">$tempsPause</span> = <span class="ruby-value">0</span>
+    <span class="ruby-ivar">@temps</span>.<span class="ruby-identifier">set_text</span>(<span class="ruby-string">&quot;O&quot;</span>)
+    <span class="ruby-identifier">$timerStop</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">$partieStop</span> = <span class="ruby-value">0</span>
+   
+    <span class="ruby-ivar">@boxJeu</span>.<span class="ruby-identifier">remove</span>(<span class="ruby-ivar">@grid</span>)
+    <span class="ruby-comment">#  Chargement de la grille</span>
+    <span class="ruby-identifier">gri</span> = <span class="ruby-constant">HashiGrid</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">nomniv</span>,<span class="ruby-ivar">@diff</span>, <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">lignes</span>, <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">colonnes</span>)
+    <span class="ruby-ivar">@grid</span> = <span class="ruby-identifier">gri</span>
+    <span class="ruby-comment">#creer un fichier de sauvegarde vide</span>
+    <span class="ruby-identifier">titre</span> = <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">nomniv</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/[^\/]*.txt/</span>)
+    <span class="ruby-identifier">f</span>=<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-node">&quot;./Sauvegarde/#{@grid.diff}/save#{titre}&quot;</span>, <span class="ruby-string">&#39;w&#39;</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">close</span>()
+
+    <span class="ruby-ivar">@aide</span> = <span class="ruby-constant">Aide</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@grid</span>)
+    <span class="ruby-identifier">gri</span>.<span class="ruby-identifier">colonnes</span> =<span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">colonnes</span>
+    <span class="ruby-identifier">gri</span>.<span class="ruby-identifier">lignes</span> = <span class="ruby-ivar">@grid</span>.<span class="ruby-identifier">lignes</span>
+    <span class="ruby-identifier">gri</span>.<span class="ruby-identifier">set_column_homogeneous</span>(<span class="ruby-keyword">true</span>)
+    <span class="ruby-identifier">gri</span>.<span class="ruby-identifier">set_row_homogeneous</span>(<span class="ruby-keyword">true</span>)
+    <span class="ruby-identifier">grid</span>.<span class="ruby-identifier">expand</span> = <span class="ruby-keyword">true</span> 
+    <span class="ruby-identifier">gri</span>.<span class="ruby-identifier">chargeGrille</span>()
+    <span class="ruby-identifier">gri</span>.<span class="ruby-identifier">chargeVoisins</span>()
+
+    <span class="ruby-ivar">@boxJeu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-ivar">@grid</span>)
+    <span class="ruby-ivar">@boxJeu</span>.<span class="ruby-identifier">show_all</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Pont - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link"><a href="Ile.html">Ile</a>
+</div>
+
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-i-get_directionPont">#get_directionPont</a>
+    <li ><a href="#method-i-get_typePont">#get_typePont</a>
+    <li ><a href="#method-i-set_directionPont">#set_directionPont</a>
+    <li ><a href="#method-i-set_typePont">#set_typePont</a>
+    <li ><a href="#method-i-update">#update</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Pont">
+  <h1 id="class-Pont" class="class">
+    class Pont
+  </h1>
+
+  <section class="description">
+    
+<p>Représentation des ponts du jeu</p>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      <div id="attribute-i-directionPont" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">directionPont</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        <p>Représente la direction du pont. (0 = pas de pont, 1 = horizontal, 2 = vertical)</p>
+        </div>
+      </div>
+      <div id="attribute-i-estDouble" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">estDouble</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        <p>Attribut permettant de savoir si un pont est double ou non</p>
+        </div>
+      </div>
+      <div id="attribute-i-typePont" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">typePont</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        <p>Représente les différents types de pont. (0 = aucun bord, 1 = un pont, 2 = deux pont)</p>
+        </div>
+      </div>
+    </section>
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(grid, col, lig )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Constructeur d&#39;un pont </p>
+<ul><li>
+<p><code>grid</code> Référence sur la grille</p>
+</li><li>
+<p><code>col</code> Référence sur la grille</p>
+</li><li>
+<p><code>lig</code> Référence sur la grille</p>
+</li></ul>
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="Ile.html#method-c-new"><code>Ile::new</code></a>
+            </div>
+
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File Pont.rb, line 23</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">grid</span>, <span class="ruby-identifier">col</span>, <span class="ruby-identifier">lig</span> ) 
+        <span class="ruby-keyword">super</span>(<span class="ruby-identifier">grid</span>, <span class="ruby-string">&#39;0&#39;</span>, <span class="ruby-identifier">col</span>, <span class="ruby-identifier">lig</span> )
+        <span class="ruby-ivar">@typePont</span> = <span class="ruby-value">0</span>
+        <span class="ruby-ivar">@estDouble</span> = <span class="ruby-keyword">false</span>
+        <span class="ruby-ivar">@directionPont</span> = <span class="ruby-value">0</span>
+
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">set_name</span>(<span class="ruby-string">&#39;pont&#39;</span>)
+        <span class="ruby-identifier">css_file</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">CssProvider</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">css_file</span>.<span class="ruby-identifier">load</span>(<span class="ruby-value">data:</span> <span class="ruby-identifier">&lt;&lt;-CSS</span>)
+<span class="ruby-value">                @import url(&quot;css/plateau_style.css&quot;);
+</span><span class="ruby-identifier">                CSS</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">set_sensitive</span>(<span class="ruby-keyword">false</span>)  <span class="ruby-comment"># Un pont n&#39;est pas cliquable par défaut</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&#39;p&#39;</span>
+    <span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-get_directionPont" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">get_directionPont</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Retourne la direction du pont</p>
+
+          <div class="method-source-code" id="get_directionPont-source">
+            <pre><span class="ruby-comment"># File Pont.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_directionPont</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-ivar">@directionPont</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-get_typePont" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">get_typePont</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Retourne le type du pont</p>
+
+          <div class="method-source-code" id="get_typePont-source">
+            <pre><span class="ruby-comment"># File Pont.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_typePont</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-ivar">@typePont</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-set_directionPont" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">set_directionPont</span><span
+            class="method-args">(val)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Modifie la direction du pont</p>
+
+          <div class="method-source-code" id="set_directionPont-source">
+            <pre><span class="ruby-comment"># File Pont.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_directionPont</span>(<span class="ruby-identifier">val</span>)
+    <span class="ruby-ivar">@directionPont</span> = <span class="ruby-identifier">val</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-set_typePont" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">set_typePont</span><span
+            class="method-args">(val)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Modifie le type du pont</p>
+
+          <div class="method-source-code" id="set_typePont-source">
+            <pre><span class="ruby-comment"># File Pont.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_typePont</span>(<span class="ruby-identifier">val</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span>
+        <span class="ruby-ivar">@typePont</span> = <span class="ruby-identifier">val</span>
+    <span class="ruby-keyword">else</span> 
+        <span class="ruby-ivar">@typePont</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-update" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Méthode responsable de la mise à jour d&#39;un pont.</p>
+
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File Pont.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>()
+    
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@typePont</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@directionPont</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">image</span>.<span class="ruby-identifier">from_file</span>= <span class="ruby-string">&quot;Ressources/Pont/0.png&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@typePont</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+        <span class="ruby-comment"># Si le pont == 1 alors il est horizontal</span>
+        <span class="ruby-comment"># Sinon il est vertical</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@directionPont</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+             <span class="ruby-keyword">self</span>.<span class="ruby-identifier">image</span>.<span class="ruby-identifier">from_file</span>= <span class="ruby-string">&quot;Ressources/Pont/h_simple.png&quot;</span>
+        <span class="ruby-keyword">else</span>
+            <span class="ruby-keyword">self</span>.<span class="ruby-identifier">image</span>.<span class="ruby-identifier">from_file</span>= <span class="ruby-string">&quot;Ressources/Pont/v_simple.png&quot;</span>
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@typePont</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span> 
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@directionPont</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword">self</span>.<span class="ruby-identifier">image</span>.<span class="ruby-identifier">from_file</span>= <span class="ruby-string">&quot;Ressources/Pont/h_double.png&quot;</span>
+        <span class="ruby-keyword">else</span>
+            <span class="ruby-keyword">self</span>.<span class="ruby-identifier">image</span>.<span class="ruby-identifier">from_file</span>= <span class="ruby-string">&quot;Ressources/Pont/v_double.png&quot;</span>
+           
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
