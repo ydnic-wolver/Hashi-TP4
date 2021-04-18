@@ -77,6 +77,7 @@
     <li ><a href="#method-i-click">#click</a>
     <li ><a href="#method-i-compterVoisins">#compterVoisins</a>
     <li ><a href="#method-i-compterVoisinsNonComplets">#compterVoisinsNonComplets</a>
+    <li ><a href="#method-i-connexionRestantes">#connexionRestantes</a>
     <li ><a href="#method-i-dec">#dec</a>
     <li ><a href="#method-i-enleverChoixPossible">#enleverChoixPossible</a>
     <li ><a href="#method-i-getVoisins">#getVoisins</a>
@@ -358,7 +359,7 @@
           <p>Affiche les voisins auxquelles l&#39;île peut-être relié</p>
 
           <div class="method-source-code" id="choixPossible-source">
-            <pre><span class="ruby-comment"># File Ile.rb, line 194</span>
+            <pre><span class="ruby-comment"># File Ile.rb, line 211</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">choixPossible</span>()
             <span class="ruby-identifier">voisins</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">getVoisins</span>
             <span class="ruby-keyword">for</span> <span class="ruby-identifier">voisin</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">voisins</span>
@@ -387,7 +388,7 @@
           <p>Méthode de test afin de s&#39;assurer du bon fonctionnement des clics</p>
 
           <div class="method-source-code" id="click-source">
-            <pre><span class="ruby-comment"># File Ile.rb, line 230</span>
+            <pre><span class="ruby-comment"># File Ile.rb, line 247</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">click</span>()
     <span class="ruby-ivar">@gridRef</span>.<span class="ruby-identifier">notify</span>(<span class="ruby-keyword">self</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -408,7 +409,7 @@
           <p>Retourne le nombre de voisins</p>
 
           <div class="method-source-code" id="compterVoisins-source">
-            <pre><span class="ruby-comment"># File Ile.rb, line 115</span>
+            <pre><span class="ruby-comment"># File Ile.rb, line 123</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">compterVoisins</span>() 
     <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">getVoisins</span>().<span class="ruby-identifier">size</span>
 <span class="ruby-keyword">end</span></pre>
@@ -429,9 +430,30 @@
           <p>Renvoi le nombre de voisins non complets</p>
 
           <div class="method-source-code" id="compterVoisinsNonComplets-source">
-            <pre><span class="ruby-comment"># File Ile.rb, line 155</span>
+            <pre><span class="ruby-comment"># File Ile.rb, line 172</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">compterVoisinsNonComplets</span>
     <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">voisinsNonComplets</span>().<span class="ruby-identifier">size</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-connexionRestantes" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">connexionRestantes</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Retourne le nombre de connexions restantes avant  que l&#39;île soit complète. Si le nombre est négatif - il y à trop de pont  Si le nombre est positif - Nombre de ponts manquants Si le nombre == 0 - Le pont est complet</p>
+
+          <div class="method-source-code" id="connexionRestantes-source">
+            <pre><span class="ruby-comment"># File Ile.rb, line 132</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">connexionRestantes</span> 
+    <span class="ruby-keyword">return</span> <span class="ruby-ivar">@degreeMax</span> <span class="ruby-operator">-</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">pontRestants</span>()
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -450,7 +472,7 @@
           <p>Décrémente le nombre de pont sur la case</p>
 
           <div class="method-source-code" id="dec-source">
-            <pre><span class="ruby-comment"># File Ile.rb, line 160</span>
+            <pre><span class="ruby-comment"># File Ile.rb, line 177</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">dec</span>
     <span class="ruby-ivar">@degree</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
 <span class="ruby-keyword">end</span></pre>
@@ -471,7 +493,7 @@
           <p>Supprime l&#39;affichage des voisins possibles</p>
 
           <div class="method-source-code" id="enleverChoixPossible-source">
-            <pre><span class="ruby-comment"># File Ile.rb, line 207</span>
+            <pre><span class="ruby-comment"># File Ile.rb, line 224</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">enleverChoixPossible</span>()
         <span class="ruby-identifier">voisins</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">getVoisins</span>
         <span class="ruby-keyword">for</span> <span class="ruby-identifier">voisin</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">voisins</span>
@@ -504,7 +526,7 @@
           <p>Retourne un tableau contenant les voisins d&#39;une ile Un noeud à nil équivaut à une absence de voisin dans cette direction On ne retourne donc que les voisins valides</p>
 
           <div class="method-source-code" id="getVoisins-source">
-            <pre><span class="ruby-comment"># File Ile.rb, line 123</span>
+            <pre><span class="ruby-comment"># File Ile.rb, line 140</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getVoisins</span>
     <span class="ruby-identifier">arr</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span> 
     <span class="ruby-keyword">if</span>( <span class="ruby-ivar">@northNode</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> )
@@ -538,7 +560,7 @@
           <p>Incrément le nombre de pont sur la case</p>
 
           <div class="method-source-code" id="inc-source">
-            <pre><span class="ruby-comment"># File Ile.rb, line 170</span>
+            <pre><span class="ruby-comment"># File Ile.rb, line 187</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">inc</span>
     <span class="ruby-ivar">@degree</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
 <span class="ruby-keyword">end</span></pre>
@@ -559,7 +581,7 @@
           <p>Renvoi vrai si l&#39;ile est relie a chacun de ses voisins  sinon faux</p>
 
           <div class="method-source-code" id="pontAvecVoisins-source">
-            <pre><span class="ruby-comment"># File Ile.rb, line 110</span>
+            <pre><span class="ruby-comment"># File Ile.rb, line 118</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">pontAvecVoisins</span>
    <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">pontRestants</span>() <span class="ruby-operator">&gt;=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">compterVoisins</span>()
 <span class="ruby-keyword">end</span></pre>
@@ -583,11 +605,19 @@
             <pre><span class="ruby-comment"># File Ile.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">pontRestants</span>
     <span class="ruby-identifier">compteur</span> = <span class="ruby-value">0</span>
-    <span class="ruby-identifier">compteur</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@northEdge</span>
-    <span class="ruby-identifier">compteur</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@eastEdge</span>
-    <span class="ruby-identifier">compteur</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@southEdge</span>
-    <span class="ruby-identifier">compteur</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@westEdge</span>
-
+   
+    <span class="ruby-keyword">if</span>( <span class="ruby-ivar">@northNode</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> )
+        <span class="ruby-identifier">compteur</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@northEdge</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span>( <span class="ruby-ivar">@eastNode</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> )
+        <span class="ruby-identifier">compteur</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@eastEdge</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span>( <span class="ruby-ivar">@southNode</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> )
+        <span class="ruby-identifier">compteur</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@southEdge</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span>( <span class="ruby-ivar">@westNode</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> )
+        <span class="ruby-identifier">compteur</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@westEdge</span>
+    <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">return</span> <span class="ruby-identifier">compteur</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -607,7 +637,7 @@
           <p>Modifie le nombre de ponts relie à l&#39;ile</p>
 
           <div class="method-source-code" id="set_degree-source">
-            <pre><span class="ruby-comment"># File Ile.rb, line 165</span>
+            <pre><span class="ruby-comment"># File Ile.rb, line 182</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_degree</span> <span class="ruby-identifier">val</span>
     <span class="ruby-ivar">@degree</span> = <span class="ruby-identifier">val</span>
 <span class="ruby-keyword">end</span></pre>
@@ -628,7 +658,7 @@
           <p>Affiche la ligne et la colonne</p>
 
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File Ile.rb, line 225</span>
+            <pre><span class="ruby-comment"># File Ile.rb, line 242</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_s</span>
     <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;[#{@row}-#{@column}]&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -656,7 +686,7 @@
 </li></ul>
 
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File Ile.rb, line 178</span>
+            <pre><span class="ruby-comment"># File Ile.rb, line 195</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span> 
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@degree</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@degreeMax</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">estComplet</span> = <span class="ruby-keyword">false</span>
@@ -688,7 +718,7 @@
           <p>Retourne la liste des voisins non complets d&#39;une ile</p>
 
           <div class="method-source-code" id="voisinsNonComplets-source">
-            <pre><span class="ruby-comment"># File Ile.rb, line 142</span>
+            <pre><span class="ruby-comment"># File Ile.rb, line 159</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">voisinsNonComplets</span>()
     <span class="ruby-identifier">liste</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">getVoisins</span>()
     <span class="ruby-identifier">array</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>()

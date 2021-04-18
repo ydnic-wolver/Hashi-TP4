@@ -181,7 +181,7 @@
             <pre><span class="ruby-comment"># File Aide.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">definirCas</span>()
     <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-        <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-identifier">x</span>.<span class="ruby-identifier">compterVoisins</span>()
+      <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-identifier">x</span>.<span class="ruby-identifier">compterVoisins</span>()
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">estCas1?</span>()
         <span class="ruby-keyword">return</span> <span class="ruby-value">1</span>
@@ -232,7 +232,7 @@
           <p>Cas 10 : île à 5 avec trois îles voisines restante dans la grille</p>
 
           <div class="method-source-code" id="estCas10-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 212</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 209</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas10?</span>()
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">5</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontAvecVoisins</span>()
@@ -259,7 +259,7 @@
           <p>Cas 11 : île à 3 avec deux îles voisines restante dans la grille</p>
 
           <div class="method-source-code" id="estCas11-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 223</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 221</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas11?</span>()
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontAvecVoisins</span>()
@@ -286,11 +286,11 @@
           <p>Cas 12 : île à 6 avec deux des îles voisines à 1</p>
 
           <div class="method-source-code" id="estCas12-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 234</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 232</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas12?</span>()
   <span class="ruby-identifier">compteur</span> = <span class="ruby-value">0</span>
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">6</span> <span class="ruby-operator">&amp;&amp;</span>  <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>()
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">6</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontRestants</span>() <span class="ruby-operator">!=</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span>
       <span class="ruby-identifier">x</span>.<span class="ruby-identifier">getVoisins</span>().<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
         <span class="ruby-identifier">compteur</span> = <span class="ruby-value">0</span>
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
@@ -322,11 +322,11 @@
           <p>Cas 13 : île à 4 avec deux des îles voisines à 1</p>
 
           <div class="method-source-code" id="estCas13-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 255</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 253</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas13?</span>()
   <span class="ruby-identifier">compteur</span> = <span class="ruby-value">0</span>
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">4</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>()
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">4</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontRestants</span>() <span class="ruby-operator">!=</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span>
       <span class="ruby-identifier">x</span>.<span class="ruby-identifier">getVoisins</span>().<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
         <span class="ruby-identifier">compteur</span> = <span class="ruby-value">0</span>
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
@@ -358,11 +358,11 @@
           <p>Cas 14 : île à 2 avec deux îles voisines dont une île à 2 restante</p>
 
           <div class="method-source-code" id="estCas14-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 275</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 273</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas14?</span>()
   <span class="ruby-identifier">voisinDeux</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degree</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontRestants</span>() <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
       <span class="ruby-identifier">x</span>.<span class="ruby-identifier">getVoisins</span>().<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
           <span class="ruby-ivar">@position</span> = <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>.<span class="ruby-identifier">column</span>, <span class="ruby-identifier">x</span>.<span class="ruby-identifier">row</span>)
@@ -393,7 +393,7 @@
             <pre><span class="ruby-comment"># File Aide.rb, line 86</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas1?</span>()
     <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">&amp;&amp;</span>  <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>()
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontRestants</span>() <span class="ruby-operator">!=</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span>
         <span class="ruby-ivar">@position</span> = <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>.<span class="ruby-identifier">column</span>, <span class="ruby-identifier">x</span>.<span class="ruby-identifier">row</span>)
         <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
       <span class="ruby-keyword">end</span>
@@ -420,7 +420,10 @@
             <pre><span class="ruby-comment"># File Aide.rb, line 98</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas2?</span>()
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">compterVoisinsNonComplets</span>() <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>()
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_s</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">compterVoisinsNonComplets</span>()
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontRestants</span>()
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">compterVoisinsNonComplets</span>() <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontRestants</span>() <span class="ruby-operator">!=</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span>
       <span class="ruby-ivar">@position</span> =  <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>.<span class="ruby-identifier">column</span>, <span class="ruby-identifier">x</span>.<span class="ruby-identifier">row</span>)
       <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
     <span class="ruby-keyword">end</span>
@@ -444,10 +447,10 @@
           <p>Cas 3 : île à 8 restante dans la grille</p>
 
           <div class="method-source-code" id="estCas3-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 109</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas3?</span>()
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">8</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>()
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">8</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontRestants</span>() <span class="ruby-operator">!=</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span>
       <span class="ruby-ivar">@position</span> = <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>.<span class="ruby-identifier">column</span>, <span class="ruby-identifier">x</span>.<span class="ruby-identifier">row</span>)
       <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
     <span class="ruby-keyword">end</span>
@@ -471,10 +474,10 @@
           <p>Cas 4 : île à 6 avec 3 îles voisines restante dans la grille</p>
 
           <div class="method-source-code" id="estCas4-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 120</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 123</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas4?</span>()
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">6</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>()
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">6</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontRestants</span>() <span class="ruby-operator">!=</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span>
       <span class="ruby-ivar">@position</span> = <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>.<span class="ruby-identifier">column</span>, <span class="ruby-identifier">x</span>.<span class="ruby-identifier">row</span>)
       <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
     <span class="ruby-keyword">end</span>
@@ -498,10 +501,10 @@
           <p>Cas 5 : île à 4 avec 2 îles voisines restante dans la grille</p>
 
           <div class="method-source-code" id="estCas5-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 131</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 134</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas5?</span>()
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">4</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>()
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">4</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontRestants</span>() <span class="ruby-operator">!=</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span>
       <span class="ruby-ivar">@position</span> = <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>.<span class="ruby-identifier">column</span>, <span class="ruby-identifier">x</span>.<span class="ruby-identifier">row</span>)
       <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
     <span class="ruby-keyword">end</span>
@@ -522,20 +525,21 @@
         </div>
 
         <div class="method-description">
-          <p>Cas 6 : île à 4 avec une île voisine à 1 restante dans la grille</p>
+          <p>Cas 6 : île à 4 avec deux des îles voisines à 1</p>
 
           <div class="method-source-code" id="estCas6-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 142</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 145</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas6?</span>()
   <span class="ruby-identifier">compteur</span> = <span class="ruby-value">0</span>
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">4</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>()
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">4</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontRestants</span>() <span class="ruby-operator">!=</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span>
       <span class="ruby-identifier">x</span>.<span class="ruby-identifier">getVoisins</span>().<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>()
+        <span class="ruby-identifier">compteur</span> = <span class="ruby-value">0</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
           <span class="ruby-identifier">compteur</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
         <span class="ruby-keyword">end</span>
       <span class="ruby-keyword">end</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">compteur</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">compteur</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
         <span class="ruby-ivar">@position</span> = <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>.<span class="ruby-identifier">column</span>, <span class="ruby-identifier">x</span>.<span class="ruby-identifier">row</span>)
         <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
       <span class="ruby-keyword">end</span>
@@ -557,23 +561,16 @@
         </div>
 
         <div class="method-description">
-          <p>Cas 7 : île à 5 avec trois îles voisines dont une à 1 restante dans la grille</p>
+          <p>Cas 7 :  île à 5 avec trois îles voisines restante dans la grille</p>
 
           <div class="method-source-code" id="estCas7-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 161</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 165</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas7?</span>()
   <span class="ruby-identifier">compteur</span> = <span class="ruby-value">0</span>
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">5</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>()
-      <span class="ruby-identifier">x</span>.<span class="ruby-identifier">getVoisins</span>().<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
-          <span class="ruby-identifier">compteur</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
-        <span class="ruby-keyword">end</span>
-      <span class="ruby-keyword">end</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">compteur</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
-        <span class="ruby-ivar">@position</span> = <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>.<span class="ruby-identifier">column</span>, <span class="ruby-identifier">x</span>.<span class="ruby-identifier">row</span>)
-        <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
-      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">5</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontAvecVoisins</span>()
+      <span class="ruby-ivar">@position</span> = <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>.<span class="ruby-identifier">column</span>, <span class="ruby-identifier">x</span>.<span class="ruby-identifier">row</span>)
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
@@ -595,13 +592,13 @@
           <p>Cas 8 : île à 3 avec deux îles voisines dont une à 1 restante dans la grille</p>
 
           <div class="method-source-code" id="estCas8-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 181</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 178</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas8?</span>()
   <span class="ruby-identifier">compteur</span> = <span class="ruby-value">0</span>
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>()
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontRestants</span>() <span class="ruby-operator">!=</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span>
       <span class="ruby-identifier">x</span>.<span class="ruby-identifier">getVoisins</span>().<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">degree</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">degreeMax</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">connexionRestantes</span>() <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
           <span class="ruby-identifier">compteur</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
         <span class="ruby-keyword">end</span>
       <span class="ruby-keyword">end</span>
@@ -630,7 +627,7 @@
           <p>Cas 9 : île à 7 restante dans la grille</p>
 
           <div class="method-source-code" id="estCas9-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 201</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 198</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas9?</span>()
   <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span> <span class="ruby-operator">==</span> <span class="ruby-value">7</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">pontAvecVoisins</span>()

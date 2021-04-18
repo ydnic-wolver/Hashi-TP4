@@ -148,10 +148,8 @@
             }
 
 </span><span class="ruby-identifier">                CSS</span>
-        <span class="ruby-identifier">boutonIndice</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;btnIndice&#39;</span>)
-        <span class="ruby-identifier">boutonIndice</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
-            <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Indice&quot;</span>
-        }
+
+       
 
         <span class="ruby-comment"># #Reglage du bouton Undo</span>
         <span class="ruby-identifier">boutonUndo</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;btnUndo&#39;</span>)
@@ -165,18 +163,19 @@
         
         
         <span class="ruby-comment"># # Création d&#39;une nouvelle grille</span>
-        <span class="ruby-identifier">hypoGrille</span> = <span class="ruby-constant">HashiGrid</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">plateau</span>.<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">nomniv</span>, <span class="ruby-ivar">@diff</span>, <span class="ruby-identifier">plateau</span>.<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">lignes</span>, <span class="ruby-identifier">plateau</span>.<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">colonnes</span>)
-        <span class="ruby-identifier">hypoGrille</span>.<span class="ruby-identifier">set_column_homogeneous</span>(<span class="ruby-keyword">true</span>)
-        <span class="ruby-identifier">hypoGrille</span>.<span class="ruby-identifier">set_row_homogeneous</span>(<span class="ruby-keyword">true</span>)
-        <span class="ruby-identifier">hypoGrille</span>.<span class="ruby-identifier">colonnes</span> = <span class="ruby-identifier">plateau</span>.<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">colonnes</span>
-        <span class="ruby-identifier">hypoGrille</span>.<span class="ruby-identifier">lignes</span> = <span class="ruby-identifier">plateau</span>.<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">lignes</span>
+        <span class="ruby-ivar">@hypoGrille</span> = <span class="ruby-constant">HashiGrid</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">plateau</span>.<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">nomniv</span>, <span class="ruby-ivar">@diff</span>, <span class="ruby-identifier">plateau</span>.<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">lignes</span>, <span class="ruby-identifier">plateau</span>.<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">colonnes</span>)
+        <span class="ruby-ivar">@hypoGrille</span>.<span class="ruby-identifier">set_column_homogeneous</span>(<span class="ruby-keyword">true</span>)
+        <span class="ruby-ivar">@hypoGrille</span>.<span class="ruby-identifier">set_row_homogeneous</span>(<span class="ruby-keyword">true</span>)
+        <span class="ruby-ivar">@hypoGrille</span>.<span class="ruby-identifier">colonnes</span> = <span class="ruby-identifier">plateau</span>.<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">colonnes</span>
+        <span class="ruby-ivar">@hypoGrille</span>.<span class="ruby-identifier">lignes</span> = <span class="ruby-identifier">plateau</span>.<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">lignes</span>
+        <span class="ruby-ivar">@hypoGrille</span>.<span class="ruby-identifier">sommets</span> = <span class="ruby-identifier">plateau</span>.<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">sommets</span>
 
         <span class="ruby-comment"># # On parcourt le tableau des iles/ponts copiés</span>
         <span class="ruby-identifier">copy_grille</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> 
             <span class="ruby-comment"># Si c&#39;est une ile</span>
             <span class="ruby-comment"># On copie les attributs de l&#39;ile</span>
             <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&#39;p&#39;</span>
-                <span class="ruby-identifier">btn</span> = <span class="ruby-constant">Ile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">hypoGrille</span>,<span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span>.<span class="ruby-identifier">to_s</span>,<span class="ruby-identifier">x</span>.<span class="ruby-identifier">column</span>,<span class="ruby-identifier">x</span>.<span class="ruby-identifier">row</span>)
+                <span class="ruby-identifier">btn</span> = <span class="ruby-constant">Ile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@hypoGrille</span>,<span class="ruby-identifier">x</span>.<span class="ruby-identifier">degreeMax</span>.<span class="ruby-identifier">to_s</span>,<span class="ruby-identifier">x</span>.<span class="ruby-identifier">column</span>,<span class="ruby-identifier">x</span>.<span class="ruby-identifier">row</span>)
                 <span class="ruby-identifier">btn</span>.<span class="ruby-identifier">degree</span> = <span class="ruby-identifier">x</span>.<span class="ruby-identifier">degree</span>
                 <span class="ruby-identifier">btn</span>.<span class="ruby-identifier">estComplet</span> = <span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>
                 <span class="ruby-identifier">btn</span>.<span class="ruby-identifier">northEdge</span> = <span class="ruby-identifier">x</span>.<span class="ruby-identifier">northEdge</span>
@@ -187,30 +186,40 @@
             <span class="ruby-keyword">else</span> 
                 <span class="ruby-comment"># Si c&#39;est un pont on copie les attributs</span>
                 <span class="ruby-comment"># et on met à jour le pont</span>
-                <span class="ruby-identifier">btn</span> = <span class="ruby-constant">Pont</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">hypoGrille</span>,<span class="ruby-identifier">x</span>.<span class="ruby-identifier">column</span>,<span class="ruby-identifier">x</span>.<span class="ruby-identifier">row</span>)
+                <span class="ruby-identifier">btn</span> = <span class="ruby-constant">Pont</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@hypoGrille</span>,<span class="ruby-identifier">x</span>.<span class="ruby-identifier">column</span>,<span class="ruby-identifier">x</span>.<span class="ruby-identifier">row</span>)
                 <span class="ruby-identifier">btn</span>.<span class="ruby-identifier">set_typePont</span>( <span class="ruby-identifier">x</span>.<span class="ruby-identifier">get_typePont</span> )
                 <span class="ruby-identifier">btn</span>.<span class="ruby-identifier">estDouble</span> = <span class="ruby-identifier">x</span>.<span class="ruby-identifier">estDouble</span>
                 <span class="ruby-identifier">btn</span>.<span class="ruby-identifier">set_directionPont</span> ( <span class="ruby-identifier">x</span>.<span class="ruby-identifier">get_directionPont</span> )
                 <span class="ruby-identifier">btn</span>.<span class="ruby-identifier">update</span>
             <span class="ruby-keyword">end</span>
                 <span class="ruby-comment"># On attache la référence de la grille</span>
-                <span class="ruby-identifier">hypoGrille</span>.<span class="ruby-identifier">attach</span>(<span class="ruby-identifier">btn</span>, <span class="ruby-identifier">x</span>.<span class="ruby-identifier">column</span>,<span class="ruby-identifier">x</span>.<span class="ruby-identifier">row</span>, <span class="ruby-value">1</span>,<span class="ruby-value">1</span>)
+                <span class="ruby-ivar">@hypoGrille</span>.<span class="ruby-identifier">attach</span>(<span class="ruby-identifier">btn</span>, <span class="ruby-identifier">x</span>.<span class="ruby-identifier">column</span>,<span class="ruby-identifier">x</span>.<span class="ruby-identifier">row</span>, <span class="ruby-value">1</span>,<span class="ruby-value">1</span>)
         <span class="ruby-keyword">end</span>
         <span class="ruby-comment"># # Chargement des voisins</span>
-        <span class="ruby-identifier">hypoGrille</span>.<span class="ruby-identifier">chargeVoisins</span>
+        <span class="ruby-ivar">@hypoGrille</span>.<span class="ruby-identifier">chargeVoisins</span>
 
         <span class="ruby-identifier">boxJeu</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;boxJeu&#39;</span>)
-        <span class="ruby-identifier">boxJeu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">hypoGrille</span>)
+        <span class="ruby-identifier">boxJeu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-ivar">@hypoGrille</span>)
 
       
         <span class="ruby-comment">#Creation et affichage de la fenêtre principale</span>
         <span class="ruby-identifier">boxPrincipale</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;boxPrincipale&#39;</span>)
 
+        <span class="ruby-identifier">aide</span> = <span class="ruby-constant">Aide</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@hypoGrille</span>)
+        <span class="ruby-identifier">label_aide</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;label_indice&#39;</span>)
+        
+        <span class="ruby-identifier">boutonIndice</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;btnIndice&#39;</span>)
+        <span class="ruby-identifier">boutonIndice</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
+            <span class="ruby-identifier">label_aide</span>.<span class="ruby-identifier">set_label</span>(<span class="ruby-identifier">aide</span>.<span class="ruby-identifier">getMessageAide</span>)
+            <span class="ruby-identifier">boxPrincipale</span>.<span class="ruby-identifier">show_all</span>
+            <span class="ruby-comment"># puts &quot;Indice&quot;</span>
+        }
+
       
         <span class="ruby-identifier">btnValider</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;btnValider&#39;</span>)
         <span class="ruby-identifier">btnValider</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
-            <span class="ruby-identifier">boxJeu</span>.<span class="ruby-identifier">remove</span>(<span class="ruby-identifier">hypoGrille</span>)
-            <span class="ruby-identifier">plateau</span>.<span class="ruby-identifier">hypotheseValider</span>(<span class="ruby-identifier">hypoGrille</span>)
+            <span class="ruby-identifier">boxJeu</span>.<span class="ruby-identifier">remove</span>(<span class="ruby-ivar">@hypoGrille</span>)
+            <span class="ruby-identifier">plateau</span>.<span class="ruby-identifier">hypotheseValider</span>(<span class="ruby-ivar">@hypoGrille</span>)
             <span class="ruby-identifier">hypo</span>.<span class="ruby-identifier">destroy</span>
             <span class="ruby-identifier">$window</span>.<span class="ruby-identifier">getPlateau</span>().<span class="ruby-identifier">set_sensitive</span>(<span class="ruby-keyword">true</span>)
         }
@@ -222,11 +231,11 @@
         }
 
         <span class="ruby-identifier">boutonUndo</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
-            <span class="ruby-identifier">hypoGrille</span>.<span class="ruby-identifier">undoPrevious</span>
+            <span class="ruby-ivar">@hypoGrille</span>.<span class="ruby-identifier">undoPrevious</span>
         }
 
         <span class="ruby-identifier">boutonRedo</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
-            <span class="ruby-identifier">hypoGrille</span>.<span class="ruby-identifier">redoPrevious</span>
+            <span class="ruby-ivar">@hypoGrille</span>.<span class="ruby-identifier">redoPrevious</span>
         }
 
         <span class="ruby-identifier">btnAnnuler</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)

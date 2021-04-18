@@ -124,6 +124,11 @@ class Ile < Gtk::Button
         return self.getVoisins().size
     end
 
+    # Retourne le nombre de connexions restantes avant 
+    # que l'île soit complète.
+    # Si le nombre est négatif - il y à trop de pont 
+    # Si le nombre est positif - Nombre de ponts manquants
+    # Si le nombre == 0 - Le pont est complet
     def connexionRestantes 
         return @degreeMax - self.pontRestants()
     end
