@@ -14,7 +14,7 @@
     <property name="default-height">250</property>
      <property name="destroy-with-parent">True</property>
     <property name="skip-taskbar-hint">True</property>
-       <property name="decorated">False</property>
+       <property name="decorated">True</property>
     <child>
       <object class="GtkFrame">
         <property name="visible">True</property>

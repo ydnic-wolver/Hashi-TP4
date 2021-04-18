@@ -112,7 +112,7 @@
           <p>Constructeur du Menu <a href="Pause.html"><code>Pause</code></a></p>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File Pause.rb, line 10</span>
+            <pre><span class="ruby-comment"># File Pause.rb, line 11</span>
     <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>()
        
         <span class="ruby-identifier">file_import</span> = <span class="ruby-string">&quot;./Ressources/Glade/menu_pause.glade&quot;</span>
@@ -124,7 +124,6 @@
 
         <span class="ruby-identifier">menu_pause</span>.<span class="ruby-identifier">signal_connect</span> <span class="ruby-string">&quot;destroy&quot;</span> <span class="ruby-keyword">do</span>
             <span class="ruby-identifier">$window</span>.<span class="ruby-identifier">getPlateau</span>().<span class="ruby-identifier">set_sensitive</span>(<span class="ruby-keyword">true</span>)
-            <span class="ruby-identifier">$timerStop</span> = <span class="ruby-value">0</span>
             <span class="ruby-identifier">menu_pause</span>.<span class="ruby-identifier">destroy</span>
         <span class="ruby-keyword">end</span>
 
@@ -135,19 +134,18 @@
         <span class="ruby-identifier">boutonReprendre</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
             <span class="ruby-identifier">$window</span>.<span class="ruby-identifier">getPlateau</span>().<span class="ruby-identifier">set_sensitive</span>(<span class="ruby-keyword">true</span>)
             <span class="ruby-identifier">menu_pause</span>.<span class="ruby-identifier">destroy</span>
+            <span class="ruby-identifier">$window</span>.<span class="ruby-identifier">lancerChrono</span>
         }
 
         <span class="ruby-identifier">boutonRecommencer</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;boutonRecommencer&#39;</span>)
         <span class="ruby-identifier">boutonRecommencer</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
             <span class="ruby-identifier">$window</span>.<span class="ruby-identifier">getPlateau</span>().<span class="ruby-identifier">set_sensitive</span>(<span class="ruby-keyword">true</span>)
-            <span class="ruby-identifier">$window</span>.<span class="ruby-identifier">resetPlateau</span>()
-            <span class="ruby-identifier">$timerStop</span> = <span class="ruby-value">0</span>
             <span class="ruby-identifier">menu_pause</span>.<span class="ruby-identifier">destroy</span>
+            <span class="ruby-identifier">$window</span>.<span class="ruby-identifier">resetPlateau</span>()
         }
         
         <span class="ruby-identifier">boutonQuitter</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;boutonQuitter&#39;</span>)
             <span class="ruby-identifier">boutonQuitter</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
-            <span class="ruby-identifier">$partieStop</span> = <span class="ruby-value">1</span>
             <span class="ruby-identifier">menu_pause</span>.<span class="ruby-identifier">destroy</span>
             <span class="ruby-identifier">$window</span>.<span class="ruby-identifier">getPlateau</span>().<span class="ruby-identifier">destroy</span>
             <span class="ruby-constant">MainMenu</span>.<span class="ruby-identifier">new</span>
@@ -164,9 +162,7 @@
         <span class="ruby-identifier">boutonRecommencer</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
         <span class="ruby-identifier">boutonQuitter</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
 
-
-
-         <span class="ruby-identifier">menu_pause</span>.<span class="ruby-identifier">show_all</span>
+        <span class="ruby-identifier">menu_pause</span>.<span class="ruby-identifier">show_all</span>
     <span class="ruby-keyword">end</span></pre>
           </div>
         </div>

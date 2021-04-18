@@ -122,72 +122,71 @@
             <pre><span class="ruby-comment"># File ClassementNiveau.rb, line 12</span>
         <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">nomniv</span>)
         <span class="ruby-keyword">super</span>
-        <span class="ruby-identifier">set_title</span> <span class="ruby-string">&quot;Classement Niveau &quot;</span> 
-        <span class="ruby-identifier">set_resizable</span>(<span class="ruby-keyword">true</span>)
-        <span class="ruby-identifier">signal_connect</span> <span class="ruby-string">&quot;destroy&quot;</span> <span class="ruby-keyword">do</span> 
-                <span class="ruby-keyword">self</span>.<span class="ruby-identifier">destroy</span> 
-        <span class="ruby-keyword">end</span>
-
-        <span class="ruby-identifier">set_default_size</span> <span class="ruby-value">500</span>, <span class="ruby-value">400</span>
-
-        <span class="ruby-identifier">set_window_position</span> <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">WindowPosition</span><span class="ruby-operator">::</span><span class="ruby-constant">CENTER</span>
-        
-        <span class="ruby-comment">#Creation de zone de texte</span>
-        <span class="ruby-identifier">texte</span> = <span class="ruby-string">&quot;&lt;span font_desc = \&quot;Toledo 20\&quot;&gt;Resultats du Niveau :&lt;/span&gt;\n&quot;</span>
-        <span class="ruby-identifier">texte1</span> = <span class="ruby-string">&quot;&lt;span font_desc = \&quot;Toledo 15\&quot;&gt;(Temps):(Joueur)&lt;/span&gt;\n&quot;</span>
-        <span class="ruby-identifier">texte_0</span> =<span class="ruby-string">&quot;&quot;</span>
-
-        <span class="ruby-identifier">boxMenu</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:vertical</span>, <span class="ruby-value">6</span>)
-        <span class="ruby-comment"># boxMenu.set_homogeneous(true)</span>
-
-        <span class="ruby-identifier">preset</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>()
-        <span class="ruby-identifier">preset</span>.<span class="ruby-identifier">set_markup</span>(<span class="ruby-identifier">texte1</span>)
-        <span class="ruby-identifier">textTitle</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>()
-        <span class="ruby-identifier">textTitle</span>.<span class="ruby-identifier">set_markup</span>(<span class="ruby-identifier">texte</span>)
-        
-        <span class="ruby-comment">#Tri les lignes en fonctions des temps</span>
-        <span class="ruby-identifier">tab</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">nomniv</span>).<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;\n&quot;</span>)
-        <span class="ruby-identifier">tab</span> = <span class="ruby-identifier">tab</span>.<span class="ruby-identifier">sort_by</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\d+/</span>).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">to_i</span> }
-        
-        <span class="ruby-comment">#Inclu toutes les lignes du tableau tab dans une variable texte_0 pour être affiché dans une box</span>
-        <span class="ruby-identifier">tab</span>.<span class="ruby-identifier">each</span>.<span class="ruby-identifier">with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
-                <span class="ruby-identifier">texte_0</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;&lt;span font_desc = &#39;Toledo 13&#39;&gt;#{line} &lt;/span&gt;\n&quot;</span>
+                <span class="ruby-identifier">set_title</span> <span class="ruby-string">&quot;Classement Niveau &quot;</span> 
+                <span class="ruby-identifier">set_resizable</span>(<span class="ruby-keyword">true</span>)
+                <span class="ruby-identifier">signal_connect</span> <span class="ruby-string">&quot;destroy&quot;</span> <span class="ruby-keyword">do</span> 
+                        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">destroy</span> 
                 <span class="ruby-keyword">end</span>
 
-        <span class="ruby-identifier">score</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>()
-        <span class="ruby-identifier">score</span>.<span class="ruby-identifier">set_markup</span>(<span class="ruby-identifier">texte_0</span>)
+                <span class="ruby-identifier">set_default_size</span> <span class="ruby-value">500</span>, <span class="ruby-value">400</span>
+
+                <span class="ruby-identifier">set_window_position</span> <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">WindowPosition</span><span class="ruby-operator">::</span><span class="ruby-constant">CENTER</span>
                 
-    <span class="ruby-identifier">btnQuitter</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Button</span>.<span class="ruby-identifier">new</span>()
-        <span class="ruby-identifier">btnQuitter</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){<span class="ruby-keyword">self</span>.<span class="ruby-identifier">destroy</span>}
-        <span class="ruby-identifier">btnQuitter</span>.<span class="ruby-identifier">image</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:file</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;./Ressources/MenuSelection/back.png&quot;</span>) 
-        <span class="ruby-identifier">btnQuitter</span>.<span class="ruby-identifier">halign</span> =  <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Align</span><span class="ruby-operator">::</span><span class="ruby-constant">CENTER</span>
-        <span class="ruby-identifier">btnQuitter</span>.<span class="ruby-identifier">valign</span> =  <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Align</span><span class="ruby-operator">::</span><span class="ruby-constant">CENTER</span>
-        <span class="ruby-identifier">btnQuitter</span>.<span class="ruby-identifier">always_show_image</span> = <span class="ruby-keyword">true</span>
-        
-        <span class="ruby-identifier">css_file</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">CssProvider</span>.<span class="ruby-identifier">new</span>
-        <span class="ruby-identifier">css_file</span>.<span class="ruby-identifier">load</span>(<span class="ruby-value">data:</span> <span class="ruby-identifier">&lt;&lt;-CSS</span>)
-<span class="ruby-value">                button {
-                        all:unset;
-                }
+                <span class="ruby-comment">#Creation de zone de texte</span>
+                <span class="ruby-identifier">texte</span> = <span class="ruby-string">&quot;&lt;span font_desc = \&quot;Toledo 20\&quot;&gt;Resultats du Niveau :&lt;/span&gt;\n&quot;</span>
+                <span class="ruby-identifier">texte1</span> = <span class="ruby-string">&quot;&lt;span font_desc = \&quot;Toledo 15\&quot;&gt;(Temps):(Joueur)&lt;/span&gt;\n&quot;</span>
+                <span class="ruby-identifier">texte_0</span> =<span class="ruby-string">&quot;&quot;</span>
 
-                button:hover {
-                        opacity: .6;
-                }
-</span><span class="ruby-identifier">                CSS</span>
+                <span class="ruby-identifier">boxMenu</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:vertical</span>, <span class="ruby-value">6</span>)
 
-        <span class="ruby-identifier">btnQuitter</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
-        
-        <span class="ruby-identifier">btnScore</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>
+                <span class="ruby-identifier">preset</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>()
+                <span class="ruby-identifier">preset</span>.<span class="ruby-identifier">set_markup</span>(<span class="ruby-identifier">texte1</span>)
+                <span class="ruby-identifier">textTitle</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>()
+                <span class="ruby-identifier">textTitle</span>.<span class="ruby-identifier">set_markup</span>(<span class="ruby-identifier">texte</span>)
+                
+                <span class="ruby-comment">#Tri les lignes en fonctions des temps</span>
+                <span class="ruby-identifier">tab</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">nomniv</span>).<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+                <span class="ruby-identifier">tab</span> = <span class="ruby-identifier">tab</span>.<span class="ruby-identifier">sort_by</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp">/\d+/</span>).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">to_i</span> }
+                
+                <span class="ruby-comment">#Inclu toutes les lignes du tableau tab dans une variable texte_0 pour être affiché dans une box</span>
+                <span class="ruby-identifier">tab</span>.<span class="ruby-identifier">each</span>.<span class="ruby-identifier">with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">texte_0</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;&lt;span font_desc = &#39;Toledo 13&#39;&gt;#{line} &lt;/span&gt;\n&quot;</span>
+                        <span class="ruby-keyword">end</span>
 
-        <span class="ruby-comment">#Affichage de toutes les box</span>
-        <span class="ruby-identifier">boxMenu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">textTitle</span>)
-        <span class="ruby-identifier">boxMenu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">preset</span>)
-        <span class="ruby-identifier">boxMenu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">score</span>)
-        <span class="ruby-identifier">boxMenu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">btnQuitter</span>)
+                <span class="ruby-identifier">score</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>()
+                <span class="ruby-identifier">score</span>.<span class="ruby-identifier">set_markup</span>(<span class="ruby-identifier">texte_0</span>)
+                        
+                <span class="ruby-identifier">btnQuitter</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Button</span>.<span class="ruby-identifier">new</span>()
+                <span class="ruby-identifier">btnQuitter</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){<span class="ruby-keyword">self</span>.<span class="ruby-identifier">destroy</span>}
+                <span class="ruby-identifier">btnQuitter</span>.<span class="ruby-identifier">image</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:file</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;./Ressources/MenuSelection/back.png&quot;</span>) 
+                <span class="ruby-identifier">btnQuitter</span>.<span class="ruby-identifier">halign</span> =  <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Align</span><span class="ruby-operator">::</span><span class="ruby-constant">CENTER</span>
+                <span class="ruby-identifier">btnQuitter</span>.<span class="ruby-identifier">valign</span> =  <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Align</span><span class="ruby-operator">::</span><span class="ruby-constant">CENTER</span>
+                <span class="ruby-identifier">btnQuitter</span>.<span class="ruby-identifier">always_show_image</span> = <span class="ruby-keyword">true</span>
+                
+                <span class="ruby-identifier">css_file</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">CssProvider</span>.<span class="ruby-identifier">new</span>
+                <span class="ruby-identifier">css_file</span>.<span class="ruby-identifier">load</span>(<span class="ruby-value">data:</span> <span class="ruby-identifier">&lt;&lt;-CSS</span>)
+<span class="ruby-value">                        button {
+                                all:unset;
+                        }
 
-        <span class="ruby-identifier">add</span>(<span class="ruby-identifier">boxMenu</span>)
+                        button:hover {
+                                opacity: .6;
+                        }
+</span><span class="ruby-identifier">                        CSS</span>
 
-        <span class="ruby-identifier">show_all</span>
+                <span class="ruby-identifier">btnQuitter</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
+                
+                <span class="ruby-identifier">btnScore</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>
+
+                <span class="ruby-comment">#Affichage de toutes les box</span>
+                <span class="ruby-identifier">boxMenu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">textTitle</span>)
+                <span class="ruby-identifier">boxMenu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">preset</span>)
+                <span class="ruby-identifier">boxMenu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">score</span>)
+                <span class="ruby-identifier">boxMenu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">btnQuitter</span>)
+
+                <span class="ruby-identifier">add</span>(<span class="ruby-identifier">boxMenu</span>)
+
+                <span class="ruby-identifier">show_all</span>
     <span class="ruby-keyword">end</span></pre>
           </div>
         </div>

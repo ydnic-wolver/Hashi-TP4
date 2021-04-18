@@ -226,7 +226,7 @@
             </div>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File HashiGrid.rb, line 43</span>
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">nomniv</span>,<span class="ruby-identifier">diff</span>, <span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span>)
     <span class="ruby-keyword">super</span>()
     <span class="ruby-ivar">@diff</span> = <span class="ruby-identifier">diff</span>
@@ -263,7 +263,7 @@
           <p>Ajoute un pont entre deux iles</p>
 
           <div class="method-source-code" id="ajoutPont-source">
-            <pre><span class="ruby-comment"># File HashiGrid.rb, line 139</span>
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 150</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ajoutPont</span>(<span class="ruby-identifier">n1</span>,<span class="ruby-identifier">n2</span>)
 
     <span class="ruby-comment"># incrémente le nombre de pont sur les iles</span>
@@ -307,7 +307,7 @@
     <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">pontRestants</span>
     <span class="ruby-identifier">n2</span>.<span class="ruby-identifier">pontRestants</span>
 
-    <span class="ruby-comment"># Ajout le pont entre deux iles</span>
+    <span class="ruby-comment"># Ajoute le pont entre deux iles</span>
     <span class="ruby-identifier">ponts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pont</span><span class="ruby-operator">|</span>
         <span class="ruby-identifier">pont</span>.<span class="ruby-identifier">set_typePont</span>( <span class="ruby-identifier">pont</span>.<span class="ruby-identifier">get_typePont</span>() <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
         <span class="ruby-identifier">pont</span>.<span class="ruby-identifier">estDouble</span> = <span class="ruby-keyword">true</span>
@@ -341,7 +341,7 @@
 </li></ul>
 
           <div class="method-source-code" id="ajoutValid-3F-source">
-            <pre><span class="ruby-comment"># File HashiGrid.rb, line 300</span>
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 311</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ajoutValid?</span>(<span class="ruby-identifier">n1</span>,<span class="ruby-identifier">n2</span>)
 
         <span class="ruby-keyword">if</span>(<span class="ruby-identifier">n1</span>.<span class="ruby-identifier">northNode</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">n2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">eastNode</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">n2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">southNode</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">n2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">n1</span>.<span class="ruby-identifier">westNode</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">n2</span>)
@@ -443,8 +443,8 @@
           <p>Chargement d&#39;une grille depuis un fichier</p>
 
           <div class="method-source-code" id="chargeGrille-source">
-            <pre><span class="ruby-comment"># File HashiGrid.rb, line 442</span>
- <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">chargeGrille</span>()
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 453</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">chargeGrille</span>()
     <span class="ruby-identifier">data</span> = []
     <span class="ruby-constant">File</span>.<span class="ruby-identifier">foreach</span>(<span class="ruby-ivar">@nomniv</span>).<span class="ruby-identifier">with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span>, <span class="ruby-identifier">line_no</span><span class="ruby-operator">|</span>
         <span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span>
@@ -489,7 +489,7 @@
           <p>Charge les voisins accessibles d&#39;une case en HAUT, BAS, GAUCHE, DROITE</p>
 
           <div class="method-source-code" id="chargeVoisins-source">
-            <pre><span class="ruby-comment"># File HashiGrid.rb, line 252</span>
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 263</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">chargeVoisins</span>
     <span class="ruby-keyword">for</span> <span class="ruby-identifier">x</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">lignes</span><span class="ruby-value">-1</span>)
         <span class="ruby-keyword">for</span> <span class="ruby-identifier">y</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">colonnes</span><span class="ruby-value">-1</span>)
@@ -552,7 +552,7 @@
 </li></ul>
 
           <div class="method-source-code" id="getPontEntre-source">
-            <pre><span class="ruby-comment"># File HashiGrid.rb, line 388</span>
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 399</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getPontEntre</span>(<span class="ruby-identifier">n1</span>, <span class="ruby-identifier">n2</span>)
 
     <span class="ruby-comment"># Tableau temporaire visant à contenir l&#39;index des cases formant le pont</span>
@@ -619,10 +619,10 @@
         </div>
 
         <div class="method-description">
-          <p>Vérifie si la grille est fini  autrement dit que tous les noeuds ont correment etait rempli</p>
+          <p>Vérifie si la grille est fini  autrement dit que tous les noeuds ont correment été remplis</p>
 
           <div class="method-source-code" id="grilleFini-3F-source">
-            <pre><span class="ruby-comment"># File HashiGrid.rb, line 118</span>
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 129</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">grilleFini?</span> 
     <span class="ruby-keyword">for</span> <span class="ruby-identifier">x</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">lignes</span><span class="ruby-value">-1</span>)
         <span class="ruby-keyword">for</span> <span class="ruby-identifier">y</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">colonnes</span><span class="ruby-value">-1</span>)
@@ -650,10 +650,7 @@
         </div>
 
         <div class="method-description">
-          <pre class="ruby"><span class="ruby-constant">Méthode</span> <span class="ruby-identifier">à</span> <span class="ruby-identifier">renommer</span>
-</pre>
-
-<p>permettant de lancer les traitements lié aux cases</p>
+          <p>Methode permettant de lancer les traitements lié aux cases</p>
 <ul><li>
 <p>Ajout d&#39;un pont</p>
 </li><li>
@@ -663,7 +660,7 @@
 </li></ul>
 
           <div class="method-source-code" id="handleClick-source">
-            <pre><span class="ruby-comment"># File HashiGrid.rb, line 89</span>
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">handleClick</span>() 
     <span class="ruby-ivar">@nodeLink</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">choixPossible</span>()
     <span class="ruby-keyword">if</span>( <span class="ruby-ivar">@nodeLink</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">2</span> )
@@ -704,10 +701,10 @@
         </div>
 
         <div class="method-description">
-          <p>Méthode permettant de notifier la grille qu&#39;une case à était  cliqué</p>
+          <p>Méthode permettant de notifier la grille qu&#39;une case à été cliquée</p>
 
           <div class="method-source-code" id="notify-source">
-            <pre><span class="ruby-comment"># File HashiGrid.rb, line 133</span>
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 144</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">notify</span>(<span class="ruby-identifier">_case</span>)
     <span class="ruby-ivar">@nodeLink</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">_case</span>
     <span class="ruby-identifier">handleClick</span>()
@@ -729,7 +726,7 @@
           <p>Active le retour en avant</p>
 
           <div class="method-source-code" id="redoPrevious-source">
-            <pre><span class="ruby-comment"># File HashiGrid.rb, line 71</span>
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 83</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">redoPrevious</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">redoStack</span>.<span class="ruby-identifier">empty?</span>
         <span class="ruby-identifier">n2</span> = <span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">redoStack</span>.<span class="ruby-identifier">pop</span>()
@@ -767,7 +764,7 @@
 </li></ul>
 
           <div class="method-source-code" id="supprimePont-source">
-            <pre><span class="ruby-comment"># File HashiGrid.rb, line 196</span>
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 207</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">supprimePont</span>(<span class="ruby-identifier">n1</span>, <span class="ruby-identifier">n2</span>, <span class="ruby-identifier">undo</span> = <span class="ruby-keyword">false</span>)
    
 
@@ -839,7 +836,7 @@
           <p>Active le retour en arrière</p>
 
           <div class="method-source-code" id="undoPrevious-source">
-            <pre><span class="ruby-comment"># File HashiGrid.rb, line 57</span>
+            <pre><span class="ruby-comment"># File HashiGrid.rb, line 69</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">undoPrevious</span> 
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@undoRedo</span>.<span class="ruby-identifier">undoStack</span>.<span class="ruby-identifier">empty?</span>
       

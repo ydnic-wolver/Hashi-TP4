@@ -142,10 +142,13 @@
         </div>
 
         <div class="method-description">
-          <p>Constructeur du menu <a href="Aide.html"><code>Aide</code></a></p>
+          <p>Constructeur du menu <a href="Aide.html"><code>Aide</code></a> </p>
+<ul><li>
+<p><code>grille</code> grille dans laquelle l&#39;aide doit opérer</p>
+</li></ul>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 21</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">grille</span>)
     <span class="ruby-ivar">@grille</span> = <span class="ruby-identifier">grille</span>
     <span class="ruby-ivar">@nb_voisins</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">size</span>)
@@ -172,10 +175,10 @@
         </div>
 
         <div class="method-description">
-          <p>Méthode responsable de l&#39;analyse de la grille ainsi que ses sommets  afin de déduire le cas dans lequel on se trouve.</p>
+          <p>Méthode responsable de l&#39;analyse de la grille ainsi que de ses sommets  afin de déduire le cas dans lequel on se trouve.</p>
 
           <div class="method-source-code" id="definirCas-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 47</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">definirCas</span>()
     <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
         <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-identifier">x</span>.<span class="ruby-identifier">compterVoisins</span>()
@@ -387,10 +390,9 @@
           <p>VALIDE</p>
 
           <div class="method-source-code" id="estCas1-3F-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 85</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 86</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">estCas1?</span>()
     <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">sommets</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-      <span class="ruby-comment"># if @nb_voisins[i] == 1 &amp;&amp; x.pontRestants() != x.degreeMax</span>
       <span class="ruby-keyword">if</span> <span class="ruby-ivar">@nb_voisins</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">&amp;&amp;</span>  <span class="ruby-operator">!</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">estComplet</span>()
         <span class="ruby-ivar">@position</span> = <span class="ruby-ivar">@grille</span>.<span class="ruby-identifier">get_child_at</span>(<span class="ruby-identifier">x</span>.<span class="ruby-identifier">column</span>, <span class="ruby-identifier">x</span>.<span class="ruby-identifier">row</span>)
         <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
@@ -655,7 +657,7 @@
           <p>Méthode permettant d&#39;obtenir le message d&#39;aide correspondant un id</p>
 
           <div class="method-source-code" id="getMessageAide-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 33</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">getMessageAide</span> 
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lireId</span>()
   <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">readlines</span>(<span class="ruby-string">&quot;AideTexte.txt&quot;</span>)
@@ -683,7 +685,7 @@
           <p>Méthode permettant de definir un cas en fonction de l&#39;etat du tableau</p>
 
           <div class="method-source-code" id="lireId-source">
-            <pre><span class="ruby-comment"># File Aide.rb, line 28</span>
+            <pre><span class="ruby-comment"># File Aide.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lireId</span> 
     <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">definirCas</span>()
 <span class="ruby-keyword">end</span></pre>

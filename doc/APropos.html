@@ -120,48 +120,48 @@
     <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
         <span class="ruby-keyword">super</span>
 
-        <span class="ruby-identifier">set_title</span> <span class="ruby-string">&quot;A Propos&quot;</span>
-        <span class="ruby-identifier">set_resizable</span>(<span class="ruby-keyword">true</span>)
-        <span class="ruby-identifier">signal_connect</span> <span class="ruby-string">&quot;destroy&quot;</span> <span class="ruby-keyword">do</span> 
-                <span class="ruby-keyword">self</span>.<span class="ruby-identifier">destroy</span>
-        <span class="ruby-keyword">end</span>
+                <span class="ruby-identifier">set_title</span> <span class="ruby-string">&quot;A Propos&quot;</span>
+                <span class="ruby-identifier">set_resizable</span>(<span class="ruby-keyword">true</span>)
+                <span class="ruby-identifier">signal_connect</span> <span class="ruby-string">&quot;destroy&quot;</span> <span class="ruby-keyword">do</span> 
+                        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">destroy</span>
+                <span class="ruby-keyword">end</span>
 
-        <span class="ruby-identifier">set_default_size</span> <span class="ruby-value">500</span>, <span class="ruby-value">400</span>
+                <span class="ruby-identifier">set_default_size</span> <span class="ruby-value">500</span>, <span class="ruby-value">400</span>
 
-        <span class="ruby-identifier">set_window_position</span> <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">WindowPosition</span><span class="ruby-operator">::</span><span class="ruby-constant">CENTER</span>
-        
-        <span class="ruby-identifier">title</span> = <span class="ruby-string">&quot;&lt;span font_desc = \&quot;Toledo 30\&quot;&gt;A Propos&lt;/span&gt;\n&quot;</span>
-        <span class="ruby-identifier">texte</span> = <span class="ruby-string">&quot;&lt;span font_desc = \&quot;Toledo 15\&quot;&gt;Créé par les plus beaux : \n Aaron Amani \n Axel Jourry  \n Clement Janvier  \n Cindy Calvados  \n Collins Soares  \n Florian Dreux  \n Rayyan Lajnef  \n Thomas Malabry  \n Willhem Liban &lt;/span&gt;\n&quot;</span>
-        
-        <span class="ruby-identifier">boxMenu</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:vertical</span>, <span class="ruby-value">6</span>)
-        
-        <span class="ruby-identifier">textTitle</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;A Propos&quot;</span>)
-        <span class="ruby-identifier">textTitle</span>.<span class="ruby-identifier">set_markup</span>(<span class="ruby-identifier">title</span>)
-        <span class="ruby-identifier">textTitle</span>.<span class="ruby-identifier">set_justify</span>(<span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">JUSTIFY_CENTER</span>)
-        
-        <span class="ruby-identifier">textepro</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>()
-        <span class="ruby-identifier">textepro</span>.<span class="ruby-identifier">set_markup</span>(<span class="ruby-identifier">texte</span>)
-        <span class="ruby-identifier">textepro</span>.<span class="ruby-identifier">set_justify</span>(<span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">JUSTIFY_CENTER</span>)
+                <span class="ruby-identifier">set_window_position</span> <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">WindowPosition</span><span class="ruby-operator">::</span><span class="ruby-constant">CENTER</span>
+                
+                <span class="ruby-identifier">title</span> = <span class="ruby-string">&quot;&lt;span font_desc = \&quot;Toledo 30\&quot;&gt;A Propos&lt;/span&gt;\n&quot;</span>
+                <span class="ruby-identifier">texte</span> = <span class="ruby-string">&quot;&lt;span font_desc = \&quot;Toledo 15\&quot;&gt;Créé par le groupe 4\n\n Aaron Amani \n Axel Jourry  \n Clement Janvier  \n Cindy Calvados  \n Collins Soares  \n Florian Dreux  \n Rayyan Lajnef  \n Thomas Malabry  \n Willhem Liban &lt;/span&gt;\n&quot;</span>
+                
+                <span class="ruby-identifier">boxMenu</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:vertical</span>, <span class="ruby-value">6</span>)
+                
+                <span class="ruby-identifier">textTitle</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;A Propos&quot;</span>)
+                <span class="ruby-identifier">textTitle</span>.<span class="ruby-identifier">set_markup</span>(<span class="ruby-identifier">title</span>)
+                <span class="ruby-identifier">textTitle</span>.<span class="ruby-identifier">set_justify</span>(<span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">JUSTIFY_CENTER</span>)
+                
+                <span class="ruby-identifier">textepro</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>()
+                <span class="ruby-identifier">textepro</span>.<span class="ruby-identifier">set_markup</span>(<span class="ruby-identifier">texte</span>)
+                <span class="ruby-identifier">textepro</span>.<span class="ruby-identifier">set_justify</span>(<span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">JUSTIFY_CENTER</span>)
 
-        <span class="ruby-comment"># Creation d&#39;un nouveau fichier permettant de gérer le CSS</span>
-        <span class="ruby-identifier">css_file</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">CssProvider</span>.<span class="ruby-identifier">new</span>
-        <span class="ruby-identifier">css_file</span>.<span class="ruby-identifier">load</span>(<span class="ruby-value">data:</span> <span class="ruby-identifier">&lt;&lt;-CSS</span>)
-<span class="ruby-value">                .about {
-                        background-color: #F8DDD7;
-                }
-</span><span class="ruby-identifier">                CSS</span>
+                <span class="ruby-comment"># Creation d&#39;un nouveau fichier permettant de gérer le CSS</span>
+                <span class="ruby-identifier">css_file</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">CssProvider</span>.<span class="ruby-identifier">new</span>
+                <span class="ruby-identifier">css_file</span>.<span class="ruby-identifier">load</span>(<span class="ruby-value">data:</span> <span class="ruby-identifier">&lt;&lt;-CSS</span>)
+<span class="ruby-value">                        .about {
+                                background-color: #F8DDD7;
+                        }
+</span><span class="ruby-identifier">                        CSS</span>
 
-        <span class="ruby-comment"># Ajout de la classe CSS a la box</span>
-        <span class="ruby-identifier">boxMenu</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_class</span>(<span class="ruby-string">&#39;about&#39;</span>)
-        <span class="ruby-comment"># Lien entre la box et le fichier css afin que le css puisse être appliqué</span>
-        <span class="ruby-identifier">boxMenu</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
+                <span class="ruby-comment"># Ajout de la classe CSS a la box</span>
+                <span class="ruby-identifier">boxMenu</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_class</span>(<span class="ruby-string">&#39;about&#39;</span>)
+                <span class="ruby-comment"># Lien entre la box et le fichier css afin que le css puisse être appliqué</span>
+                <span class="ruby-identifier">boxMenu</span>.<span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-identifier">css_file</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
 
-        <span class="ruby-identifier">boxMenu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">textTitle</span>)
-        <span class="ruby-identifier">boxMenu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">textepro</span>)
-        
-        <span class="ruby-identifier">add</span>(<span class="ruby-identifier">boxMenu</span>)
+                <span class="ruby-identifier">boxMenu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">textTitle</span>)
+                <span class="ruby-identifier">boxMenu</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">textepro</span>)
+                
+                <span class="ruby-identifier">add</span>(<span class="ruby-identifier">boxMenu</span>)
 
-        <span class="ruby-identifier">show_all</span>
+                <span class="ruby-identifier">show_all</span>
     <span class="ruby-keyword">end</span></pre>
           </div>
         </div>

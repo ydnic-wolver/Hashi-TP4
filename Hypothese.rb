@@ -42,10 +42,8 @@ class Hypothese
             }
 
                 CSS
-        boutonIndice = builder.get_object('btnIndice')
-        boutonIndice.signal_connect('clicked'){
-            puts "Indice"
-        }
+
+       
 
         # #Reglage du bouton Undo
         boutonUndo = builder.get_object('btnUndo')
@@ -59,18 +57,19 @@ class Hypothese
         
         
         # # Création d'une nouvelle grille
-        hypoGrille = HashiGrid.new(plateau.grid.nomniv, @diff, plateau.grid.lignes, plateau.grid.colonnes)
-        hypoGrille.set_column_homogeneous(true)
-        hypoGrille.set_row_homogeneous(true)
-        hypoGrille.colonnes = plateau.grid.colonnes
-        hypoGrille.lignes = plateau.grid.lignes
+        @hypoGrille = HashiGrid.new(plateau.grid.nomniv, @diff, plateau.grid.lignes, plateau.grid.colonnes)
+        @hypoGrille.set_column_homogeneous(true)
+        @hypoGrille.set_row_homogeneous(true)
+        @hypoGrille.colonnes = plateau.grid.colonnes
+        @hypoGrille.lignes = plateau.grid.lignes
+        @hypoGrille.sommets = plateau.grid.sommets
 
         # # On parcourt le tableau des iles/ponts copiés
         copy_grille.each do |x| 
             # Si c'est une ile 
             # On copie les attributs de l'ile
             if x.status != 'p'
-                btn = Ile.new(hypoGrille,x.degreeMax.to_s,x.column,x.row)
+                btn = Ile.new(@hypoGrille,x.degreeMax.to_s,x.column,x.row)
                 btn.degree = x.degree
                 btn.estComplet = x.estComplet
                 btn.northEdge = x.northEdge
@@ -81,30 +80,40 @@ class Hypothese
             else 
                 # Si c'est un pont on copie les attributs 
                 # et on met à jour le pont 
-                btn = Pont.new(hypoGrille,x.column,x.row)
+                btn = Pont.new(@hypoGrille,x.column,x.row)
                 btn.set_typePont( x.get_typePont )
                 btn.estDouble = x.estDouble
                 btn.set_directionPont ( x.get_directionPont )
                 btn.update
             end
                 # On attache la référence de la grille
-                hypoGrille.attach(btn, x.column,x.row, 1,1)
+                @hypoGrille.attach(btn, x.column,x.row, 1,1)
         end
         # # Chargement des voisins
-        hypoGrille.chargeVoisins
+        @hypoGrille.chargeVoisins
 
         boxJeu = builder.get_object('boxJeu')
-        boxJeu.add(hypoGrille)
+        boxJeu.add(@hypoGrille)
 
       
         #Creation et affichage de la fenêtre principale
         boxPrincipale = builder.get_object('boxPrincipale')
 
+        aide = Aide.new(@hypoGrille)
+        label_aide = builder.get_object('label_indice')
+        
+        boutonIndice = builder.get_object('btnIndice')
+        boutonIndice.signal_connect('clicked'){
+            label_aide.set_label(aide.getMessageAide)
+            boxPrincipale.show_all
+            # puts "Indice"
+        }
+
       
         btnValider = builder.get_object('btnValider')
         btnValider.signal_connect('clicked'){
-            boxJeu.remove(hypoGrille)
-            plateau.hypotheseValider(hypoGrille)
+            boxJeu.remove(@hypoGrille)
+            plateau.hypotheseValider(@hypoGrille)
             hypo.destroy
             $window.getPlateau().set_sensitive(true)
         }
@@ -116,11 +125,11 @@ class Hypothese
         }
 
         boutonUndo.signal_connect('clicked'){
-            hypoGrille.undoPrevious
+            @hypoGrille.undoPrevious
         }
 
         boutonRedo.signal_connect('clicked'){
-            hypoGrille.redoPrevious
+            @hypoGrille.redoPrevious
         }
 
         btnAnnuler.style_context.add_provider(css_file, Gtk::StyleProvider::PRIORITY_USER)

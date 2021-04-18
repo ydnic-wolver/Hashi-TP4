@@ -116,7 +116,7 @@
             </div>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File MenuSelection.rb, line 11</span>
+            <pre><span class="ruby-comment"># File MenuSelection.rb, line 15</span>
     <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
         <span class="ruby-keyword">super</span>(<span class="ruby-string">&quot;ListeNiveau&quot;</span>,<span class="ruby-string">&quot;Menu Selection&quot;</span>)
        
@@ -141,17 +141,22 @@
 
                 <span class="ruby-identifier">btnLancer</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;btnLancer&#39;</span>)
                 <span class="ruby-identifier">btnSave</span> = <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">get_object</span>(<span class="ruby-string">&#39;btnSave&#39;</span>)
+                <span class="ruby-comment">#Recuperer la difficulté en variable</span>
+                <span class="ruby-keyword">if</span>(<span class="ruby-identifier">tableauBtn</span>[<span class="ruby-identifier">x</span>].<span class="ruby-identifier">isFacile?</span>)
+                        <span class="ruby-identifier">diff</span> = <span class="ruby-string">&quot;Facile&quot;</span>
+                <span class="ruby-keyword">elsif</span>(<span class="ruby-identifier">tableauBtn</span>[<span class="ruby-identifier">x</span>].<span class="ruby-identifier">isMoyen?</span>)
+                        <span class="ruby-identifier">diff</span> = <span class="ruby-string">&quot;Moyen&quot;</span>
+                <span class="ruby-keyword">else</span>
+                        <span class="ruby-identifier">diff</span> = <span class="ruby-string">&quot;Hard&quot;</span>
+                <span class="ruby-keyword">end</span>
+                <span class="ruby-identifier">titre</span> = <span class="ruby-identifier">tableauBtn</span>[<span class="ruby-identifier">x</span>].<span class="ruby-identifier">getNiveau</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/[^\/]*.txt/</span>)
+                <span class="ruby-keyword">if</span> ((<span class="ruby-operator">!</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">file?</span>(<span class="ruby-node">&quot;./Sauvegarde/#{diff}/save#{titre}&quot;</span>))) <span class="ruby-operator">||</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">zero?</span>(<span class="ruby-node">&quot;./Sauvegarde/#{diff}/save#{titre}&quot;</span>))
+                        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;./Sauvegarde/#{diff}/save#{titre}&quot;</span>
+                        <span class="ruby-identifier">btnSave</span>.<span class="ruby-identifier">sensitive</span> = <span class="ruby-keyword">false</span>
+                <span class="ruby-keyword">end</span>
                 <span class="ruby-identifier">btnSave</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
                     <span class="ruby-identifier">chargement</span>=<span class="ruby-value">1</span>
-                    <span class="ruby-comment">#Recuperer la difficulté en variable</span>
-                    <span class="ruby-keyword">if</span>(<span class="ruby-identifier">tableauBtn</span>[<span class="ruby-identifier">x</span>].<span class="ruby-identifier">isFacile?</span>)
-                        <span class="ruby-identifier">diff</span> = <span class="ruby-string">&quot;Facile&quot;</span>
-                    <span class="ruby-keyword">elsif</span>(<span class="ruby-identifier">tableauBtn</span>[<span class="ruby-identifier">x</span>].<span class="ruby-identifier">isMoyen?</span>)
-                        <span class="ruby-identifier">diff</span> = <span class="ruby-string">&quot;Moyen&quot;</span>
-                    <span class="ruby-keyword">else</span>
-                        <span class="ruby-identifier">diff</span> = <span class="ruby-string">&quot;Hard&quot;</span>
-                    <span class="ruby-keyword">end</span>
-
+                   
                     <span class="ruby-identifier">window</span>.<span class="ruby-identifier">destroy</span>
                     <span class="ruby-ivar">@menu</span>.<span class="ruby-identifier">destroy</span>
                     <span class="ruby-identifier">$window</span> = <span class="ruby-constant">Plateau</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">tableauBtn</span>[<span class="ruby-identifier">x</span>].<span class="ruby-identifier">getNiveau</span>,<span class="ruby-identifier">tableauBtn</span>[<span class="ruby-identifier">x</span>].<span class="ruby-identifier">getY</span>,<span class="ruby-identifier">tableauBtn</span>[<span class="ruby-identifier">x</span>].<span class="ruby-identifier">getX</span>, <span class="ruby-identifier">diff</span>,<span class="ruby-identifier">chargement</span>)
@@ -159,17 +164,6 @@
                 }
                 <span class="ruby-identifier">btnLancer</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;clicked&#39;</span>){
                     <span class="ruby-identifier">chargement</span> =<span class="ruby-value">0</span>
-                    <span class="ruby-comment">#Recuperer la difficulté en variable</span>
-                    <span class="ruby-keyword">if</span>(<span class="ruby-identifier">tableauBtn</span>[<span class="ruby-identifier">x</span>].<span class="ruby-identifier">isFacile?</span>)
-                        <span class="ruby-identifier">diff</span> = <span class="ruby-string">&quot;Facile&quot;</span>
-                    
-                    <span class="ruby-keyword">elsif</span>(<span class="ruby-identifier">tableauBtn</span>[<span class="ruby-identifier">x</span>].<span class="ruby-identifier">isMoyen?</span>)
-                        <span class="ruby-identifier">diff</span> = <span class="ruby-string">&quot;Moyen&quot;</span>
-                    
-                    <span class="ruby-keyword">else</span>
-                        <span class="ruby-identifier">diff</span> = <span class="ruby-string">&quot;Difficile&quot;</span>
-                    <span class="ruby-keyword">end</span>
-
                     <span class="ruby-identifier">window</span>.<span class="ruby-identifier">destroy</span>
                     <span class="ruby-ivar">@menu</span>.<span class="ruby-identifier">destroy</span>
                     <span class="ruby-identifier">$window</span> = <span class="ruby-constant">Plateau</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">tableauBtn</span>[<span class="ruby-identifier">x</span>].<span class="ruby-identifier">getNiveau</span>,<span class="ruby-identifier">tableauBtn</span>[<span class="ruby-identifier">x</span>].<span class="ruby-identifier">getY</span>,<span class="ruby-identifier">tableauBtn</span>[<span class="ruby-identifier">x</span>].<span class="ruby-identifier">getX</span>, <span class="ruby-identifier">diff</span>,<span class="ruby-identifier">chargement</span>)

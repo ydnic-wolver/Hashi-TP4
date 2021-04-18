@@ -1,3 +1,4 @@
+0:Une ile ne doit pas depasser son degre
 1:Ile avec une seule ile voisine restante dans la grille
 2:Ile avec une seule possibilite de connexion restante dans la grille
 3:Ile a 8 restante dans la grille

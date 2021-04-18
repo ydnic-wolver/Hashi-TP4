@@ -113,9 +113,16 @@
 
         <div class="method-description">
           <p>Chargement d&#39;une sauvegarde</p>
+<ul><li>
+<p><code>grille</code> la grille du niveau pour l&#39;initialiser avec le contenu du fichier</p>
+</li><li>
+<p><code>dif</code> le nom du niveau pour savoir quel fichier charger</p>
+</li><li>
+<p><code>dif</code> la difficulté du niveau pour savoir ou charger le fichier</p>
+</li></ul>
 
           <div class="method-source-code" id="charge-source">
-            <pre><span class="ruby-comment"># File Sauvegarde.rb, line 58</span>
+            <pre><span class="ruby-comment"># File Sauvegarde.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Sauvegarde</span>.<span class="ruby-identifier ruby-title">charge</span>(<span class="ruby-identifier">grille</span>, <span class="ruby-identifier">nomniv</span>,<span class="ruby-identifier">dif</span>)
     <span class="ruby-identifier">titre</span> = <span class="ruby-identifier">nomniv</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/[^\/]*.txt/</span>)
     <span class="ruby-comment">#sauvegarde devient un tableau</span>
@@ -144,8 +151,7 @@
             <span class="ruby-keyword">end</span>
         <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">saveTab</span>[<span class="ruby-identifier">grille</span>.<span class="ruby-identifier">lignes</span>][<span class="ruby-value">0</span>]
-    <span class="ruby-identifier">$tempsPause</span> = <span class="ruby-identifier">saveTab</span>[<span class="ruby-identifier">grille</span>.<span class="ruby-identifier">lignes</span>][<span class="ruby-value">0</span>]
+    <span class="ruby-identifier">saveTab</span>[<span class="ruby-identifier">grille</span>.<span class="ruby-identifier">lignes</span>][<span class="ruby-value">0</span>].<span class="ruby-identifier">to_i</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -162,9 +168,14 @@
 
         <div class="method-description">
           <p>Création d&#39;une sauvegarde</p>
+<ul><li>
+<p><code>nomniv</code> le nom du niveau pour enregistrer le fichier de sauvegarde</p>
+</li><li>
+<p><code>dif</code> la difficulté du niveau pour savoir ou sauvegarder le fichier</p>
+</li></ul>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File Sauvegarde.rb, line 9</span>
+            <pre><span class="ruby-comment"># File Sauvegarde.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">nomniv</span>,<span class="ruby-identifier">dif</span>)
     <span class="ruby-ivar">@nomniv</span>=<span class="ruby-identifier">nomniv</span>
     <span class="ruby-ivar">@dif</span>=<span class="ruby-identifier">dif</span>
@@ -186,12 +197,20 @@
 
         <div class="method-description">
           <p><a href="Sauvegarde.html"><code>Sauvegarde</code></a> des informations du joueur pour le classement</p>
+<ul><li>
+<p><code>nomGrille</code> le nom du niveau pour savoir comment appeler le fichier</p>
+</li><li>
+<p><code>difficulte</code> la difficulté du niveau pour savoir ou sauvegarder le fichier</p>
+</li><li>
+<p><code>chrono</code> le chrono de l&#39;utilisateur</p>
+</li><li>
+<p><code>nom</code> le nom de l&#39;utilisateur</p>
+</li></ul>
 
           <div class="method-source-code" id="saveTime-source">
-            <pre><span class="ruby-comment"># File Sauvegarde.rb, line 49</span>
+            <pre><span class="ruby-comment"># File Sauvegarde.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Sauvegarde</span>.<span class="ruby-identifier ruby-title">saveTime</span>(<span class="ruby-identifier">nomGrille</span>,<span class="ruby-identifier">difficulte</span>,<span class="ruby-identifier">chrono</span>, <span class="ruby-identifier">nom</span>)
     <span class="ruby-identifier">titre</span> = <span class="ruby-identifier">nomGrille</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/[^\/]*.txt/</span>)
-    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;CHRONO&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">chrono</span>.<span class="ruby-identifier">to_s</span>
     <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-node">&quot;./Classement/#{difficulte}/#{titre}&quot;</span>, <span class="ruby-string">&#39;a&#39;</span>)
     <span class="ruby-identifier">file</span>.<span class="ruby-identifier">write</span>(<span class="ruby-node">&quot;#{chrono}:#{nom}\n&quot;</span>)
     <span class="ruby-identifier">file</span>.<span class="ruby-identifier">close</span>
@@ -217,10 +236,13 @@
         </div>
 
         <div class="method-description">
-          <p><a href="Sauvegarde.html"><code>Sauvegarde</code></a> de l&#39;etat de la grille</p>
+          <p><a href="Sauvegarde.html"><code>Sauvegarde</code></a> de l&#39;etat de la grille </p>
+<ul><li>
+<p><code>grille</code> la grille a sauvegarder</p>
+</li></ul>
 
           <div class="method-source-code" id="sauvegarder-source">
-            <pre><span class="ruby-comment"># File Sauvegarde.rb, line 17</span>
+            <pre><span class="ruby-comment"># File Sauvegarde.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sauvegarder</span>(<span class="ruby-identifier">grille</span>)
 
     <span class="ruby-identifier">f</span>=<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@path</span>, <span class="ruby-string">&#39;w&#39;</span>)
@@ -248,7 +270,7 @@
         <span class="ruby-keyword">end</span>
         <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;\n&quot;</span>)
     <span class="ruby-keyword">end</span>
-    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">$tempsFin</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">$tempssec</span>)
     <span class="ruby-identifier">f</span>.<span class="ruby-identifier">close</span>
 <span class="ruby-keyword">end</span></pre>
           </div>

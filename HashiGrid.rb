@@ -39,7 +39,7 @@ class HashiGrid < Gtk::Grid
     attr_reader :diff
 
      # Attribut correspondant au nombre de sommets contenus dans la grille
-    attr_reader :sommets 
+    attr_accessor :sommets 
 
      # Attribut correspondant au nom du niveau
     attr_reader :nomniv

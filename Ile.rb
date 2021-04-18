@@ -96,11 +96,19 @@ class Ile < Gtk::Button
     # Calcule le nombres de ponts restants sur une ile
     def pontRestants
         compteur = 0
-        compteur += @northEdge
-        compteur += @eastEdge
-        compteur += @southEdge
-        compteur += @westEdge
-
+       
+        if( @northNode != nil )
+            compteur += @northEdge
+        end
+        if( @eastNode != nil )
+            compteur += @eastEdge
+        end
+        if( @southNode != nil )
+            compteur += @southEdge
+        end
+        if( @westNode != nil )
+            compteur += @westEdge
+        end
         return compteur
     end
 
@@ -114,6 +122,10 @@ class Ile < Gtk::Button
     # Retourne le nombre de voisins
     def compterVoisins() 
         return self.getVoisins().size
+    end
+
+    def connexionRestantes 
+        return @degreeMax - self.pontRestants()
     end
 
     # Retourne un tableau contenant les voisins d'une ile
