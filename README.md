@@ -9,7 +9,7 @@ ruby Client.rb
 # Lien du github
 https://github.com/Nowyyy/Hashi-TP4
 
-Groupe 4
+# Groupe 4
 Aaron AMANI
 Axel JOURRY
 Cindy CALVADOS
