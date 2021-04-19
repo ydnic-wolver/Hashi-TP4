@@ -152,10 +152,12 @@ class Plateau
         #Creation et affichage de la fenêtre principale
         @boxPrincipale = builder.get_object('boxPrincipale')
         @boxPrincipale.style_context.add_provider(css_file, Gtk::StyleProvider::PRIORITY_USER)
-
+        
         #Gestion du temps
         
         @chargement = 0
+
+        @plateau.fullscreen()
 
         @plateau.show
 

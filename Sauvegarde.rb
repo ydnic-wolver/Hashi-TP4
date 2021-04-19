@@ -110,9 +110,8 @@ class Sauvegarde
     # * +dif+ la difficulté du niveau pour savoir ou charger le fichier
     def Sauvegarde.saveDelete(nomniv, dif)
         titre = nomniv.match(/[^\/]*.txt/)
-        f = File.open("./Sauvegarde/#{dif}/save#{titre}", 'r')
-
-        File.delete(f)
+        f = File.open("./Sauvegarde/#{dif}/save#{titre}", 'w')
+        f.close()
 
         return self
     end
