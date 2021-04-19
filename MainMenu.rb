@@ -53,7 +53,9 @@ class MainMenu
 
 		btnAPropos =builder.get_object('btn-about')
 		btnAPropos.signal_connect('clicked'){
-			APropos.new
+			main_menu.set_sensitive(false)
+			APropos.new(main_menu)
+			
 		}
 		
 

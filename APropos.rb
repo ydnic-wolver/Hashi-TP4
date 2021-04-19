@@ -5,13 +5,15 @@ require 'gtk3'
 class APropos < Gtk::Window
 
 	# Constructeur du menu A propos
-    def initialize
-        super
+    def initialize(menu)
+        super()
 
 		set_title "A Propos"
 		set_resizable(true)
 		signal_connect "destroy" do 
+			menu.set_sensitive(true)
 			self.destroy
+		
 		end
 
 		set_default_size 500, 400
