@@ -6,6 +6,9 @@ cd Bureau
 cd Hashi  
 ruby Client.rb
 
+# Mot de passe de l'image virtuelle
+HashiGroupe4
+
 # Lien du github
 https://github.com/Nowyyy/Hashi-TP4
 
