@@ -9,6 +9,9 @@ ruby Client.rb
 # Lien du github
 https://github.com/Nowyyy/Hashi-TP4
 
+# Lien du diagramme de Gantt
+https://docs.google.com/spreadsheets/d/1ex0zHt4QX2DAGEMhy0mUghw9voqo3CULaicxu2CyPyU/edit#gid=90785337
+
 # Groupe 4
 Aaron AMANI  
 Axel JOURRY  
