@@ -1,0 +1,55 @@
+
+.bg-black {
+    background-image: url('../Ressources/Plateau/plateau.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg-hypo {
+    background-color: #F8DDD7;
+}
+
+
+.boxJeu {
+    all:unset;
+   /* background-color: rgba(255, 255, 255, 0.1); 
+    border-radius: 5px; */
+}
+ 
+.help {
+  background-image: url("../Ressources/Plateau/pause.png");
+}
+
+ 
+.ile  {
+    all:unset;
+    border:.2px solid #9c5503;
+    /* background-color: #5B3512; */
+    border-radius: 5px;
+} 
+
+.label_aide {
+    color: #020547;
+    font-size: 18.7px;
+    font-weight: bold;
+    font-family: 'Toledo';
+}
+
+.ile:hover {
+    background-color:#FFFDA9;
+  }
+
+
+.possibles {
+    background-color: rgba(136, 207, 255, .3);
+}
+
+
+.btn-menu{
+    all: unset;
+}
+
+.btn-menu:hover {
+    all:unset;
+    opacity: .6;
+}
