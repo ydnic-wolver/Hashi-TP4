@@ -264,6 +264,7 @@ class Plateau
         if(@grid.grilleFini? )
             self.partiFini
         end 
+        
         @grid.undoRedo.cleanAll()
         @boxJeu.add(@grid)
 

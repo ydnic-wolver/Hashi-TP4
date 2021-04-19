@@ -57,7 +57,7 @@ class Hypothese
         
         
         # # Création d'une nouvelle grille
-        @hypoGrille = HashiGrid.new(plateau.grid.nomniv, @diff, plateau.grid.lignes, plateau.grid.colonnes)
+        @hypoGrille = HashiGrid.new(plateau.grid.nomniv,plateau.grid.diff, plateau.grid.lignes, plateau.grid.colonnes)
         @hypoGrille.set_column_homogeneous(true)
         @hypoGrille.set_row_homogeneous(true)
         @hypoGrille.colonnes = plateau.grid.colonnes
