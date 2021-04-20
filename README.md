@@ -2,9 +2,7 @@
 Projet du groupe 4 dans le cadre du Genie Logiciel du S6 de L3 Informatique.
 
 # Lancer le programme
-cd Bureau  
-cd Hashi  
-ruby Client.rb
+Double cliquez sur le fichier Hashi.sh contenu dans le dossier Hashi sur le bureau.
 
 # Mot de passe de l'image virtuelle
 HashiGroupe4
