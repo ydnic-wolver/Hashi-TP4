@@ -157,8 +157,6 @@ class Plateau
         
         @chargement = 0
 
-        @plateau.fullscreen()
-
         @plateau.show
 
         #Thread chronomètre
