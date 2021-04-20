@@ -42,7 +42,7 @@ class MenuSelection < MenuLayout
                 elsif(tableauBtn[x].isMoyen?)
                 	diff = "Moyen"
                 else
-                	diff = "Hard"
+                	diff = "Difficile"
                 end
                 titre = tableauBtn[x].getNiveau.match(/[^\/]*.txt/)
                 if ((!(File.file?("./Sauvegarde/#{diff}/save#{titre}"))) || File.zero?("./Sauvegarde/#{diff}/save#{titre}"))
